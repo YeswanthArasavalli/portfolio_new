@@ -14,171 +14,154 @@ const catLabel: Record<string,string> = {
   mlops:"MLOps", nlp:"NLP", analytics:"Analytics", cv:"Computer Vision", forecasting:"Time-Series"
 };
 
-/* ── Inline SVG architecture diagrams per project ─── */
-function MLOpsDiagram() {
+/* ── Reusable arch row types ─────────────────── */
+type ArchRow = { box: string; detail: string; color: string } | { arrow: string };
+
+function ArchDiagram({ title, rows }: { title: string; rows: ArchRow[] }) {
   return (
     <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">System Architecture</div>
+      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">{title}</div>
       <div className="space-y-0">
-        {[
-          { box: "Training Pipeline",  detail: "Scikit-learn · ColumnTransformers · schema validation",  color: "border-violet-500 text-violet-300" },
-          { arrow: "↓ artifacts" },
-          { box: "MLflow",             detail: "Experiment tracking · Model Registry · version tags",    color: "border-blue-500 text-blue-300" },
-          { arrow: "↓ load by version tag" },
-          { box: "FastAPI Service",    detail: "REST endpoints · /health · /metrics · Docker",          color: "border-green-500 text-green-300" },
-          { arrow: "↓ log predictions" },
-          { box: "PostgreSQL",         detail: "Prediction logs · latency · input/output audit trail",  color: "border-yellow-500 text-yellow-300" },
-          { arrow: "↓ read logs" },
-          { box: "Evidently",          detail: "PSI · KS-test · drift reports · threshold alerts",      color: "border-orange-500 text-orange-300" },
-          { arrow: "↓ visualise" },
-          { box: "Streamlit Dashboard",detail: "Prediction volume · latency trends · drift summaries",  color: "border-pink-500 text-pink-300" },
-        ].map((row, i) => (
+        {rows.map((row, i) =>
           "arrow" in row ? (
             <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
           ) : (
-            <div key={i} className={`border rounded px-3 py-2 ${row.color}`}>
+            <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
               <span className="font-semibold">{row.box}</span>
               <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
             </div>
           )
-        ))}
+        )}
       </div>
     </div>
   );
 }
 
-function HiringPlatformDiagram() {
-  return (
-    <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">Backend Architecture</div>
-      <div className="grid grid-cols-1 gap-0">
-        {[
-          { label: "FastAPI Layer",        detail: "POST /analyse · request validation · structured errors",   color: "border-blue-500 text-blue-300" },
-          { arrow: "↓ enqueue" },
-          { label: "Worker Queue",         detail: "Async workers · retry w/ backoff · dead-letter routing",  color: "border-violet-500 text-violet-300" },
-          { arrow: "↓ pipeline stages" },
-          { label: "Ingestion",            detail: "PDF/text parse · field extraction · normalisation",       color: "border-slate-400 text-slate-300" },
-          { label: "Validation",           detail: "Contradiction checks · rollback on failure",              color: "border-slate-400 text-slate-300" },
-          { label: "Scoring",              detail: "Keyword alignment · section completeness · grading",      color: "border-slate-400 text-slate-300" },
-          { label: "Storage",              detail: "PostgreSQL · job lifecycle · scores · audit trail",       color: "border-green-500 text-green-300" },
-          { arrow: "↓ 80+ tests" },
-          { label: "Test Suite",           detail: "Unit + integration · scoring fns · retry paths",         color: "border-yellow-500 text-yellow-300" },
-        ].map((row, i) => (
-          "arrow" in row ? (
-            <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
-          ) : (
-            <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
-              <span className="font-semibold">{row.label}</span>
-              <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
-            </div>
-          )
-        ))}
-      </div>
-    </div>
-  );
+/* ── Architecture diagrams — each grounded in the actual codebase ── */
+
+function MLOpsDiagram() {
+  const rows: ArchRow[] = [
+    { box: "Training Pipeline",   detail: "Scikit-learn · ColumnTransformers · schema-enforced preprocessing",  color: "border-violet-500 text-violet-300" },
+    { arrow: "↓ log runs + artifacts" },
+    { box: "MLflow",              detail: "Experiment tracking · Model Registry · version tags — no hardcoded paths", color: "border-blue-500 text-blue-300" },
+    { arrow: "↓ load by version tag" },
+    { box: "FastAPI Service",     detail: "/predict · /health · /metrics endpoints · Docker container",           color: "border-green-500 text-green-300" },
+    { arrow: "↓ log inputs + outputs + latency" },
+    { box: "PostgreSQL",          detail: "Prediction log · latency audit trail · alert log",                     color: "border-yellow-500 text-yellow-300" },
+    { arrow: "↓ batch comparison" },
+    { box: "Evidently",           detail: "PSI + KS-test drift reports · threshold-based alert writes",           color: "border-orange-500 text-orange-300" },
+    { arrow: "↓ read PostgreSQL logs" },
+    { box: "Streamlit Dashboard", detail: "Prediction volume · p50/p95 latency · drift summaries — no direct DB access", color: "border-pink-500 text-pink-300" },
+  ];
+  return <ArchDiagram title="System Architecture — 5-Layer MLOps Stack" rows={rows} />;
+}
+
+function HiringDiagram() {
+  /* Grounded in: jd_processor/, resume_engine/, ats_scoring/, pipeline/,
+     database/db_manager.py, dashboard.py (8 pages), learning/, insights/ */
+  const rows: ArchRow[] = [
+    { box: "Input Layer",                detail: "LinkedIn Scraper (Playwright) · Manual Mode (PDF / DOCX / JSON + JD paste)",    color: "border-slate-400 text-slate-300" },
+    { arrow: "↓" },
+    { box: "JD Processing Engine",       detail: "jd_processor/ · skill extraction · section detection · quality scoring",       color: "border-blue-500 text-blue-300" },
+    { arrow: "↓" },
+    { box: "Resume Tailoring Engine",    detail: "resume_engine/ · Ollama local LLM (qwen2.5-coder:3b) · Naturalization layer",  color: "border-violet-500 text-violet-300" },
+    { arrow: "↓" },
+    { box: "ATS Scoring Engine",         detail: "6 dimensions: Keywords 30% · Skills 25% · Experience 20% · Alignment 10% · Education 5% · Structure 10%", color: "border-indigo-500 text-indigo-300" },
+    { arrow: "↓ semantic dampening + nonlinear penalty" },
+    { box: "Probability + Decision",     detail: "Shortlist probability bands · APPLY / MAYBE / IMPROVE decisions (never hard-reject)", color: "border-cyan-500 text-cyan-300" },
+    { arrow: "↓" },
+    { box: "Intelligence Layer",         detail: "Skill Gap Analyzer · Strategy Engine (ROI-ranked) · Flow Engine · Job Ranker · Learning Engine", color: "border-green-500 text-green-300" },
+    { arrow: "↓" },
+    { box: "Output Layer",               detail: "8-page Streamlit dashboard · PDF reports · CSV export · SQLite (WAL mode)",     color: "border-yellow-500 text-yellow-300" },
+  ];
+  return <ArchDiagram title="System Architecture — 225 Python files · ~51K LOC · 144 tests · Local LLM" rows={rows} />;
 }
 
 function SreejitaDiagram() {
-  return (
-    <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">Framework Architecture</div>
-      <div className="space-y-0">
-        {[
-          { box: "Input",              detail: "CSV / JSON structured dataset",                                     color: "border-slate-400 text-slate-300" },
-          { arrow: "↓ domain detection" },
-          { box: "Domain Router",      detail: "Column signature matching → Healthcare · Finance · Retail · HR · Supply Chain", color: "border-blue-500 text-blue-300" },
-          { arrow: "↓ domain module" },
-          { box: "KPI Engine",         detail: "Domain-specific KPI computation · trend analysis · anomaly checks", color: "border-violet-500 text-violet-300" },
-          { arrow: "↓ quality gate" },
-          { box: "Governance Layer",   detail: "Plausibility range validation · per-stage checks · alert log",      color: "border-orange-500 text-orange-300" },
-          { arrow: "↓ render" },
-          { box: "PDF Report",         detail: "KPI summaries · benchmarks · trend charts · action items",          color: "border-green-500 text-green-300" },
-          { box: "Streamlit Dashboard",detail: "Interactive workflow · real-time preview · domain switching",        color: "border-pink-500 text-pink-300" },
-        ].map((row, i) => (
-          "arrow" in row ? (
-            <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
-          ) : (
-            <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
-              <span className="font-semibold">{row.box}</span>
-              <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
-            </div>
-          )
-        ))}
-      </div>
-    </div>
-  );
+  /* Grounded in: core/ (61 engines), domains/ (13), platform/ (Flask API + OrgMemory),
+     reporting/consulting_engine.py (10-section PDF), ml_engine.py (KPIForecaster etc.) */
+  const rows: ArchRow[] = [
+    { box: "Raw Dataset",                detail: "CSV / JSON — any structured business data",                                      color: "border-slate-400 text-slate-300" },
+    { arrow: "↓" },
+    { box: "Data Quality Layer",         detail: "data_quality_engine · data_trust_layer · schema_profiler · completeness scoring", color: "border-red-500 text-red-300" },
+    { arrow: "↓ domain fingerprinting" },
+    { box: "Domain Detection Engine",    detail: "column_resolver · fingerprint · 13 domains: Healthcare, Finance, Retail, HR, Supply Chain, SaaS, Insurance, Real Estate, Ecommerce, Manufacturing, Marketing, Customer Value, Ops", color: "border-blue-500 text-blue-300" },
+    { arrow: "↓ domain-specific KPI registry" },
+    { box: "KPI Intelligence Engine",    detail: "kpi_intelligence_engine · kpi_registry · ml_engine (KPIForecaster · AnomalyDetector) · trend_analyzer · confidence_engine", color: "border-violet-500 text-violet-300" },
+    { arrow: "↓ driver graph" },
+    { box: "Driver & Entity Analysis",   detail: "driver_graph_engine · entity_driver_engine · intelligence_graph · root_cause_engine · impact_propagation_engine", color: "border-indigo-500 text-indigo-300" },
+    { arrow: "↓ cross-KPI patterns" },
+    { box: "Composite Insight Engine",   detail: "composite_insight_engine · insight_quality_engine · insight_guardrails · evidence_engine · confidence_engine", color: "border-cyan-500 text-cyan-300" },
+    { arrow: "↓ priority ranking" },
+    { box: "Recommendation & Scenario",  detail: "recommendation_derivation_engine · decision_optimization_engine · scenario_simulation_engine · action_impact_simulator", color: "border-green-500 text-green-300" },
+    { arrow: "↓ executive narrative" },
+    { box: "Consulting Report (v5.3)",   detail: "10 sections: Executive Snapshot · Board Readiness · Business Diagnostics · KPI Table · Visual Evidence · Risks/Opportunities · 90-Day Action Plan · Health Scorecard", color: "border-yellow-500 text-yellow-300" },
+    { arrow: "↓ platform layer (v5.0+)" },
+    { box: "Platform Layer",             detail: "Flask REST API (7 endpoints) · OrgMemory (institutional knowledge) · DomainCopilot · OutcomeTracker (continuous learning)", color: "border-orange-500 text-orange-300" },
+  ];
+  return <ArchDiagram title="Intelligence Pipeline — 213 Python files · 61 core engines · 13 domains · 454 tests" rows={rows} />;
 }
 
 function RetailCVDiagram() {
-  return (
-    <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">Training & Deployment Pipeline</div>
-      <div className="space-y-0">
-        {[
-          { box: "RPC Dataset",        detail: "~200 SKU categories · preprocessed · normalised",                   color: "border-slate-400 text-slate-300" },
-          { arrow: "↓ augmentation" },
-          { box: "Data Augmentation",  detail: "Progressive augmentation · random crops · horizontal flip",         color: "border-blue-500 text-blue-300" },
-          { arrow: "↓ fine-tune" },
-          { box: "EfficientNet-B0",    detail: "Transfer learning · mixed-precision GPU · ImageNet weights",         color: "border-violet-500 text-violet-300" },
-          { arrow: "↓ track experiments" },
-          { box: "MLflow",             detail: "LR schedules vs augmentation strategies · 3 best checkpoints kept",  color: "border-yellow-500 text-yellow-300" },
-          { arrow: "↓ evaluate" },
-          { box: "Evaluation",         detail: "Top-1: 84.9% · Precision: 0.83 · Recall: 0.82 (vs ResNet-18: 76%)", color: "border-green-500 text-green-300" },
-          { arrow: "↓ serve" },
-          { box: "Streamlit App",      detail: "Upload image → top-3 predictions + confidence · <200ms CPU latency", color: "border-pink-500 text-pink-300" },
-        ].map((row, i) => (
-          "arrow" in row ? (
-            <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
-          ) : (
-            <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
-              <span className="font-semibold">{row.box}</span>
-              <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
-            </div>
-          )
-        ))}
-      </div>
-    </div>
-  );
+  const rows: ArchRow[] = [
+    { box: "RPC Dataset",            detail: "~200 SKU categories · class-balanced sampling · normalised",                          color: "border-slate-400 text-slate-300" },
+    { arrow: "↓ augmentation" },
+    { box: "Data Augmentation",      detail: "Progressive augmentation · random crops · horizontal flip",                           color: "border-blue-500 text-blue-300" },
+    { arrow: "↓ fine-tune" },
+    { box: "EfficientNet-B0",        detail: "Transfer learning · mixed-precision GPU (torch.cuda.amp) · ImageNet weights",          color: "border-violet-500 text-violet-300" },
+    { arrow: "↓ track experiments" },
+    { box: "MLflow",                 detail: "Augmentation vs LR schedule comparison · 3 best checkpoints retained",                 color: "border-yellow-500 text-yellow-300" },
+    { arrow: "↓ evaluate" },
+    { box: "Evaluation",             detail: "Top-1: 84.9% · Precision: 0.83 · Recall: 0.82 (vs ResNet-18 baseline: 76%)",          color: "border-green-500 text-green-300" },
+    { arrow: "↓ quantise + serve" },
+    { box: "Streamlit App",          detail: "Upload image → top-3 predictions + confidence · <200ms CPU latency (INT8 quantised)",  color: "border-pink-500 text-pink-300" },
+  ];
+  return <ArchDiagram title="Training & Deployment Pipeline" rows={rows} />;
 }
 
 function PredMainDiagram() {
-  return (
-    <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">LSTM Forecasting Pipeline</div>
-      <div className="space-y-0">
-        {[
-          { box: "Sensor Data",        detail: "Multivariate time-series · multiple machines · raw readings",       color: "border-slate-400 text-slate-300" },
-          { arrow: "↓ feature engineering" },
-          { box: "Preprocessing",      detail: "Sequence windowing · feature normalisation · class balancing",      color: "border-blue-500 text-blue-300" },
-          { arrow: "↓ train" },
-          { box: "LSTM Model",         detail: "PyTorch · early stopping · gradient clipping · multi-step ahead",   color: "border-violet-500 text-violet-300" },
-          { arrow: "↓ benchmark" },
-          { box: "Baseline Comparison",detail: "LSTM vs ARIMA vs GBM — LSTM wins on failure recall (critical)",     color: "border-yellow-500 text-yellow-300" },
-          { arrow: "↓ evaluate" },
-          { box: "Results",            detail: "87% validation accuracy · 2-week forecast horizon",                 color: "border-green-500 text-green-300" },
-          { arrow: "↓ translate" },
-          { box: "Business Framing",   detail: "Directional ~$1.15M/yr estimate via published downtime benchmarks", color: "border-orange-500 text-orange-300" },
-        ].map((row, i) => (
-          "arrow" in row ? (
-            <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
-          ) : (
-            <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
-              <span className="font-semibold">{row.box}</span>
-              <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
-            </div>
-          )
-        ))}
-      </div>
-    </div>
-  );
+  const rows: ArchRow[] = [
+    { box: "Sensor Data",            detail: "Multivariate time-series · multiple machines · raw readings",                          color: "border-slate-400 text-slate-300" },
+    { arrow: "↓ feature engineering" },
+    { box: "Preprocessing",          detail: "Sequence windowing · feature normalisation · class imbalance handling",                 color: "border-blue-500 text-blue-300" },
+    { arrow: "↓ train" },
+    { box: "LSTM Model",             detail: "PyTorch · early stopping · gradient clipping · 2-week multi-step forecast horizon",     color: "border-violet-500 text-violet-300" },
+    { arrow: "↓ benchmark on failure recall" },
+    { box: "Baseline Comparison",    detail: "LSTM vs ARIMA vs Gradient Boosted Classifier — LSTM wins on failure recall (primary metric)", color: "border-yellow-500 text-yellow-300" },
+    { arrow: "↓ evaluate" },
+    { box: "Results",                detail: "87% validation accuracy · highest recall on failure events vs baselines",                color: "border-green-500 text-green-300" },
+    { arrow: "↓ translate" },
+    { box: "Business Framing",       detail: "~$1.15M/yr directional estimate via published industrial downtime benchmarks (explicitly caveated)", color: "border-orange-500 text-orange-300" },
+  ];
+  return <ArchDiagram title="LSTM Forecasting Pipeline — metric selection aligned to business cost" rows={rows} />;
 }
 
 const diagrams: Record<string, React.ReactNode> = {
   "ml-monitoring-platform":            <MLOpsDiagram />,
-  "ai-hiring-intelligence-platform":   <HiringPlatformDiagram />,
+  "ai-hiring-intelligence-platform":   <HiringDiagram />,
   "sreejita-framework":                <SreejitaDiagram />,
   "retail-product-image-recognition":  <RetailCVDiagram />,
   "predictive-maintenance-forecasting":<PredMainDiagram />,
+};
+
+/* ── Stats highlights per project ─────────────── */
+const projectHighlights: Record<string, { label: string; value: string }[]> = {
+  "ai-hiring-intelligence-platform": [
+    { label: "Python files",    value: "225" },
+    { label: "Lines of code",   value: "~51K" },
+    { label: "Test functions",  value: "144" },
+    { label: "Dashboard pages", value: "8" },
+    { label: "Cloud deps",      value: "Zero" },
+    { label: "LLM",             value: "Local (Ollama)" },
+  ],
+  "sreejita-framework": [
+    { label: "Test functions",    value: "454" },
+    { label: "Python files",      value: "213" },
+    { label: "Business domains",  value: "13" },
+    { label: "Core engines",      value: "61" },
+    { label: "Report sections",   value: "10" },
+    { label: "Platform endpoints", value: "7 (Flask)" },
+  ],
 };
 
 export default function ProjectDetail() {
@@ -197,6 +180,8 @@ export default function ProjectDetail() {
       </div>
     </Layout>
   );
+
+  const extraMetrics = projectHighlights[project.slug];
 
   return (
     <Layout>
@@ -243,8 +228,8 @@ export default function ProjectDetail() {
           </div>
         </div>
 
-        {/* ── Metrics band ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-lg overflow-hidden mb-10">
+        {/* ── Primary metrics ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-lg overflow-hidden mb-6">
           {project.metrics.map(({ label, value }) => (
             <div key={label} className="bg-background px-4 py-4 text-center">
               <div className="text-2xl font-bold tabular-nums text-foreground mb-1">{value}</div>
@@ -253,15 +238,30 @@ export default function ProjectDetail() {
           ))}
         </div>
 
+        {/* ── Extra system metrics (Sreejita + AI Hiring only) ── */}
+        {extraMetrics && (
+          <div className="mb-8">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">System Scale</h3>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-px bg-border rounded-lg overflow-hidden">
+              {extraMetrics.map(({ label, value }) => (
+                <div key={label} className="bg-secondary/30 px-3 py-3 text-center">
+                  <div className="text-lg font-bold tabular-nums text-foreground mb-0.5">{value}</div>
+                  <div className="text-xs text-muted-foreground leading-tight">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* ── Architecture Diagram ── */}
         {diagrams[project.slug] && (
           <div className="mb-10">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Architecture Diagram</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Architecture</h2>
             {diagrams[project.slug]}
           </div>
         )}
 
-        {/* ── Real images (if not placeholder) ── */}
+        {/* ── Real screenshots ── */}
         {project.images.some((img) => !img.includes("placeholder")) && (
           <div className="mb-10 space-y-4">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Screenshots</h2>
@@ -279,10 +279,9 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* ── Case study body ── */}
+        {/* ── Case study sections ── */}
         <div className="space-y-10">
 
-          {/* Problem */}
           <section>
             <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
               <span className="w-6 h-6 rounded bg-accent flex items-center justify-center text-xs font-mono text-accent-foreground flex-shrink-0">P</span>
@@ -291,7 +290,6 @@ export default function ProjectDetail() {
             <p className="text-sm text-muted-foreground leading-relaxed">{project.problem}</p>
           </section>
 
-          {/* Dataset */}
           {project.dataset && (
             <section>
               <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -308,7 +306,6 @@ export default function ProjectDetail() {
             </section>
           )}
 
-          {/* Methodology */}
           <section>
             <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
               <span className="w-6 h-6 rounded bg-accent flex items-center justify-center text-xs font-mono text-accent-foreground flex-shrink-0">M</span>
@@ -324,7 +321,6 @@ export default function ProjectDetail() {
             </ol>
           </section>
 
-          {/* Results */}
           <section>
             <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
               <span className="w-6 h-6 rounded bg-accent flex items-center justify-center text-xs font-mono text-accent-foreground flex-shrink-0">R</span>
@@ -343,7 +339,6 @@ export default function ProjectDetail() {
             </div>
           </section>
 
-          {/* Challenges */}
           {project.challenges && (
             <section>
               <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -361,7 +356,6 @@ export default function ProjectDetail() {
             </section>
           )}
 
-          {/* Learnings */}
           {project.learnings && (
             <section>
               <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -379,7 +373,6 @@ export default function ProjectDetail() {
             </section>
           )}
 
-          {/* Cross-links */}
           {project.crossLinks && project.crossLinks.length > 0 && (
             <section>
               <h2 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -398,7 +391,7 @@ export default function ProjectDetail() {
           )}
         </div>
 
-        {/* ── Prev / Next navigation ── */}
+        {/* ── Prev / Next ── */}
         <div className="mt-14 pt-6 border-t border-border flex items-center justify-between gap-4">
           {prev ? (
             <Link to={`/projects/${prev.slug}`}

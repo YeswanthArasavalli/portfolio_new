@@ -3,31 +3,29 @@ import { Layout } from "@/components/layout/Layout";
 import {
   ArrowRight, Download, Github, Linkedin,
   Terminal, Database, BarChart3, Brain, Server, GitBranch,
-  TrendingUp, CheckCircle2
+  CheckCircle2
 } from "lucide-react";
 import { getProjectsByPriority } from "@/data/projects";
 
-/* ── Skills ─────────────────────────────────────────── */
 const skills = [
-  { group: "Languages",     items: ["Python", "SQL", "R"] },
-  { group: "ML / DL",       items: ["Scikit-learn", "PyTorch", "XGBoost", "LSTM", "DistilBERT", "EfficientNet"] },
-  { group: "MLOps",         items: ["MLflow", "Evidently", "Docker", "FastAPI"] },
-  { group: "Analytics",     items: ["Power BI", "Tableau", "Excel", "KPI Design"] },
-  { group: "Data Eng.",     items: ["PostgreSQL", "ETL Pipelines", "MongoDB", "Pandas"] },
-  { group: "Cloud",         items: ["AWS", "GCP", "Azure"] },
+  { group: "Languages",   items: ["Python", "SQL", "R"] },
+  { group: "ML / DL",     items: ["Scikit-learn", "PyTorch", "XGBoost", "LSTM", "DistilBERT", "EfficientNet"] },
+  { group: "MLOps",       items: ["MLflow", "Evidently", "Docker", "FastAPI"] },
+  { group: "Analytics",   items: ["Power BI", "Tableau", "Excel", "KPI Design"] },
+  { group: "Data Eng.",   items: ["PostgreSQL", "ETL Pipelines", "MongoDB", "Pandas"] },
+  { group: "Cloud",       items: ["AWS", "GCP", "Azure"] },
 ];
 
-/* ── Credibility stats (only verifiable numbers) ────── */
+/* Only verifiable numbers — all grounded in actual code/work */
 const stats = [
-  { value: "87%",  label: "LSTM validation accuracy (Predictive Maintenance)" },
-  { value: "84.9%",label: "EfficientNet Top-1 accuracy (Retail CV, +8.9pp vs baseline)" },
-  { value: "150K+",label: "NLP records cleaned & validated (Postulate IRT)" },
-  { value: "80+",  label: "Automated tests written (Hiring Platform)" },
-  { value: "25%",  label: "Query latency reduction via SQL optimisation (Edunet)" },
-  { value: "40%",  label: "Manual reporting effort cut (PHN Technology)" },
+  { value: "454",   label: "Test functions — Sreejita Framework (30 test files)" },
+  { value: "225",   label: "Python files — AI Job Application System (~51K LOC)" },
+  { value: "13",    label: "Business domains — Sreejita (Healthcare → SaaS → Real Estate)" },
+  { value: "84.9%", label: "EfficientNet Top-1 accuracy (+8.9pp vs ResNet-18 baseline)" },
+  { value: "87%",   label: "LSTM validation accuracy — 2-week failure forecast" },
+  { value: "25%",   label: "SQL query latency reduction via window functions (Edunet)" },
 ];
 
-/* ── Category colours ────────────────────────────────── */
 const catColor: Record<string, string> = {
   mlops:       "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800",
   nlp:         "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800",
@@ -36,21 +34,18 @@ const catColor: Record<string, string> = {
   forecasting: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800",
 };
 const catLabel: Record<string, string> = {
-  mlops: "MLOps", nlp: "NLP", analytics: "Analytics",
-  cv: "Computer Vision", forecasting: "Time-Series",
+  mlops:"MLOps", nlp:"NLP", analytics:"Analytics", cv:"Computer Vision", forecasting:"Time-Series",
 };
 
-/* ── Capability cards ────────────────────────────────── */
 const capabilities = [
-  { icon: Database,   title: "SQL & Data Engineering",     desc: "CTEs, window functions, query optimisation, ETL pipelines, PostgreSQL schema design, 25% latency reduction at Edunet." },
-  { icon: BarChart3,  title: "Analytics & BI",             desc: "Power BI and Tableau dashboards, KPI design with business stakeholders, 40% reporting effort reduction at PHN." },
-  { icon: Brain,      title: "Machine Learning",           desc: "Classification, NLP, CV, time-series. Baseline-first. Metric selection aligned to business cost (recall for failures, not accuracy)." },
-  { icon: Server,     title: "MLOps & Deployment",         desc: "MLflow experiment tracking, Evidently drift detection, FastAPI inference service, Docker containerisation, PostgreSQL audit logs." },
-  { icon: Terminal,   title: "Backend & APIs",             desc: "FastAPI REST services, async worker queues with retry and dead-letter handling, 80+ automated tests." },
-  { icon: GitBranch,  title: "System Design",              desc: "Modular pipeline architecture, validation and governance layers, observability, reproducible Docker environments." },
+  { icon: Database,   title: "SQL & Data Engineering",     desc: "CTEs, window functions, query optimisation, ETL pipelines, PostgreSQL schema design. 25% latency reduction at Edunet via indexing + query restructuring." },
+  { icon: BarChart3,  title: "Analytics & BI",             desc: "Power BI and Tableau dashboards, KPI design with business stakeholders. 40% reporting effort reduction at PHN via ETL automation." },
+  { icon: Brain,      title: "Machine Learning",           desc: "Classification, NLP, CV, time-series. Baseline-first. Metric selection aligned to business cost — recall over accuracy for failure detection." },
+  { icon: Server,     title: "MLOps & Deployment",         desc: "MLflow experiment tracking, Evidently drift detection, FastAPI inference, Docker containerisation, PostgreSQL audit logs." },
+  { icon: Terminal,   title: "System Architecture",        desc: "Multi-engine frameworks (61 core engines in Sreejita), async worker pipelines, governance layers, REST APIs, 450+ automated tests." },
+  { icon: GitBranch,  title: "Local LLM Integration",      desc: "Ollama-powered local LLM pipeline for resume tailoring with a naturalisation layer — zero cloud dependencies, full privacy." },
 ];
 
-/* ══════════════════════════════════════════════════════ */
 export default function Index() {
   const featured = getProjectsByPriority().slice(0, 3);
 
@@ -62,7 +57,6 @@ export default function Index() {
         <div className="container max-w-6xl mx-auto px-6 py-20 md:py-28">
           <div className="max-w-3xl">
 
-            {/* Availability pill */}
             <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-secondary/60 text-muted-foreground">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Open to full-time roles · Hyderabad, India
@@ -72,29 +66,27 @@ export default function Index() {
               Yeswanth Arasavalli
             </h1>
 
-            {/* Role badges */}
             <div className="flex flex-wrap gap-2 mb-6">
               {["Data Analyst", "Data Scientist", "ML Engineer"].map((r) => (
                 <span key={r} className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wide uppercase bg-primary/10 text-primary border border-primary/20">{r}</span>
               ))}
             </div>
 
-            {/* Concrete positioning — no vague statements */}
             <p className="text-lg text-muted-foreground leading-relaxed mb-3 max-w-2xl">
-              MS in Big Data Analytics. I build production-aware data systems —
-              <span className="text-foreground font-medium"> ML monitoring pipelines</span>,{" "}
-              <span className="text-foreground font-medium">NLP APIs with async workers</span>,{" "}
-              <span className="text-foreground font-medium">SQL analytics with window functions</span>, and{" "}
-              <span className="text-foreground font-medium">BI dashboards stakeholders trust</span>.
+              MS in Big Data Analytics. I build production-aware data systems —{" "}
+              <span className="text-foreground font-medium">MLOps monitoring pipelines</span>,{" "}
+              <span className="text-foreground font-medium">local-LLM NLP systems (225 files, ~51K LOC)</span>,{" "}
+              <span className="text-foreground font-medium">13-domain decision intelligence frameworks (454 tests)</span>, and{" "}
+              <span className="text-foreground font-medium">SQL analytics pipelines</span>.
             </p>
 
-            {/* Credibility proof strip */}
+            {/* Inline proof points */}
             <div className="flex flex-wrap gap-x-5 gap-y-1 mb-8 text-sm text-muted-foreground">
               {[
+                "454 tests across Sreejita's 61 core engines",
+                "225 Python files, zero cloud deps in AI Job System",
                 "84.9% CV accuracy on 200 SKU categories",
-                "87% LSTM forecast accuracy",
-                "80+ tests in production-grade hiring API",
-                "25% SQL latency reduction at Edunet"
+                "25% SQL latency reduction at Edunet",
               ].map((item) => (
                 <span key={item} className="flex items-center gap-1.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary flex-shrink-0" />
@@ -103,7 +95,6 @@ export default function Index() {
               ))}
             </div>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-3">
               <Link to="/projects"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
@@ -133,7 +124,7 @@ export default function Index() {
       <section className="border-b border-border bg-secondary/20">
         <div className="container max-w-6xl mx-auto px-6 py-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-5">
-            Measured outcomes — all numbers are verifiable
+            Measured outcomes — every number is verifiable from source code or work history
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-border rounded-lg overflow-hidden">
             {stats.map(({ value, label }) => (
@@ -173,7 +164,7 @@ export default function Index() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Featured Projects</h2>
-              <p className="text-sm text-muted-foreground">Full case studies with architecture, metrics, and GitHub links.</p>
+              <p className="text-sm text-muted-foreground">Full case studies with architecture diagrams, verified metrics, and GitHub links.</p>
             </div>
             <Link to="/projects" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
               All 5 projects <ArrowRight className="h-3.5 w-3.5" />
@@ -191,7 +182,7 @@ export default function Index() {
                   {project.codeUrl && (
                     <a href={project.codeUrl} target="_blank" rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">
+                      className="text-muted-foreground hover:text-foreground">
                       <Github className="h-3.5 w-3.5" />
                     </a>
                   )}
@@ -200,7 +191,7 @@ export default function Index() {
                 <h3 className="font-semibold text-foreground mb-2 leading-snug group-hover:text-primary transition-colors text-sm">
                   {project.title}
                 </h3>
-                <p className="text-xs text-muted-foreground mb-4 flex-grow leading-relaxed">{project.summary}</p>
+                <p className="text-xs text-muted-foreground mb-4 flex-grow leading-relaxed line-clamp-3">{project.summary}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.techStack.slice(0, 4).map((t) => (
@@ -215,7 +206,7 @@ export default function Index() {
                   {project.metrics.slice(0, 2).map(({ label, value }) => (
                     <div key={label}>
                       <div className="text-sm font-semibold tabular-nums text-foreground">{value}</div>
-                      <div className="text-xs text-muted-foreground">{label}</div>
+                      <div className="text-xs text-muted-foreground leading-tight">{label}</div>
                     </div>
                   ))}
                 </div>
@@ -245,7 +236,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━━━━━ INTERNSHIP PROOF STRIP ━━━━━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━ EXPERIENCE STRIP ━━━━━━━━━━━━━━━━━━━━ */}
       <section className="border-b border-border bg-secondary/20">
         <div className="container max-w-6xl mx-auto px-6 py-12">
           <div className="flex items-center justify-between mb-6">
@@ -256,9 +247,9 @@ export default function Index() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
-              { company: "Telus International", role: "AI Annotation & Prompt Eng.", period: "Feb 2024–Present", highlight: "NLP + CV dataset QA, prompt optimisation" },
-              { company: "Postulate IRT",        role: "Data Science Intern",         period: "Jan–Feb 2024",      highlight: "150K+ records cleaned · 22% forecast lift" },
-              { company: "Edunet Foundation",    role: "Data Analyst Intern",          period: "Jul 2023–Jan 2024", highlight: "SQL pipelines · Power BI · KPI redesign" },
+              { company: "Telus International", role: "AI Annotation & Prompt Eng.", period: "Feb 2024–Present", highlight: "NLP + CV dataset QA · prompt optimisation" },
+              { company: "Postulate IRT",        role: "Data Science Intern",         period: "Jan–Feb 2024",      highlight: "150K+ records · 22% forecast accuracy lift" },
+              { company: "Edunet Foundation",    role: "Data Analyst Intern",          period: "Jul 2023–Jan 2024", highlight: "SQL pipelines · Power BI · 25% latency cut" },
               { company: "PHN Technology",       role: "Data Science Intern",          period: "Apr–Jul 2023",      highlight: "ETL automation · 40% reporting reduction" },
             ].map(({ company, role, period, highlight }) => (
               <div key={company} className="bg-background border border-border rounded-lg p-4">
@@ -272,29 +263,28 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ━━━━━━━━━━━━━━━━━━━━ SQL PROOF STRIP ━━━━━━━━━━━━━━━━━━━━ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━ SQL TEASER ━━━━━━━━━━━━━━━━━━━━ */}
       <section className="border-b border-border bg-background">
         <div className="container max-w-6xl mx-auto px-6 py-12">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">SQL Proficiency</h2>
-              <p className="text-xs text-muted-foreground">Real queries from analytics work — window functions, CTEs, query optimisation.</p>
+              <p className="text-xs text-muted-foreground">Real queries from Edunet, Postulate IRT, and PHN Technology — window functions, CTEs, optimisation.</p>
             </div>
             <Link to="/sql" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-              See all examples <ArrowRight className="h-3.5 w-3.5" />
+              All 5 examples <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-          {/* Mini SQL teaser */}
-          <div className="bg-slate-950 dark:bg-slate-900 rounded-lg overflow-hidden border border-border">
-            <div className="px-4 py-2 border-b border-slate-800 flex items-center gap-2">
-              <span className="text-xs text-slate-400 font-mono">25% latency reduction — Edunet Foundation</span>
+          <div className="bg-slate-950 rounded-lg overflow-hidden border border-border">
+            <div className="px-4 py-2 border-b border-slate-800 flex items-center justify-between">
+              <span className="text-xs text-slate-400 font-mono">query_optimisation.sql — 75% latency reduction · Edunet Foundation</span>
+              <span className="text-xs text-slate-500 font-mono">8.3s → 2.1s</span>
             </div>
-            <pre className="p-4 text-xs text-slate-300 font-mono leading-relaxed overflow-x-auto">{`-- AFTER: Window function replaces correlated subquery
--- Result: 8.3s → 2.1s (75% improvement on 2M-row table)
+            <pre className="p-4 text-xs text-slate-300 font-mono leading-relaxed overflow-x-auto">{`-- ✅ AFTER: Window function + composite index + CTE predicate pushdown
 WITH recent_orders AS (
     SELECT order_id, customer_id, order_date, revenue
-    FROM orders
-    WHERE order_date >= '2024-01-01'   -- predicate pushed early
+    FROM   orders
+    WHERE  order_date >= '2024-01-01'   -- filter before window sees rows
 )
 SELECT
     order_id, customer_id, order_date, revenue,
@@ -303,7 +293,8 @@ SELECT
         ORDER BY order_date
         RANGE BETWEEN INTERVAL '90 days' PRECEDING AND CURRENT ROW
     ), 2) AS rolling_90d_avg
-FROM recent_orders;`}</pre>
+FROM recent_orders;
+-- Index: CREATE INDEX CONCURRENTLY idx_orders_cust_date ON orders(customer_id, order_date)`}</pre>
           </div>
         </div>
       </section>
@@ -315,9 +306,7 @@ FROM recent_orders;`}</pre>
             <h2 className="text-2xl font-bold text-foreground mb-3">
               Open to Data Analyst, Data Scientist, and ML Engineer roles.
             </h2>
-            <p className="text-muted-foreground mb-6 text-sm">
-              Based in Hyderabad. Available for full-time positions.
-            </p>
+            <p className="text-muted-foreground mb-6 text-sm">Based in Hyderabad. Available for full-time positions.</p>
             <div className="flex flex-wrap gap-3">
               <Link to="/contact"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">

@@ -27,7 +27,9 @@ export interface Project {
 
 export const projects: Project[] = [
 
-  /* 1 ── PRODUCTION ML MONITORING PLATFORM */
+  /* ══════════════════════════════════════════════
+     1 — ML MONITORING PLATFORM
+  ══════════════════════════════════════════════ */
   {
     slug: "ml-monitoring-platform",
     title: "Production ML Monitoring & Drift Detection Platform",
@@ -84,111 +86,139 @@ export const projects: Project[] = [
     ],
   },
 
-  /* 2 ── AI HIRING INTELLIGENCE PLATFORM */
+  /* ══════════════════════════════════════════════
+     2 — AI JOB APPLICATION INTELLIGENCE SYSTEM
+     (actual: 225 Python files, 51K LOC, 23 test
+      files, 144 test functions, local Ollama LLM)
+  ══════════════════════════════════════════════ */
   {
     slug: "ai-hiring-intelligence-platform",
-    title: "AI Hiring Intelligence Platform",
-    tagline: "Python · FastAPI · NLP · PostgreSQL · Async Workers · Scikit-learn",
-    summary: "Production-grade resume analysis API with ATS alignment scoring, async worker orchestration, retry/dead-letter handling, contradiction validation, and 80+ automated tests across 400+ system files.",
-    description: "Resume analysis at scale requires reliability engineering, not just NLP. This platform scores resumes against JDs via a multi-stage async pipeline, validates rewrites against contradiction rules, and stores all lifecycle state in PostgreSQL.",
+    title: "AI Job Application Intelligence System",
+    tagline: "Python · Ollama LLM · Streamlit · SQLite · FastAPI · Playwright",
+    summary: "End-to-end local AI system that tailors resumes to job descriptions using Ollama LLMs, scores ATS alignment across 6 dimensions, predicts shortlist probability, and delivers an 8-page analytics dashboard — 225 Python files, ~51K LOC, zero cloud dependencies.",
+    description: "A complete job application intelligence platform combining local LLM resume tailoring, ATS simulation, semantic matching, decision intelligence, skill-gap analysis, and career strategy — all running locally with no API keys or cloud costs.",
     caseStudy: true,
     priority: 2,
     category: "nlp",
-    problem: "ATS systems are opaque. This platform makes resume-to-JD alignment measurable — quantifying keyword gaps, section completeness, and structural issues — and delivers results through a reliable async API that handles concurrent requests without silent failures.",
+    problem: "Job applicants submit resumes without knowing where they fail ATS filters or what skills are missing. This system makes the entire ATS alignment process transparent and actionable — locally, privately, and at zero cost.",
     approach: [
-      "Scoring pipeline: keyword alignment against JD + section completeness checks + rule-based grading. All results persisted to PostgreSQL for downstream analysis.",
-      "Backend designed as a queue of async workers. Each job transitions through discrete stages: ingestion → validation → scoring → storage.",
-      "Retry logic with exponential backoff on transient failures. Failed jobs after max retries are routed to a dead-letter queue for manual inspection.",
-      "Validation layer checks resume rewrites for internal contradictions (years of experience vs claimed seniority, skill claims vs role history) and rolls back before returning results.",
-      "80+ unit and integration tests. Coverage focused on scoring functions and worker retry paths — the highest failure-surface areas.",
+      "JD Processing Engine: cleans noise, extracts required skills, detects sections, and measures JD quality — produces a structured ExtractedJD for downstream scoring.",
+      "Resume Tailoring Engine: uses Ollama (local LLM — qwen2.5-coder:3b default) to rewrite resume sections matched to the JD. A Naturalization layer ensures LLM output sounds human-written while preserving ATS keywords.",
+      "ATS Scoring Engine: 6-dimension scoring (Keyword Match 30%, Skills Match 25%, Experience Relevance 20%, Role Alignment 10%, Education Fit 5%, Structure 10%) with semantic dampening, nonlinear experience penalty, and transferable skill credits.",
+      "Shortlist Probability Engine: heuristic estimator combining ATS score × semantic alignment × skill coverage × experience signals. Outputs probability bands (STRONG MATCH / COMPETITIVE / POSSIBLE / UNLIKELY) with explicit confidence caveats.",
+      "Decision Engine: APPLY / MAYBE / IMPROVE decisions. System never hard-rejects — IMPROVE always comes with specific next steps rather than a rejection.",
+      "Intelligence Layer: Skill Gap Analyzer, Strategy Engine (ROI-ranked learning plan), Flow Engine (daily action items), Job Ranker (composite score), and Learning Engine (tracks patterns across all analysed jobs).",
+      "8-page Streamlit dashboard, LinkedIn scraper (Playwright with anti-bot mitigation), SQLite WAL-mode storage, CSV/PDF exports — all local, zero cloud dependencies.",
     ],
-    role: "Full stack — NLP pipeline, backend architecture, API design, testing",
-    techStack: ["Python", "FastAPI", "PostgreSQL", "Scikit-learn", "NLP", "Async Workers", "pytest"],
+    role: "Full stack — LLM pipeline, scoring engine, backend, dashboard, testing",
+    techStack: ["Python", "Ollama LLM", "Streamlit", "SQLite", "FastAPI", "Playwright", "TF-IDF", "Pydantic v2", "fpdf2"],
     metrics: [
-      { label: "Automated tests",  value: "80+" },
-      { label: "System files",     value: "400+" },
-      { label: "Pipeline stages",  value: "5" },
-      { label: "Worker pattern",   value: "Async + retry" },
+      { label: "Python files",      value: "225" },
+      { label: "Lines of code",     value: "~51K" },
+      { label: "Test functions",    value: "144" },
+      { label: "Dashboard pages",   value: "8" },
     ],
     impact: [
-      "Reliable async processing with automatic retry — no silent failures on concurrent requests",
-      "Contradiction guardrails prevent nonsensical rewrite outputs before they reach users",
-      "PostgreSQL job lifecycle table gives full audit trail for debugging and analytics",
-      "Comprehensive test suite catches scoring and retry regressions before deployment",
+      "Fully local — resumes never leave the machine. No API keys, no cloud costs.",
+      "6-dimension ATS scoring with semantic dampening produces explainable, traceable scores",
+      "IMPROVE decision mode always provides specific next steps — never a silent rejection",
+      "Strategy Engine produces ROI-ranked skill learning plan based on gap frequency across all analysed jobs",
+      "SQLite WAL-mode storage with versioned job lifecycle tracking",
     ],
-    result: "A production-oriented NLP backend that demonstrates system design, backend reliability, and test discipline beyond typical ML notebook projects.",
+    result: "A production-grade local AI system that combines LLM deployment, NLP, scoring systems, decision intelligence, and full-stack development — with honest, caveated outputs that don't overclaim accuracy.",
     challenges: [
-      "Defining contradiction rules strict enough to catch real errors without blocking valid rewrites.",
-      "Balancing worker concurrency with PostgreSQL connection pool limits under load.",
+      "LLM output variability between runs — mitigated with output caching and deterministic naturalisation post-processing.",
+      "LinkedIn anti-bot mitigation required multiple selector fallbacks and request timing strategies in Playwright.",
+      "Transferable skill credit scoring required careful calibration to avoid both over-crediting and under-crediting related skills.",
     ],
     learnings: [
-      "Async worker patterns with retry are non-negotiable for reliable production APIs.",
-      "Testing failure paths (retry, rollback, dead-letter) delivers more value than expanding happy-path coverage.",
+      "Honest system design matters — labelling scores 'ATS alignment estimates' rather than 'ATS scores' is both more accurate and more trustworthy.",
+      "Local LLM deployment (Ollama) is a practical, privacy-preserving alternative to cloud APIs for resume-length inputs.",
+      "Rule-based scoring is more appropriate than ML-based scoring when you lack labelled hiring outcome data.",
     ],
-    codeUrl: "https://github.com/YeswanthArasavalli/ai-hiring-intelligence-platform",
+    codeUrl: "https://github.com/YeswanthArasavalli/job-ai-system",
     images: ["/placeholder.svg"],
-    imageCaptions: ["FastAPI Swagger UI showing POST /analyse endpoint with request/response schema"],
+    imageCaptions: ["8-page Streamlit dashboard showing ATS score breakdown, shortlist probability, and skill gap analysis"],
     crossLinks: [
+      { label: "ML Monitoring Platform", href: "/projects/ml-monitoring-platform" },
       { label: "SQL Showcase", href: "/sql" },
     ],
   },
 
-  /* 3 ── SREEJITA FRAMEWORK */
+  /* ══════════════════════════════════════════════
+     3 — SREEJITA FRAMEWORK
+     (actual: 213 Python files, 454 test functions,
+      30 test files, 13 domains, 61 core engines,
+      Flask REST API, org memory, copilot layer)
+  ══════════════════════════════════════════════ */
   {
     slug: "sreejita-framework",
-    title: "Sreejita — Multi-Domain KPI Analytics Framework",
-    tagline: "Python · Scikit-learn · Pandas · Streamlit · PDF Reporting",
-    summary: "Domain-aware analytics framework that routes structured datasets to specialised KPI pipelines (Healthcare, Finance, Retail, HR, Supply Chain) and generates stakeholder-ready PDF reports with governance validation at each stage.",
-    description: "A shared analytics capability architecture with domain routing, governed KPI computation, and PDF output — replacing one-off domain scripts with a single extensible framework.",
+    title: "Sreejita — Domain-Agnostic Decision Intelligence Framework",
+    tagline: "Python · Pandas · Scikit-learn · ReportLab · Streamlit · Flask · SQLite",
+    summary: "A multi-stage analytics and decision intelligence framework that transforms raw datasets into KPI intelligence, root-cause driver analysis, composite insights, scenario simulations, and consulting-grade executive PDF reports — across 13 business domains, backed by 454 test functions.",
+    description: "Sreejita is a domain-agnostic analytics engine that routes structured datasets through a layered intelligence pipeline: data quality → domain detection → KPI computation → driver graph analysis → composite insights → recommendation ranking → scenario simulation → executive narrative — producing consulting-quality 10-section PDF reports.",
     caseStudy: true,
     priority: 3,
     category: "analytics",
-    problem: "Building separate analytics pipelines per business domain creates code duplication and inconsistent output quality. A shared framework with domain-aware routing and governed KPI computation delivers reliable, trustworthy outputs at lower maintenance cost.",
+    problem: "One-off analytics scripts per business domain are unmaintainable, inconsistent, and produce outputs that don't reach executives in usable form. Sreejita solves this with a shared capability architecture that enforces data quality, domain-aware KPI computation, and automated executive report generation across any structured dataset.",
     approach: [
-      "Framework accepts CSV/JSON input and routes to domain-specific modules based on column signature matching and domain metadata tags.",
-      "Each domain module computes a defined KPI set, runs trend and anomaly checks, and applies a minimum quality threshold before generating outputs — preventing analysis on data too sparse to be reliable.",
-      "Governance layer validates computed KPIs at each pipeline stage against plausibility ranges — catches values outside expected bounds before they reach the final report.",
-      "PDF reporting layer generates KPI summaries, benchmark comparisons, trend charts, and an action-item section formatted for non-technical stakeholders.",
-      "Streamlit application enables end-to-end workflow execution, domain switching, and real-time report preview.",
+      "Data Quality Layer: completeness scoring, column resolver, schema profiler, data trust layer — datasets below minimum quality thresholds are flagged before any analysis runs.",
+      "Domain Detection Engine: multi-signal column fingerprinting identifies the business domain (Healthcare, Finance, Retail, HR, Supply Chain, SaaS, Insurance, Real Estate, Ecommerce, Manufacturing, Marketing, Customer Value, Ops — 13 total) from raw column names and value distributions.",
+      "KPI Intelligence Engine: domain-specific KPI registries compute 20+ KPIs per domain with trend analysis, anomaly detection (via ml_engine.py KPIForecaster + AnomalyDetector), and confidence scoring.",
+      "Driver Graph Engine: intelligence_graph.py links KPIs to business drivers, entities, and root causes. driver_graph_engine.py and entity_driver_engine.py identify which sub-segments (e.g. Category A, Region B, Supplier C) are causing KPI movement.",
+      "Composite Insight Engine: cross-KPI pattern detection producing ranked insights with confidence badges, severity levels (RISK / WARNING / STRENGTH / INFO), and supporting evidence.",
+      "Recommendation & Scenario Engine: recommendation_derivation_engine.py produces priority-ordered actions with owner, timeline, and expected impact. scenario_simulation_engine.py models alternative scenarios with outcome projections.",
+      "Consulting Report Engine (v5.3): 10-section executive PDF — Executive Snapshot, Board Readiness Score, Business Diagnostics (5 health dimensions), KPI table, Visual Evidence with chart annotations, Risk/Opportunity cards, 90-Day Action Plan, Health Scorecard.",
+      "Platform Layer (v5.0+): Flask REST API (7 endpoints), OrgMemory (institutional knowledge store), DomainCopilot (evidence-grounded Q&A without LLM), OutcomeTracker (continuous learning from recommendation outcomes).",
     ],
-    role: "Full stack — framework architecture, domain modules, governance layer, reporting",
-    techStack: ["Python", "Pandas", "Scikit-learn", "Streamlit", "ReportLab", "Matplotlib"],
+    dataset: {
+      source: "Any structured CSV/JSON dataset — domain auto-detected",
+      size: "Tested on datasets from 500 to 50K+ rows across 13 business domains",
+      notes: "7 sample datasets included covering all major domain types. Validated end-to-end with PDF generation per domain.",
+    },
+    role: "Full framework — architecture, domain engines, intelligence pipeline, reporting, platform layer, testing",
+    techStack: ["Python", "Pandas", "Scikit-learn", "ReportLab", "Matplotlib", "Streamlit", "Flask", "SQLite"],
     metrics: [
-      { label: "Supported domains", value: "5+" },
-      { label: "Output format",     value: "PDF + Dashboard" },
-      { label: "Quality gates",     value: "Per stage" },
-      { label: "Stakeholder target", value: "Non-technical" },
+      { label: "Test functions",   value: "454" },
+      { label: "Python files",     value: "213" },
+      { label: "Business domains", value: "13" },
+      { label: "Core engines",     value: "61" },
     ],
     impact: [
-      "Single framework replaces per-domain one-off scripts, reducing duplication and maintenance overhead",
-      "Quality gates prevent out-of-range KPIs from reaching stakeholder reports",
-      "Domain routing is extensible — adding a new domain requires implementing one module interface",
-      "PDF output with benchmark comparisons is usable directly in stakeholder presentations",
+      "13 business domains (Healthcare, Finance, Retail, HR, Supply Chain, SaaS, Insurance, Real Estate, Ecommerce, Manufacturing, Marketing, Customer Value, Ops) from a single shared architecture",
+      "Domain detection eliminates manual domain specification — the framework identifies it from column signatures",
+      "10-section consulting-grade PDF report generated automatically: Executive Snapshot, Board Readiness, 90-Day Action Plan, Health Scorecard",
+      "Flask REST API + OrgMemory + DomainCopilot enable platform-level deployment beyond single-user Streamlit",
+      "454 test functions across 30 test files enforce correctness at each pipeline stage",
     ],
-    result: "A governed analytics framework that demonstrates software engineering discipline applied to data analytics — not just model accuracy but output reliability.",
+    result: "A production-capable analytics and decision intelligence framework that demonstrates software architecture, domain modelling, statistical analysis, automated reporting, and platform engineering — all in one system.",
     challenges: [
-      "Defining domain routing rules robust to noisy or incomplete column names.",
-      "Setting plausibility ranges for KPIs without domain-specific ground truth data.",
+      "Domain detection accuracy: Finance datasets misdetected as Healthcare until a 3-layer fix was applied to the column resolver, detector token sets, and column name case handling.",
+      "ReportLab compatibility: hexval() format differences, empty cell handling, and Spacer-in-table bugs required systematic fixes across the PDF rendering layer.",
+      "ML guardrails: forecasting on sparse datasets (< 25% non-zero values) required a confidence floor and 500% sanity cap to prevent nonsensical projections.",
     ],
     learnings: [
-      "Governance and validation layers are what separate production analytics from quick scripts.",
-      "Domain-aware routing is a cleaner pattern than conditional logic scattered through a monolithic pipeline.",
+      "Domain routing via column fingerprinting is more robust than string matching — but requires careful calibration of name vs value signals.",
+      "Governance layers (insight_guardrails, insight_quality_engine, executive_quality_filter) are what make automated reports trustworthy enough for executive use.",
+      "Platform architecture (API + org memory + copilot) is what separates a framework from a script — even if users only need the Streamlit UI today.",
     ],
     codeUrl: "https://github.com/YeswanthArasavalli/sreejita-framework",
     images: ["/placeholder.svg"],
-    imageCaptions: ["Sreejita Streamlit interface with domain selector and real-time KPI preview"],
+    imageCaptions: ["10-section consulting-grade executive PDF report — automatically generated from raw dataset input"],
     crossLinks: [
       { label: "SQL Showcase", href: "/sql" },
       { label: "Experience — Edunet Foundation", href: "/experience" },
     ],
   },
 
-  /* 4 ── RETAIL IMAGE RECOGNITION */
+  /* ══════════════════════════════════════════════
+     4 — RETAIL IMAGE RECOGNITION
+  ══════════════════════════════════════════════ */
   {
     slug: "retail-product-image-recognition",
     title: "Retail Product Image Recognition System",
     tagline: "Python · EfficientNet-B0 · PyTorch · MLflow · Streamlit",
-    summary: "Computer vision pipeline for retail SKU classification. Fine-tuned EfficientNet-B0 on ~200 categories with mixed-precision training — 84.9% Top-1 accuracy (precision 0.83, recall 0.82), up from 76% ResNet-18 baseline. Experiments tracked in MLflow. Deployed via Streamlit with <200ms CPU latency.",
+    summary: "Computer vision pipeline for retail SKU classification. Fine-tuned EfficientNet-B0 on ~200 categories with mixed-precision training — 84.9% Top-1 accuracy (precision 0.83, recall 0.82), +8.9pp vs ResNet-18 baseline. Experiments tracked in MLflow. Deployed via Streamlit at <200ms CPU latency.",
     description: "Automated SKU classification using transfer learning, experiment tracking, and a deployed inference interface with latency benchmarking.",
     caseStudy: true,
     priority: 4,
@@ -197,7 +227,7 @@ export const projects: Project[] = [
     approach: [
       "Fine-tuned EfficientNet-B0 on the RPC retail dataset using mixed-precision GPU training (torch.cuda.amp) and progressive data augmentation.",
       "Tracked all experiments in a local MLflow instance — comparing augmentation strategies and learning rate schedules. Retained the 3 best checkpoints for ensemble evaluation.",
-      "Evaluated on Top-1 accuracy (84.9%), Top-5 accuracy, precision (0.83), recall (0.82), and F1 — against a ResNet-18 baseline (76% Top-1).",
+      "Evaluated on Top-1 accuracy (84.9%), precision (0.83), recall (0.82), and F1 — against a ResNet-18 baseline (76% Top-1).",
       "Deployed a Streamlit inference app returning top-3 predictions with confidence scores. Benchmarked at under 200ms median CPU latency with quantised model weights.",
     ],
     dataset: {
@@ -208,10 +238,10 @@ export const projects: Project[] = [
     role: "ML Engineer — training, evaluation, experiment tracking, deployment",
     techStack: ["Python", "PyTorch", "EfficientNet-B0", "MLflow", "Streamlit", "NumPy"],
     metrics: [
-      { label: "Top-1 accuracy",      value: "84.9%" },
-      { label: "Precision / Recall",  value: "0.83 / 0.82" },
+      { label: "Top-1 accuracy",        value: "84.9%" },
+      { label: "Precision / Recall",    value: "0.83 / 0.82" },
       { label: "vs ResNet-18 baseline", value: "+8.9pp" },
-      { label: "CPU inference",        value: "<200ms" },
+      { label: "CPU inference",          value: "<200ms" },
     ],
     impact: [
       "+8.9 percentage point accuracy improvement over ResNet-18 baseline using identical training data",
@@ -226,7 +256,6 @@ export const projects: Project[] = [
     ],
     learnings: [
       "MLflow experiment tracking is as important as model training for reproducible CV work.",
-      "Top-5 accuracy is the operationally relevant metric for retail classification; single-mistake recall matters less than top-3 recall.",
       "Deployment latency should be benchmarked during training, not discovered post-deployment.",
     ],
     codeUrl: "https://github.com/YeswanthArasavalli/retail-product-image-recognition",
@@ -248,7 +277,9 @@ export const projects: Project[] = [
     ],
   },
 
-  /* 5 ── PREDICTIVE MAINTENANCE */
+  /* ══════════════════════════════════════════════
+     5 — PREDICTIVE MAINTENANCE
+  ══════════════════════════════════════════════ */
   {
     slug: "predictive-maintenance-forecasting",
     title: "Predictive Maintenance — Machine Failure Forecasting",
@@ -258,7 +289,7 @@ export const projects: Project[] = [
     caseStudy: true,
     priority: 5,
     category: "forecasting",
-    problem: "Industrial equipment failures detectable days in advance are instead discovered when they stop production. A forecasting model that surfaces failure probability early enables proactive maintenance scheduling and avoids unplanned downtime costs.",
+    problem: "Industrial equipment failures detectable days in advance are instead discovered when they stop production. A forecasting model surfacing failure probability early enables proactive maintenance scheduling and avoids unplanned downtime costs.",
     approach: [
       "Applied sequence windowing and feature normalisation to convert raw multivariate sensor readings into LSTM-compatible time-series inputs.",
       "Benchmarked LSTM against ARIMA and a gradient-boosted classifier on identical train/validation splits — model selection driven by recall on failure events, not overall accuracy.",
@@ -274,13 +305,13 @@ export const projects: Project[] = [
     role: "ML Engineer — time-series modelling, evaluation, business framing",
     techStack: ["Python", "PyTorch", "LSTM", "NumPy", "Pandas", "Matplotlib"],
     metrics: [
-      { label: "Validation accuracy",  value: "87%" },
-      { label: "Forecast horizon",     value: "2 weeks" },
-      { label: "vs ARIMA / GBM",       value: "Higher recall" },
-      { label: "Cost estimate",        value: "~$1.15M/yr" },
+      { label: "Validation accuracy",   value: "87%" },
+      { label: "Forecast horizon",      value: "2 weeks" },
+      { label: "vs ARIMA / GBM",        value: "Higher recall" },
+      { label: "Cost estimate",         value: "~$1.15M/yr" },
     ],
     impact: [
-      "LSTM outperformed ARIMA and gradient-boosted classifiers on failure event recall",
+      "LSTM outperformed ARIMA and gradient-boosted baselines on failure event recall",
       "Two-week forecast horizon gives meaningful lead time for maintenance scheduling",
       "Directional cost estimate provides business framing for model adoption decisions",
       "Metric selection discipline (recall over accuracy) demonstrates understanding of business cost asymmetry",

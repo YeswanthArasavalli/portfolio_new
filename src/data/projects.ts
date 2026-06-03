@@ -203,7 +203,13 @@ export const projects: Project[] = [
       "Platform architecture (API + org memory + copilot) is what separates a framework from a script — even if users only need the Streamlit UI today.",
     ],
     codeUrl: "https://github.com/YeswanthArasavalli/sreejita-framework",
-    images: ["/placeholder.svg"],
+    images: [
+      "/projects/sree_frame/Sreejita_Dashboard.png",
+      "/projects/sree_frame/Healthcare_Domain.png",
+      "/projects/sree_frame/Marketing_Domain.png",
+      "/projects/sree_frame/Executive_Memo.png",
+      "/projects/sree_frame/Root_Cause.png",
+    ],
     imageCaptions: ["10-section consulting-grade executive PDF report — automatically generated from raw dataset input"],
     crossLinks: [
       { label: "SQL Showcase", href: "/sql" },
@@ -262,11 +268,13 @@ export const projects: Project[] = [
     demoUrl: "https://retail-image-recognition.streamlit.app/",
     images: [
       "/projects/retail_image/r_thumb.png",
+      "/projects/retail_image/ui.png",
       "/projects/retail_image/data.png",
       "/projects/retail_image/confuion_matrix.png",
       "/projects/retail_image/Figure_1.png",
     ],
     imageCaptions: [
+      "",
       "Streamlit inference interface — upload product image, get top-3 SKU predictions with confidence scores",
       "Distribution of retail SKU categories across the RPC dataset",
       "Confusion matrix highlighting per-class prediction patterns for the top-20 most common SKUs",

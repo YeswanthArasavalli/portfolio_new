@@ -460,6 +460,8 @@ export const projects: Project[] = [
     ],
   
     imageCaptions: [
+      " ",
+      
       "Gradio inference interface for real-time sentiment prediction from customer reviews.",
       
       "Word cloud highlighting frequently occurring terms across customer review text.",

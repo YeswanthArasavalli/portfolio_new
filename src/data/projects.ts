@@ -341,6 +341,142 @@ export const projects: Project[] = [
       { label: "ML Monitoring Platform", href: "/projects/ml-monitoring-platform" },
     ],
   },
+
+  /* ══════════════════════════════════════════════
+   AMAZON FOOD REVIEWS SENTIMENT ANALYSIS
+  ══════════════════════════════════════════════ */
+  {
+    slug: "amazon-food-reviews-sentiment-analysis",
+    title: "Amazon Food Reviews Sentiment Analysis",
+  
+    tagline:
+      "Python · DistilBERT · PyTorch · Hugging Face · Gradio · NLP",
+  
+    summary:
+      "End-to-end NLP pipeline for large-scale sentiment classification on 568K+ Amazon food reviews. Built a TF-IDF + Logistic Regression baseline (~89% accuracy) and fine-tuned DistilBERT to achieve ~94% accuracy with real-time inference. Deployed via Gradio on Hugging Face Spaces with sub-300ms prediction latency.",
+  
+    description:
+      "Automated customer sentiment analysis using transformer-based NLP. The system processes large volumes of review text, compares classical machine learning against modern transformer architectures, and delivers real-time sentiment predictions through a deployed web interface.",
+  
+    caseStudy: true,
+  
+    priority: 5,
+  
+    category: "nlp",
+  
+    problem:
+      "Large e-commerce platforms receive massive volumes of customer reviews daily, making manual sentiment analysis slow, inconsistent, and difficult to scale. Automating sentiment detection enables faster customer insight generation, review monitoring, and data-driven product decisions.",
+  
+    approach: [
+      "Preprocessed and cleaned 568K+ Amazon food reviews, mapping ratings 1–2 to negative sentiment and ratings 4–5 to positive sentiment while removing neutral reviews.",
+      
+      "Built a TF-IDF + Logistic Regression baseline model achieving approximately 89% accuracy to establish an interpretable benchmark before applying deep learning methods.",
+  
+      "Fine-tuned DistilBERT using transfer learning and GPU acceleration, improving contextual understanding of customer feedback and increasing accuracy to approximately 94%.",
+  
+      "Evaluated performance using accuracy, F1-score, ROC curves, and confusion matrices to compare baseline and transformer-based approaches.",
+  
+      "Deployed a Gradio-based inference application on Hugging Face Spaces, enabling real-time sentiment predictions through a web interface.",
+    ],
+  
+    dataset: {
+      source: "Amazon Fine Food Reviews Dataset (Kaggle)",
+      size: "568K+ customer reviews",
+      notes:
+        "Binary sentiment dataset derived from review ratings. Neutral reviews removed to reduce label ambiguity and improve classification consistency.",
+    },
+  
+    role:
+      "Machine Learning Engineer (NLP) — owned the complete lifecycle including preprocessing, feature engineering, model training, evaluation, deployment, and documentation.",
+  
+    techStack: [
+      "Python",
+      "PyTorch",
+      "Hugging Face Transformers",
+      "DistilBERT",
+      "Scikit-learn",
+      "TF-IDF",
+      "Logistic Regression",
+      "Gradio",
+      "Pandas",
+    ],
+  
+    metrics: [
+      { label: "DistilBERT Accuracy", value: "~94%" },
+      { label: "Baseline Accuracy", value: "~89%" },
+      { label: "Accuracy Improvement", value: "+5pp" },
+      { label: "Inference Latency", value: "<300ms" },
+    ],
+  
+    impact: [
+      "Improved sentiment classification accuracy by approximately 5 percentage points over the classical TF-IDF baseline.",
+      
+      "Automated analysis of large-scale customer feedback, reducing manual review processing effort and enabling faster insight generation.",
+  
+      "Delivered a real-time sentiment prediction interface accessible to non-technical users through a web browser.",
+  
+      "Demonstrated the practical advantages of transformer-based NLP models over traditional machine learning approaches for contextual sentiment understanding.",
+    ],
+  
+    result:
+      "A production-oriented NLP solution that transforms raw customer reviews into actionable sentiment insights through a scalable transformer-based classification pipeline and deployed inference interface.",
+  
+    challenges: [
+      "Class imbalance and review-length variability required careful preprocessing and evaluation beyond simple accuracy metrics.",
+  
+      "Balancing model accuracy with deployment efficiency required selecting DistilBERT over larger transformer architectures.",
+  
+      "Large dataset size increased training time and required GPU optimization for practical experimentation.",
+    ],
+  
+    learnings: [
+      "Transformer models significantly outperform classical NLP methods when contextual understanding is important.",
+  
+      "Strong baselines are essential for measuring real-world model improvements.",
+  
+      "Model deployment, latency, and usability are as important as predictive performance.",
+  
+      "Business framing helps translate technical NLP work into measurable organizational value.",
+    ],
+  
+    examplePrediction: {
+      input: "The food tasted terrible and was completely stale.",
+      output: "Negative (confidence ≈ 0.96)",
+    },
+  
+    codeUrl:
+      "https://github.com/YeswanthArasavalli/amazon-food-review-sentiment-analysis",
+  
+    demoUrl:
+      "https://huggingface.co/spaces/YeswanthArasavalli/Amazon_Food_Review_Analysis",
+  
+    images: [
+      "/projects/amazon_food/a_thumb.png",
+      "/projects/amazon_food/word.png",
+      "/projects/amazon_food/roc.png",
+      "/projects/amazon_food/confusion.png",
+      "/projects/amazon_food/accuracy.png",
+    ],
+  
+    imageCaptions: [
+      "Gradio inference interface for real-time sentiment prediction from customer reviews.",
+      
+      "Word cloud highlighting frequently occurring terms across customer review text.",
+      
+      "ROC curve comparing model discrimination performance across sentiment classes.",
+      
+      "Confusion matrix illustrating classification performance on the evaluation dataset.",
+      
+      "Performance comparison between TF-IDF + Logistic Regression baseline and fine-tuned DistilBERT.",
+    ],
+  
+    crossLinks: [
+      {
+        label: "Retail Product Image Recognition System",
+        href: "/projects/retail-product-image-recognition",
+      },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

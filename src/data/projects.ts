@@ -451,8 +451,8 @@ export const projects: Project[] = [
       "https://huggingface.co/spaces/YeswanthArasavalli/Amazon_Food_Review_Analysis",
   
     images: [
-      "/projects/amazon_food/a_dash.png",
       "/projects/amazon_food/a_thumb.png",
+      "/projects/amazon_food/a_dash.png",
       "/projects/amazon_food/word.png",
       "/projects/amazon_food/roc.png",
       "/projects/amazon_food/confusion.png",

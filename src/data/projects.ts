@@ -286,7 +286,167 @@ export const projects: Project[] = [
   },
 
   /* ══════════════════════════════════════════════
-     5 — PREDICTIVE MAINTENANCE
+     5 — PREPARATION OPERATING SYSTEM (PREPOS)
+  ══════════════════════════════════════════════ */
+  {
+    slug: "preparation-operating-system",
+  
+    title: "Preparation Operating System (PrepOS)",
+  
+    tagline:
+      "React · TypeScript · Supabase · PostgreSQL · Analytics · Decision Intelligence",
+  
+    summary:
+      "Full-stack preparation intelligence platform supporting 7 competitive examinations through readiness scoring, adaptive study routing, revision automation, mock-test analytics, resource intelligence, health tracking, and execution-focused planning. Built as a decision-support system that transforms preparation workflows into measurable readiness and execution metrics.",
+  
+    description:
+      "A multi-exam preparation intelligence platform that combines planning, analytics, behavioral tracking, recommendation systems, workflow automation, and performance intelligence into a single operating system for competitive exam preparation.",
+  
+    caseStudy: true,
+  
+    priority: 5,
+  
+    category: "analytics",
+  
+    problem:
+      "Candidates preparing for multiple competitive examinations often struggle with fragmented study plans, inconsistent revision, weak prioritization, poor progress visibility, and lack of objective readiness measurement. Existing tools focus on task management rather than preparation intelligence and decision support.",
+  
+    approach: [
+      "Designed a multi-exam architecture supporting SSC CGL, SSC CHSL, SSC MTS, RRB NTPC, Coal India MT (IT), UGC NET Computer Science, and UPSC Joint Assistant Director with shared and exam-specific preparation workflows.",
+  
+      "Built a Readiness Intelligence Engine combining syllabus completion, mock performance, revision status, PYQ completion, study consistency, and health indicators into unified readiness scores.",
+  
+      "Developed an Adaptive Study Routing Engine that dynamically reallocates study time toward weak subjects using performance analytics, readiness scores, and exam priorities.",
+  
+      "Implemented an Event Engine capable of automatically adjusting preparation plans when exams are postponed, cleared, failed, or reprioritized.",
+  
+      "Created a Revision Command Center using spaced-repetition cycles (1, 3, 7, 15, and 30 days) to reduce revision debt and improve long-term retention.",
+  
+      "Integrated health and habit intelligence including sleep consistency, hydration, exercise tracking, wake-up discipline, strength progression, and recovery monitoring.",
+  
+      "Built dedicated modules for planning, resource management, mock analytics, exam tracks, weekly reviews, daily execution workflows, and performance intelligence."
+    ],
+  
+    dataset: {
+      source:
+        "User-generated preparation, revision, health, mock-test, and performance data",
+  
+      size:
+        "Multi-exam preparation records, mock results, revision logs, study sessions, resource tracking, and habit analytics",
+  
+      notes:
+        "Data modeled around readiness scoring, execution consistency, exam progression, revision intelligence, and long-term preparation outcomes."
+    },
+  
+    role:
+      "Full-Stack Engineer & Product Designer — architecture, database design, analytics modeling, workflow automation, dashboard development, and decision intelligence design",
+  
+    techStack: [
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Vite",
+      "PWA"
+    ],
+  
+    metrics: [
+      { label: "Supported Exams", value: "7" },
+      { label: "Application Modules", value: "12+" },
+      { label: "Subject Tracks", value: "70+" },
+      { label: "Readiness Factors", value: "6+" }
+    ],
+  
+    impact: [
+      "Unified preparation workflows across seven competitive examinations within a single execution platform.",
+  
+      "Converted static study plans into measurable readiness, execution, revision, and performance metrics.",
+  
+      "Implemented readiness scoring models combining syllabus progress, revision status, mock performance, study consistency, and health signals.",
+  
+      "Built adaptive study-routing workflows that prioritize high-impact subjects using weakness detection and exam weighting.",
+  
+      "Integrated preparation, revision, health tracking, resource management, and performance analytics into a single decision-support system.",
+  
+      "Demonstrated full-stack engineering, analytics design, workflow automation, and product-thinking capabilities."
+    ],
+  
+    result:
+      "A preparation operating system that combines planning, readiness intelligence, revision management, behavioral analytics, health monitoring, resource intelligence, and adaptive decision support into a single platform for long-term competitive exam preparation.",
+  
+    challenges: [
+      "Balancing preparation priorities across multiple examinations with overlapping and conflicting syllabi.",
+  
+      "Designing readiness scores that fairly represent preparation progress across different exam structures.",
+  
+      "Preventing revision debt accumulation through automated scheduling and adaptive planning.",
+  
+      "Integrating academic performance metrics with behavioral and health indicators without overwhelming users."
+    ],
+  
+    learnings: [
+      "Decision-support systems require measurable execution metrics rather than static task tracking.",
+  
+      "Readiness scoring becomes significantly more valuable when combined with revision and consistency signals.",
+  
+      "Behavioral data can be as important as academic performance when predicting long-term preparation outcomes.",
+  
+      "Workflow automation reduces planning overhead and improves preparation consistency.",
+  
+      "Analytics-driven prioritization improves decision quality compared with manual study planning."
+    ],
+  
+    codeUrl:
+      "https://github.com/YeswanthArasavalli/preparation-operating-system",
+  
+    demoUrl:
+      "https://prepos.vercel.app",
+  
+    images: [
+      "/projects/prep_os/dashboard.png",
+      "/projects/prep_os/skill_level.png",
+      "/projects/prep_os/study_engine.png",
+      "/projects/prep_os/mocks_page.png",
+      "/projects/prep_os/resources.png",
+      "/projects/prep_os/daily_time_table.png",
+      "/projects/prep_os/cgl_track.png",
+      "/projects/prep_os/login_page.png"
+    ],
+  
+    imageCaptions: [
+      "PrepOS central dashboard showing readiness status, execution priorities, recovery mode detection, and intelligent task recommendations.",
+  
+      "Subject Assessment Engine used to evaluate strengths, weaknesses, and learning maturity levels across multiple exam domains.",
+  
+      "Study & Revision Intelligence module combining topic tracking, ROI prioritization, spaced repetition, and revision debt monitoring.",
+  
+      "Mock Test Analytics dashboard tracking score progression, readiness thresholds, exam targets, and performance benchmarking.",
+  
+      "Resource Management System for books, courses, playlists, PDFs, and preparation assets across multiple examinations.",
+  
+      "Time-blocked execution planner integrating study sessions, revision schedules, health activities, and productivity tracking.",
+  
+      "Exam-specific preparation track with cut-off analysis, readiness targets, scoring strategy, and milestone monitoring.",
+  
+      "Authentication and user management system supporting personalized preparation environments."
+    ],
+  
+    crossLinks: [
+      {
+        label: "Sreejita Framework",
+        href: "/projects/sreejita-framework"
+      },
+      {
+        label: "AI Job Application Intelligence System",
+        href: "/projects/ai-job-application-intelligence"
+      }
+    ]
+  },
+
+  /* ══════════════════════════════════════════════
+     6 — PREDICTIVE MAINTENANCE
   ══════════════════════════════════════════════ */
   {
     slug: "predictive-maintenance-forecasting",
@@ -343,7 +503,7 @@ export const projects: Project[] = [
   },
 
   /* ══════════════════════════════════════════════
-   AMAZON FOOD REVIEWS SENTIMENT ANALYSIS
+   7 - AMAZON FOOD REVIEWS SENTIMENT ANALYSIS
   ══════════════════════════════════════════════ */
   {
     slug: "amazon-food-reviews-sentiment-analysis",

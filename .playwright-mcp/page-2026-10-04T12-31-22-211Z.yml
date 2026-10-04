@@ -1,0 +1,163 @@
+- generic [ref=f4e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=f4e3]:
+    - banner [ref=f4e4]:
+      - generic [ref=f4e5]:
+        - link "YA DA · DS · MLE" [ref=f4e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f4e7]: YA
+          - generic [ref=f4e8]: DA · DS · MLE
+        - navigation [ref=f4e9]:
+          - link "Home" [ref=f4e10] [cursor=pointer]:
+            - /url: /
+          - link "Projects" [ref=f4e11] [cursor=pointer]:
+            - /url: /projects
+          - link "Experience" [ref=f4e12] [cursor=pointer]:
+            - /url: /experience
+          - link "SQL" [ref=f4e13] [cursor=pointer]:
+            - /url: /sql
+          - link "About" [ref=f4e14] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f4e15]:
+          - link "GitHub" [ref=f4e16] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f4e20] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f4e25] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+          - button "Toggle theme" [ref=f4e29] [cursor=pointer]
+          - link "Resume" [ref=f4e32] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+    - main [ref=f4e36]:
+      - generic [ref=f4e38]:
+        - heading "About" [level=1] [ref=f4e39]
+        - paragraph [ref=f4e40]: Background, approach, and what I'm looking for.
+      - generic [ref=f4e41]:
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]:
+            - paragraph [ref=f4e45]: I'm Yeswanth Arasavalli — a Data Analyst and Data Scientist with an MS in Computer Science (Big Data Analytics) from Central University of Rajasthan. I'm based in Hyderabad and open to full-time roles.
+            - paragraph [ref=f4e46]: "My work spans the full data workflow: SQL pipelines with window functions and CTEs, ETL automation, Power BI and Tableau dashboards, machine learning model development, and deployment with monitoring. I'm most comfortable in Python and SQL, and I've been building with MLflow, Evidently, and Docker to move toward production-aware ML systems."
+            - paragraph [ref=f4e47]: What I care about most is building things that are trustworthy — data that's clean, models that are monitored, and outputs that make sense to the people who use them.
+            - generic [ref=f4e48]:
+              - generic [ref=f4e49]: 84.9% Top-1 accuracy on 200 retail SKU categories (EfficientNet-B0)
+              - generic [ref=f4e53]: 87% LSTM validation accuracy — 2-week failure forecast horizon
+              - generic [ref=f4e57]: 25% SQL query latency reduction via window functions + indexing (Edunet)
+              - generic [ref=f4e61]: 40% manual reporting effort reduction via ETL automation (PHN Technology)
+              - generic [ref=f4e65]: 80+ automated tests in production-grade async API
+            - generic [ref=f4e69]:
+              - link "GitHub" [ref=f4e70] [cursor=pointer]:
+                - /url: https://github.com/YeswanthArasavalli
+              - link "LinkedIn" [ref=f4e74] [cursor=pointer]:
+                - /url: https://linkedin.com/in/yeswanth-arasavalli
+              - link "maneswararasavalli@gmail.com" [ref=f4e79] [cursor=pointer]:
+                - /url: mailto:maneswararasavalli@gmail.com
+          - generic [ref=f4e83]:
+            - generic [ref=f4e84]:
+              - generic [ref=f4e85]: Open to
+              - list [ref=f4e86]:
+                - listitem [ref=f4e87]: · Data Analyst (primary)
+                - listitem [ref=f4e88]: · Data Scientist
+                - listitem [ref=f4e89]: · ML Engineer
+            - generic [ref=f4e90]:
+              - generic [ref=f4e91]: Location
+              - generic [ref=f4e92]: Hyderabad, India
+              - generic [ref=f4e93]: Open to relocation
+            - link "Download Resume" [ref=f4e94] [cursor=pointer]:
+              - /url: /Yeswanth_Arasavalli_Resume.pdf
+        - generic [ref=f4e98]:
+          - heading "Technical Skills" [level=2] [ref=f4e99]
+          - generic [ref=f4e100]:
+            - generic [ref=f4e101]:
+              - generic [ref=f4e102]: Languages
+              - generic [ref=f4e103]:
+                - generic [ref=f4e104]: Python
+                - generic [ref=f4e105]: SQL
+                - generic [ref=f4e106]: R
+            - generic [ref=f4e107]:
+              - generic [ref=f4e108]: ML / DL
+              - generic [ref=f4e109]:
+                - generic [ref=f4e110]: Scikit-learn
+                - generic [ref=f4e111]: PyTorch
+                - generic [ref=f4e112]: XGBoost
+                - generic [ref=f4e113]: LSTM
+                - generic [ref=f4e114]: DistilBERT
+                - generic [ref=f4e115]: EfficientNet
+                - generic [ref=f4e116]: TF-IDF
+                - generic [ref=f4e117]: Logistic Regression
+            - generic [ref=f4e118]:
+              - generic [ref=f4e119]: MLOps
+              - generic [ref=f4e120]:
+                - generic [ref=f4e121]: MLflow
+                - generic [ref=f4e122]: Evidently
+                - generic [ref=f4e123]: Docker
+                - generic [ref=f4e124]: FastAPI
+                - generic [ref=f4e125]: REST APIs
+            - generic [ref=f4e126]:
+              - generic [ref=f4e127]: Data Engineering
+              - generic [ref=f4e128]:
+                - generic [ref=f4e129]: ETL Pipelines
+                - generic [ref=f4e130]: PostgreSQL
+                - generic [ref=f4e131]: MongoDB
+                - generic [ref=f4e132]: Pandas
+                - generic [ref=f4e133]: NumPy
+                - generic [ref=f4e134]: Feature Engineering
+            - generic [ref=f4e135]:
+              - generic [ref=f4e136]: Analytics & BI
+              - generic [ref=f4e137]:
+                - generic [ref=f4e138]: Power BI
+                - generic [ref=f4e139]: Tableau
+                - generic [ref=f4e140]: Excel
+                - generic [ref=f4e141]: KPI Design
+                - generic [ref=f4e142]: Statistical Analysis
+            - generic [ref=f4e143]:
+              - generic [ref=f4e144]: Cloud & Tools
+              - generic [ref=f4e145]:
+                - generic [ref=f4e146]: AWS
+                - generic [ref=f4e147]: GCP
+                - generic [ref=f4e148]: Azure
+                - generic [ref=f4e149]: Git
+                - generic [ref=f4e150]: Jupyter
+                - generic [ref=f4e151]: IBM Watson Studio
+                - generic [ref=f4e152]: Streamlit
+                - generic [ref=f4e153]: Gradio
+        - generic [ref=f4e154]:
+          - heading "How I Work" [level=2] [ref=f4e155]
+          - generic [ref=f4e156]:
+            - generic [ref=f4e157]:
+              - heading "Baseline first" [level=3] [ref=f4e158]
+              - paragraph [ref=f4e159]: I build simple baselines before complex models, and justify complexity with measured improvements — not assumptions.
+            - generic [ref=f4e160]:
+              - heading "Metric discipline" [level=3] [ref=f4e161]
+              - paragraph [ref=f4e162]: I select metrics that match the business cost structure. Recall over accuracy for failure detection. Precision-recall tradeoffs depend on campaign costs.
+            - generic [ref=f4e163]:
+              - heading "End-to-end thinking" [level=3] [ref=f4e164]
+              - paragraph [ref=f4e165]: Cleaning, pipelines, deployment, monitoring — each step affects whether the output is actually usable. I don't stop at the notebook.
+            - generic [ref=f4e166]:
+              - heading "Stakeholder clarity" [level=3] [ref=f4e167]
+              - paragraph [ref=f4e168]: I've redefined KPI metrics with business teams and built dashboards people use. Technical work that doesn't influence decisions isn't done.
+            - generic [ref=f4e169]:
+              - heading "System reliability" [level=3] [ref=f4e170]
+              - paragraph [ref=f4e171]: Retry logic, validation layers, quality gates, drift alerts. Models degrade silently without these. I build them in.
+            - generic [ref=f4e172]:
+              - heading "Reproducibility" [level=3] [ref=f4e173]
+              - paragraph [ref=f4e174]: Docker, MLflow experiment tracking, versioned pipelines. If I can't hand off the work and have it run, it's not finished.
+        - generic [ref=f4e175]:
+          - paragraph [ref=f4e176]: Looking for a data analyst, data scientist, or ML engineer? Get in touch or explore the project case studies.
+          - generic [ref=f4e177]:
+            - link "Contact me" [ref=f4e178] [cursor=pointer]:
+              - /url: /contact
+            - link "View Projects" [ref=f4e181] [cursor=pointer]:
+              - /url: /projects
+    - contentinfo [ref=f4e182]:
+      - generic [ref=f4e184]:
+        - generic [ref=f4e185]: Yeswanth Arasavalli · Data Analyst · Data Scientist · ML Engineer
+        - generic [ref=f4e186]:
+          - link "GitHub" [ref=f4e187] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f4e191] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f4e196] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+        - generic [ref=f4e200]: Open to full-time roles · Hyderabad, India

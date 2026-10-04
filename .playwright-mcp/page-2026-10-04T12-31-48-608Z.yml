@@ -1,0 +1,50 @@
+- generic [ref=f6e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=f6e3]:
+    - banner [ref=f6e4]:
+      - generic [ref=f6e5]:
+        - link "YA DA · DS · MLE" [ref=f6e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f6e7]: YA
+          - generic [ref=f6e8]: DA · DS · MLE
+        - navigation [ref=f6e9]:
+          - link "Home" [ref=f6e10] [cursor=pointer]:
+            - /url: /
+          - link "Projects" [ref=f6e11] [cursor=pointer]:
+            - /url: /projects
+          - link "Experience" [ref=f6e12] [cursor=pointer]:
+            - /url: /experience
+          - link "SQL" [ref=f6e13] [cursor=pointer]:
+            - /url: /sql
+          - link "About" [ref=f6e14] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f6e15]:
+          - link "GitHub" [ref=f6e16] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f6e20] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f6e25] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+          - button "Toggle theme" [ref=f6e29] [cursor=pointer]
+          - link "Resume" [ref=f6e32] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+    - main [ref=f6e36]:
+      - generic [ref=f6e37]:
+        - generic [ref=f6e38]: "404"
+        - heading "Page not found" [level=1] [ref=f6e39]
+        - paragraph [ref=f6e40]: This page doesn't exist or has been moved.
+        - link "← Back to home" [ref=f6e41] [cursor=pointer]:
+          - /url: /
+    - contentinfo [ref=f6e42]:
+      - generic [ref=f6e44]:
+        - generic [ref=f6e45]: Yeswanth Arasavalli · Data Analyst · Data Scientist · ML Engineer
+        - generic [ref=f6e46]:
+          - link "GitHub" [ref=f6e47] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f6e51] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f6e56] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+        - generic [ref=f6e60]: Open to full-time roles · Hyderabad, India

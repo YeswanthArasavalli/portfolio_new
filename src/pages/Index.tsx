@@ -110,7 +110,7 @@ export default function Index() {
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
                 <Github className="h-4 w-4" /> GitHub
               </a>
-              <a href="https://linkedin.com/in/yeswanth-arasavalli" target="_blank" rel="noopener noreferrer"
+              <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
                 onClick={() => (window as any).gtag?.("event","linkedin_click",{event_category:"engagement"})}
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
                 <Linkedin className="h-4 w-4" /> LinkedIn

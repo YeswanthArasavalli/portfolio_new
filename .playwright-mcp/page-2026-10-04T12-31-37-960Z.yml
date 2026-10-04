@@ -1,0 +1,102 @@
+- generic [ref=f5e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=f5e3]:
+    - banner [ref=f5e4]:
+      - generic [ref=f5e5]:
+        - link "YA DA · DS · MLE" [ref=f5e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f5e7]: YA
+          - generic [ref=f5e8]: DA · DS · MLE
+        - navigation [ref=f5e9]:
+          - link "Home" [ref=f5e10] [cursor=pointer]:
+            - /url: /
+          - link "Projects" [ref=f5e11] [cursor=pointer]:
+            - /url: /projects
+          - link "Experience" [ref=f5e12] [cursor=pointer]:
+            - /url: /experience
+          - link "SQL" [ref=f5e13] [cursor=pointer]:
+            - /url: /sql
+          - link "About" [ref=f5e14] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f5e15]:
+          - link "GitHub" [ref=f5e16] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f5e20] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f5e25] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+          - button "Toggle theme" [ref=f5e29] [cursor=pointer]
+          - link "Resume" [ref=f5e32] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+    - main [ref=f5e36]:
+      - generic [ref=f5e38]:
+        - heading "Contact" [level=1] [ref=f5e39]
+        - paragraph [ref=f5e40]: Open to Data Analyst, Data Scientist, and ML Engineer roles. Email is fastest for role discussions.
+      - generic [ref=f5e42]:
+        - generic [ref=f5e43]:
+          - heading "Direct Contact" [level=2] [ref=f5e44]
+          - link "Email maneswararasavalli@gmail.com" [ref=f5e45] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+            - generic [ref=f5e50]:
+              - generic [ref=f5e51]: Email
+              - generic [ref=f5e52]: maneswararasavalli@gmail.com
+          - link "LinkedIn linkedin.com/in/yeswanth-arasavalli" [ref=f5e53] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+            - generic [ref=f5e59]:
+              - generic [ref=f5e60]: LinkedIn
+              - generic [ref=f5e61]: linkedin.com/in/yeswanth-arasavalli
+          - link "GitHub github.com/YeswanthArasavalli" [ref=f5e62] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+            - generic [ref=f5e67]:
+              - generic [ref=f5e68]: GitHub
+              - generic [ref=f5e69]: github.com/YeswanthArasavalli
+          - generic [ref=f5e75]:
+            - generic [ref=f5e76]: Location
+            - generic [ref=f5e77]: Hyderabad, India · Open to relocation
+          - link "Download Resume" [ref=f5e78] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+        - generic [ref=f5e82]:
+          - heading "Availability" [level=2] [ref=f5e83]
+          - generic [ref=f5e84]:
+            - generic [ref=f5e85]: Available for full-time roles
+            - paragraph [ref=f5e88]: Actively looking for Data Analyst, Data Scientist, and ML Engineer positions. Available to start immediately.
+          - generic [ref=f5e89]:
+            - heading "What I'm looking for" [level=3] [ref=f5e90]
+            - list [ref=f5e91]:
+              - listitem [ref=f5e92]:
+                - generic [ref=f5e93]: ·
+                - text: Roles across data, analysis, and modelling
+              - listitem [ref=f5e94]:
+                - generic [ref=f5e95]: ·
+                - text: Teams that value data quality and reproducibility
+              - listitem [ref=f5e96]:
+                - generic [ref=f5e97]: ·
+                - text: Work that connects technical output to decisions
+              - listitem [ref=f5e98]:
+                - generic [ref=f5e99]: ·
+                - text: Analytics firms, AI startups, product companies
+          - generic [ref=f5e100]:
+            - heading "Response time" [level=3] [ref=f5e101]
+            - paragraph [ref=f5e102]: I respond to email and LinkedIn within 24–48 hours.
+          - generic [ref=f5e103]:
+            - paragraph [ref=f5e104]: "Explore more before reaching out:"
+            - generic [ref=f5e105]:
+              - link "Project case studies" [ref=f5e106] [cursor=pointer]:
+                - /url: /projects
+              - link "Internship experience" [ref=f5e109] [cursor=pointer]:
+                - /url: /experience
+              - link "SQL proficiency" [ref=f5e112] [cursor=pointer]:
+                - /url: /sql
+    - contentinfo [ref=f5e115]:
+      - generic [ref=f5e117]:
+        - generic [ref=f5e118]: Yeswanth Arasavalli · Data Analyst · Data Scientist · ML Engineer
+        - generic [ref=f5e119]:
+          - link "GitHub" [ref=f5e120] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=f5e124] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=f5e129] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+        - generic [ref=f5e133]: Open to full-time roles · Hyderabad, India

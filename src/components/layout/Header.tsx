@@ -55,7 +55,7 @@ export function Header() {
             title="GitHub">
             <Github className="h-4 w-4" />
           </a>
-          <a href="https://linkedin.com/in/yeswanth-arasavalli" target="_blank" rel="noopener noreferrer"
+          <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
             onClick={() => track("linkedin_click")}
             className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
             title="LinkedIn">
@@ -117,7 +117,7 @@ export function Header() {
             </Link>
             {/* Mobile CTAs */}
             <div className="flex gap-2 mt-3 pt-3 border-t border-border">
-              <a href="https://linkedin.com/in/yeswanth-arasavalli" target="_blank" rel="noopener noreferrer"
+              <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border rounded hover:bg-secondary">
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn
               </a>

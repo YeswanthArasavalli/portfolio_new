@@ -101,6 +101,7 @@ const education = [
 ];
 
 const certifications = [
+  { name: "Microsoft Fabric Analytics Engineer Associate", issuer: "Microsoft", year: "2026" },
   { name: "Google Advanced Data Analytics", issuer: "Coursera", year: "2023" },
   { name: "Data Science Specialisation", issuer: "Johns Hopkins University · Coursera", year: "2023" },
   { name: "Machine Learning / AI Engineer", issuer: "Skillsoft & Infosys Springboard", year: "2023" },

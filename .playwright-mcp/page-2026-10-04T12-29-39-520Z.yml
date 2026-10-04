@@ -1,0 +1,272 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "YA DA · DS · MLE" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: YA
+          - generic [ref=e8]: DA · DS · MLE
+        - navigation [ref=e9]:
+          - link "Home" [ref=e10] [cursor=pointer]:
+            - /url: /
+          - link "Projects" [ref=e11] [cursor=pointer]:
+            - /url: /projects
+          - link "Experience" [ref=e12] [cursor=pointer]:
+            - /url: /experience
+          - link "SQL" [ref=e13] [cursor=pointer]:
+            - /url: /sql
+          - link "About" [ref=e14] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e15]:
+          - link "GitHub" [ref=e16] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=e20] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=e25] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+          - button "Toggle theme" [ref=e29] [cursor=pointer]
+          - link "Resume" [ref=e32] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+    - main [ref=e36]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: Open to full-time roles · Hyderabad, India
+        - heading "Yeswanth Arasavalli" [level=1] [ref=e42]
+        - generic [ref=e43]:
+          - generic [ref=e44]: Data Analyst
+          - generic [ref=e45]: Data Scientist
+          - generic [ref=e46]: ML Engineer
+        - paragraph [ref=e47]: MS in Big Data Analytics. I build production-aware data systems — MLOps monitoring pipelines, local-LLM NLP systems (225 files, ~51K LOC), 13-domain decision intelligence frameworks (454 tests), and SQL analytics pipelines.
+        - generic [ref=e48]:
+          - generic [ref=e49]: 454 tests across Sreejita's 61 core engines
+          - generic [ref=e53]: 225 Python files, zero cloud deps in AI Job System
+          - generic [ref=e57]: 84.9% CV accuracy on 200 SKU categories
+          - generic [ref=e61]: 25% SQL latency reduction at Edunet
+        - generic [ref=e65]:
+          - link "View Projects" [ref=e66] [cursor=pointer]:
+            - /url: /projects
+          - link "Resume" [ref=e69] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+          - link "GitHub" [ref=e73] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=e77] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+      - generic [ref=e83]:
+        - paragraph [ref=e84]: Measured outcomes — every number is verifiable from source code or work history
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: "454"
+            - generic [ref=e88]: Test functions — Sreejita Framework (30 test files)
+          - generic [ref=e89]:
+            - generic [ref=e90]: "225"
+            - generic [ref=e91]: Python files — AI Job Application System (~51K LOC)
+          - generic [ref=e92]:
+            - generic [ref=e93]: "13"
+            - generic [ref=e94]: Business domains — Sreejita (Healthcare → SaaS → Real Estate)
+          - generic [ref=e95]:
+            - generic [ref=e96]: 84.9%
+            - generic [ref=e97]: EfficientNet Top-1 accuracy (+8.9pp vs ResNet-18 baseline)
+          - generic [ref=e98]:
+            - generic [ref=e99]: 87%
+            - generic [ref=e100]: LSTM validation accuracy — 2-week failure forecast
+          - generic [ref=e101]:
+            - generic [ref=e102]: 25%
+            - generic [ref=e103]: SQL query latency reduction via window functions (Edunet)
+      - generic [ref=e105]:
+        - heading "Technical Skills" [level=2] [ref=e106]
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]: Languages
+            - generic [ref=e110]:
+              - generic [ref=e111]: Python
+              - generic [ref=e112]: SQL
+              - generic [ref=e113]: R
+          - generic [ref=e114]:
+            - generic [ref=e115]: ML / DL
+            - generic [ref=e116]:
+              - generic [ref=e117]: Scikit-learn
+              - generic [ref=e118]: PyTorch
+              - generic [ref=e119]: XGBoost
+              - generic [ref=e120]: LSTM
+              - generic [ref=e121]: DistilBERT
+              - generic [ref=e122]: EfficientNet
+          - generic [ref=e123]:
+            - generic [ref=e124]: MLOps
+            - generic [ref=e125]:
+              - generic [ref=e126]: MLflow
+              - generic [ref=e127]: Evidently
+              - generic [ref=e128]: Docker
+              - generic [ref=e129]: FastAPI
+          - generic [ref=e130]:
+            - generic [ref=e131]: Analytics
+            - generic [ref=e132]:
+              - generic [ref=e133]: Power BI
+              - generic [ref=e134]: Tableau
+              - generic [ref=e135]: Excel
+              - generic [ref=e136]: KPI Design
+          - generic [ref=e137]:
+            - generic [ref=e138]: Data Eng.
+            - generic [ref=e139]:
+              - generic [ref=e140]: PostgreSQL
+              - generic [ref=e141]: ETL Pipelines
+              - generic [ref=e142]: MongoDB
+              - generic [ref=e143]: Pandas
+          - generic [ref=e144]:
+            - generic [ref=e145]: Cloud
+            - generic [ref=e146]:
+              - generic [ref=e147]: AWS
+              - generic [ref=e148]: GCP
+              - generic [ref=e149]: Azure
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - heading "Featured Projects" [level=2] [ref=e154]
+            - paragraph [ref=e155]: Full case studies with architecture diagrams, verified metrics, and GitHub links.
+          - link "All 5 projects" [ref=e156] [cursor=pointer]:
+            - /url: /projects
+        - generic [ref=e159]:
+          - 'link "MLOps Production ML Monitoring & Drift Detection Platform End-to-end MLOps platform: experiment tracking, versioned model registry, containerised REST inference, automated PSI/KS drift detection, and a PostgreSQL-backed observability dashboard. Python MLflow FastAPI Evidently +4 5 Stack layers PSI + KS Drift methods" [ref=e160] [cursor=pointer]':
+            - /url: /projects/ml-monitoring-platform
+            - generic [ref=e161]:
+              - generic [ref=e162]: MLOps
+              - link [ref=e163]:
+                - /url: https://github.com/YeswanthArasavalli/ml-monitoring-platform
+            - heading "Production ML Monitoring & Drift Detection Platform" [level=3] [ref=e167]
+            - paragraph [ref=e168]: "End-to-end MLOps platform: experiment tracking, versioned model registry, containerised REST inference, automated PSI/KS drift detection, and a PostgreSQL-backed observability dashboard."
+            - generic [ref=e169]:
+              - generic [ref=e170]: Python
+              - generic [ref=e171]: MLflow
+              - generic [ref=e172]: FastAPI
+              - generic [ref=e173]: Evidently
+              - generic [ref=e174]: "+4"
+            - generic [ref=e175]:
+              - generic [ref=e176]:
+                - generic [ref=e177]: "5"
+                - generic [ref=e178]: Stack layers
+              - generic [ref=e179]:
+                - generic [ref=e180]: PSI + KS
+                - generic [ref=e181]: Drift methods
+          - link "NLP AI Job Application Intelligence System End-to-end local AI system that tailors resumes to job descriptions using Ollama LLMs, scores ATS alignment across 6 dimensions, predicts shortlist probability, and delivers an 8-page analytics dashboard — 225 Python files, ~51K LOC, zero cloud dependencies. Python Ollama LLM Streamlit SQLite +5 225 Python files ~51K Lines of code" [ref=e182] [cursor=pointer]:
+            - /url: /projects/ai-hiring-intelligence-platform
+            - generic [ref=e183]:
+              - generic [ref=e184]: NLP
+              - link [ref=e185]:
+                - /url: https://github.com/YeswanthArasavalli/job-ai-system
+            - heading "AI Job Application Intelligence System" [level=3] [ref=e189]
+            - paragraph [ref=e190]: End-to-end local AI system that tailors resumes to job descriptions using Ollama LLMs, scores ATS alignment across 6 dimensions, predicts shortlist probability, and delivers an 8-page analytics dashboard — 225 Python files, ~51K LOC, zero cloud dependencies.
+            - generic [ref=e191]:
+              - generic [ref=e192]: Python
+              - generic [ref=e193]: Ollama LLM
+              - generic [ref=e194]: Streamlit
+              - generic [ref=e195]: SQLite
+              - generic [ref=e196]: "+5"
+            - generic [ref=e197]:
+              - generic [ref=e198]:
+                - generic [ref=e199]: "225"
+                - generic [ref=e200]: Python files
+              - generic [ref=e201]:
+                - generic [ref=e202]: ~51K
+                - generic [ref=e203]: Lines of code
+          - link "Analytics Sreejita — Domain-Agnostic Decision Intelligence Framework A multi-stage analytics and decision intelligence framework that transforms raw datasets into KPI intelligence, root-cause driver analysis, composite insights, scenario simulations, and consulting-grade executive PDF reports — across 13 business domains, backed by 454 test functions. Python Pandas Scikit-learn ReportLab +4 454 Test functions 213 Python files" [ref=e204] [cursor=pointer]:
+            - /url: /projects/sreejita-framework
+            - generic [ref=e205]:
+              - generic [ref=e206]: Analytics
+              - link [ref=e207]:
+                - /url: https://github.com/YeswanthArasavalli/sreejita-framework
+            - heading "Sreejita — Domain-Agnostic Decision Intelligence Framework" [level=3] [ref=e211]
+            - paragraph [ref=e212]: A multi-stage analytics and decision intelligence framework that transforms raw datasets into KPI intelligence, root-cause driver analysis, composite insights, scenario simulations, and consulting-grade executive PDF reports — across 13 business domains, backed by 454 test functions.
+            - generic [ref=e213]:
+              - generic [ref=e214]: Python
+              - generic [ref=e215]: Pandas
+              - generic [ref=e216]: Scikit-learn
+              - generic [ref=e217]: ReportLab
+              - generic [ref=e218]: "+4"
+            - generic [ref=e219]:
+              - generic [ref=e220]:
+                - generic [ref=e221]: "454"
+                - generic [ref=e222]: Test functions
+              - generic [ref=e223]:
+                - generic [ref=e224]: "213"
+                - generic [ref=e225]: Python files
+      - generic [ref=e227]:
+        - heading "What I Work On" [level=2] [ref=e228]
+        - generic [ref=e229]:
+          - generic [ref=e236]:
+            - heading "SQL & Data Engineering" [level=3] [ref=e237]
+            - paragraph [ref=e238]: CTEs, window functions, query optimisation, ETL pipelines, PostgreSQL schema design. 25% latency reduction at Edunet via indexing + query restructuring.
+          - generic [ref=e243]:
+            - heading "Analytics & BI" [level=3] [ref=e244]
+            - paragraph [ref=e245]: Power BI and Tableau dashboards, KPI design with business stakeholders. 40% reporting effort reduction at PHN via ETL automation.
+          - generic [ref=e258]:
+            - heading "Machine Learning" [level=3] [ref=e259]
+            - paragraph [ref=e260]: Classification, NLP, CV, time-series. Baseline-first. Metric selection aligned to business cost — recall over accuracy for failure detection.
+          - generic [ref=e266]:
+            - heading "MLOps & Deployment" [level=3] [ref=e267]
+            - paragraph [ref=e268]: MLflow experiment tracking, Evidently drift detection, FastAPI inference, Docker containerisation, PostgreSQL audit logs.
+          - generic [ref=e273]:
+            - heading "System Architecture" [level=3] [ref=e274]
+            - paragraph [ref=e275]: Multi-engine frameworks (61 core engines in Sreejita), async worker pipelines, governance layers, REST APIs, 450+ automated tests.
+          - generic [ref=e282]:
+            - heading "Local LLM Integration" [level=3] [ref=e283]
+            - paragraph [ref=e284]: Ollama-powered local LLM pipeline for resume tailoring with a naturalisation layer — zero cloud dependencies, full privacy.
+      - generic [ref=e286]:
+        - generic [ref=e287]:
+          - heading "Experience Highlights" [level=2] [ref=e288]
+          - link "Full details" [ref=e289] [cursor=pointer]:
+            - /url: /experience
+        - generic [ref=e292]:
+          - generic [ref=e293]:
+            - generic [ref=e294]: Telus International
+            - generic [ref=e295]: AI Annotation & Prompt Eng.
+            - generic [ref=e296]: Feb 2024–Present
+            - generic [ref=e297]: NLP + CV dataset QA · prompt optimisation
+          - generic [ref=e298]:
+            - generic [ref=e299]: Postulate IRT
+            - generic [ref=e300]: Data Science Intern
+            - generic [ref=e301]: Jan–Feb 2024
+            - generic [ref=e302]: 150K+ records · 22% forecast accuracy lift
+          - generic [ref=e303]:
+            - generic [ref=e304]: Edunet Foundation
+            - generic [ref=e305]: Data Analyst Intern
+            - generic [ref=e306]: Jul 2023–Jan 2024
+            - generic [ref=e307]: SQL pipelines · Power BI · 25% latency cut
+          - generic [ref=e308]:
+            - generic [ref=e309]: PHN Technology
+            - generic [ref=e310]: Data Science Intern
+            - generic [ref=e311]: Apr–Jul 2023
+            - generic [ref=e312]: ETL automation · 40% reporting reduction
+      - generic [ref=e314]:
+        - generic [ref=e315]:
+          - generic [ref=e316]:
+            - heading "SQL Proficiency" [level=2] [ref=e317]
+            - paragraph [ref=e318]: Real queries from Edunet, Postulate IRT, and PHN Technology — window functions, CTEs, optimisation.
+          - link "All 5 examples" [ref=e319] [cursor=pointer]:
+            - /url: /sql
+        - generic [ref=e322]:
+          - generic [ref=e323]:
+            - generic [ref=e324]: query_optimisation.sql — 75% latency reduction · Edunet Foundation
+            - generic [ref=e325]: 8.3s → 2.1s
+          - generic [ref=e326]: "-- ✅ AFTER: Window function + composite index + CTE predicate pushdown WITH recent_orders AS ( SELECT order_id, customer_id, order_date, revenue FROM orders WHERE order_date >= '2024-01-01' -- filter before window sees rows ) SELECT order_id, customer_id, order_date, revenue, ROUND(AVG(revenue) OVER ( PARTITION BY customer_id ORDER BY order_date RANGE BETWEEN INTERVAL '90 days' PRECEDING AND CURRENT ROW ), 2) AS rolling_90d_avg FROM recent_orders; -- Index: CREATE INDEX CONCURRENTLY idx_orders_cust_date ON orders(customer_id, order_date)"
+      - generic [ref=e329]:
+        - heading "Open to Data Analyst, Data Scientist, and ML Engineer roles." [level=2] [ref=e330]
+        - paragraph [ref=e331]: Based in Hyderabad. Available for full-time positions.
+        - generic [ref=e332]:
+          - link "Get in touch" [ref=e333] [cursor=pointer]:
+            - /url: /contact
+          - link "View Experience" [ref=e336] [cursor=pointer]:
+            - /url: /experience
+          - link "Resume" [ref=e337] [cursor=pointer]:
+            - /url: /Yeswanth_Arasavalli_Resume.pdf
+    - contentinfo [ref=e341]:
+      - generic [ref=e343]:
+        - generic [ref=e344]: Yeswanth Arasavalli · Data Analyst · Data Scientist · ML Engineer
+        - generic [ref=e345]:
+          - link "GitHub" [ref=e346] [cursor=pointer]:
+            - /url: https://github.com/YeswanthArasavalli
+          - link "LinkedIn" [ref=e350] [cursor=pointer]:
+            - /url: https://linkedin.com/in/yeswanth-arasavalli
+          - link "Email" [ref=e355] [cursor=pointer]:
+            - /url: mailto:maneswararasavalli@gmail.com
+        - generic [ref=e359]: Open to full-time roles · Hyderabad, India

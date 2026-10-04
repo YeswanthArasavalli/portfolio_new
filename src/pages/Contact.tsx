@@ -35,7 +35,7 @@ export default function Contact() {
               </div>
             </a>
 
-            <a href="https://linkedin.com/in/yeswanth-arasavalli" target="_blank" rel="noopener noreferrer"
+            <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group"
               onClick={() => track("linkedin_click")}>
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
@@ -43,7 +43,7 @@ export default function Contact() {
               </div>
               <div>
                 <div className="text-sm font-medium text-foreground">LinkedIn</div>
-                <div className="text-sm text-muted-foreground group-hover:text-primary transition-colors">linkedin.com/in/yeswanth-arasavalli</div>
+                <div className="text-sm text-muted-foreground group-hover:text-primary transition-colors">linkedin.com/in/yeswantharasavalli</div>
               </div>
             </a>
 

@@ -28,7 +28,7 @@ export function Footer() {
               <Github className="h-4 w-4" />
             </a>
             <a
-              href="https://linkedin.com/in/yeswanth-arasavalli"
+              href="https://linkedin.com/in/yeswantharasavalli"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"

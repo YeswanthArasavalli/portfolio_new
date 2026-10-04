@@ -4,14 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Page Not Found | Yeswanth Arasavalli</title>
-
-    <meta
-      name="description"
-      content="The page you’re looking for doesn’t exist. Return to the portfolio of Yeswanth Arasavalli."
-    />
-
+    <title>Yeswanth Arasavalli | Portfolio</title>
     <meta name="robots" content="noindex" />
+
+    <script>
+      // GitHub Pages serves this file for any path without a matching static
+      // file (e.g. a page refresh on /projects or /experience). Forward the
+      // requested path to the SPA entry point; index.html restores the URL
+      // with history.replaceState before React Router reads the location.
+      (function () {
+        var path = window.location.pathname.replace(/^\/+/, "");
+        if (path) {
+          window.location.replace("/?r=" + encodeURIComponent(path) + window.location.hash);
+        } else {
+          window.location.replace("/");
+        }
+      })();
+    </script>
 
     <style>
       body {
@@ -31,10 +40,6 @@
         max-width: 420px;
         padding: 1rem;
       }
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-      }
       p {
         color: #9ca3af;
         margin-bottom: 1.5rem;
@@ -52,9 +57,8 @@
 
   <body>
     <div class="container">
-      <h1>404</h1>
-      <p>This page doesn’t exist.</p>
-      <a href="/">Go back to portfolio</a>
+      <p>Redirecting…</p>
+      <a href="/">Go to yeswantharasavalli.me</a>
     </div>
   </body>
 </html>

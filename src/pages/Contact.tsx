@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { Mail, Linkedin, Github, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, ArrowRight, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Contact() {
@@ -64,9 +64,10 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-secondary text-foreground rounded border border-border mt-2">
-              Resume available on request — email me and I'll send the current version.
-            </div>
+            <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-secondary text-foreground rounded border border-border hover:bg-secondary/70 transition-colors mt-2">
+              <Download className="h-4 w-4" /> Download Resume (PDF)
+            </a>
           </div>
 
           {/* Right: availability */}

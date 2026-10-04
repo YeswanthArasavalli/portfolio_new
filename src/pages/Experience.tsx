@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 const experience = [
   {
@@ -102,7 +102,7 @@ const education = [
 
 const certifications = [
   { name: "Microsoft Fabric Analytics Engineer Associate (DP-600)", issuer: "Microsoft", year: "2026", verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/YeswanthNagasaiManeswarArasavalli-1750/D85B3093B4624B71?sharingId=58E339BEA8D7E9E1" },
-  { name: "Google Advanced Data Analytics", issuer: "Coursera", year: "2023", verifyUrl: "https://www.credly.com/badges/6b4b6a6d-e29f-4ec0-8b35-2d4a02993e2e" },
+  { name: "Google Advanced Data Analytics", issuer: "Coursera", year: "2023", verifyUrl: "https://www.credly.com/badges/6b4b6a6d-e29f-4ec0-8b87-ec1f8b980ac4" },
   { name: "Google Data Analytics", issuer: "Coursera", year: "2023", verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/CL2VKRWA8T2W" },
   { name: "Data Science Specialisation", issuer: "Johns Hopkins University · Coursera", year: "2023", verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/GEBQL6YSMTPJ" },
   { name: "Machine Learning / AI Engineer", issuer: "Skillsoft & Infosys Springboard", year: "2024", verifyUrl: null },
@@ -129,10 +129,10 @@ export default function Experience() {
                 rather than presenting personal projects as employment.
               </p>
             </div>
-            <Link to="/contact"
+            <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
               className="flex-shrink-0 inline-flex items-center gap-2 px-3 py-2 text-sm border border-border rounded hover:bg-secondary transition-colors">
-              Resume on request
-            </Link>
+              <Download className="h-4 w-4" /> Resume
+            </a>
           </div>
         </div>
       </section>
@@ -272,10 +272,10 @@ export default function Experience() {
               className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
               View Projects
             </Link>
-            <Link to="/contact"
+            <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
-              Resume on request
-            </Link>
+              <Download className="h-4 w-4" /> Resume
+            </a>
           </div>
         </div>
       </div>

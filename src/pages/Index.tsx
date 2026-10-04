@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import {
-  ArrowRight, Github, Linkedin,
+  ArrowRight, Github, Linkedin, Download,
   Terminal, Database, BarChart3, Brain, Server, GitBranch,
   CheckCircle2
 } from "lucide-react";
@@ -102,10 +102,10 @@ export default function Index() {
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
                 View Projects <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/contact"
+              <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
-                Resume on request
-              </Link>
+                <Download className="h-4 w-4" /> Resume
+              </a>
               <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
                 <Github className="h-4 w-4" /> GitHub
@@ -321,10 +321,10 @@ FROM recent_orders;
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
                 View Experience
               </Link>
-              <Link to="/contact"
+              <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
-                Resume on request
-              </Link>
+                <Download className="h-4 w-4" /> Resume
+              </a>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Moon, Sun, Github, Linkedin } from "lucide-react";
+import { Menu, X, Moon, Sun, Github, Linkedin, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
@@ -67,10 +67,10 @@ export function Header() {
             aria-label="Toggle theme">
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <Link to="/contact"
+          <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
             className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
-            Resume on request
-          </Link>
+            <Download className="h-3.5 w-3.5" /> Resume
+          </a>
         </div>
 
         {/* Mobile toggles */}
@@ -114,10 +114,10 @@ export function Header() {
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border rounded hover:bg-secondary">
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn
               </a>
-              <Link to="/contact" onClick={() => setOpen(false)}
+              <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs bg-primary text-primary-foreground rounded">
-                Resume on request
-              </Link>
+                <Download className="h-3.5 w-3.5" /> Resume
+              </a>
             </div>
           </nav>
         </div>

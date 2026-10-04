@@ -28,8 +28,9 @@ export default function Projects() {
         <div className="container max-w-6xl mx-auto px-6 py-12">
           <h1 className="text-3xl font-bold text-foreground mb-2">Project Case Studies</h1>
           <p className="text-muted-foreground max-w-2xl text-sm">
-            Five end-to-end systems — each with architecture diagrams, measurable metrics, and GitHub links.
-            MLOps, NLP, computer vision, analytics, and forecasting.
+            {all.length} systems across MLOps, NLP, computer vision, analytics and forecasting. Each one
+            shows what I built and the evidence behind it. Where a repository is public I link it; where it is
+            private or still in development I say so plainly rather than leave a broken link.
           </p>
         </div>
       </section>
@@ -68,12 +69,16 @@ export default function Projects() {
                         <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catColor[project.category]}`}>
                           {catLabel[project.category]}
                         </span>
-                        {project.codeUrl && (
+                        {project.codeUrl ? (
                           <a href={project.codeUrl} target="_blank" rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors border border-border rounded px-2 py-0.5 hover:bg-secondary">
                             <Github className="h-3 w-3" /> GitHub
                           </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-xs text-muted-foreground border border-dashed border-border rounded px-2 py-0.5">
+                            {project.repoState === "in-development" ? "In development" : "Private repository"}
+                          </span>
                         )}
                         {project.demoUrl && (
                           <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"

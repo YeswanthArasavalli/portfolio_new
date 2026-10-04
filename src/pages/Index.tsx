@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import {
-  ArrowRight, Download, Github, Linkedin,
+  ArrowRight, Github, Linkedin,
   Terminal, Database, BarChart3, Brain, Server, GitBranch,
   CheckCircle2
 } from "lucide-react";
-import { getProjectsByPriority } from "@/data/projects";
+import { getProjectsByPriority, projects } from "@/data/projects";
 
 const skills = [
   { group: "Languages",   items: ["Python", "SQL", "R"] },
@@ -73,11 +73,13 @@ export default function Index() {
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-3 max-w-2xl">
-              MS in Big Data Analytics. I build production-aware data systems —{" "}
-              <span className="text-foreground font-medium">MLOps monitoring pipelines</span>,{" "}
-              <span className="text-foreground font-medium">local-LLM NLP systems (225 files, ~51K LOC)</span>,{" "}
-              <span className="text-foreground font-medium">13-domain decision intelligence frameworks (454 tests)</span>, and{" "}
-              <span className="text-foreground font-medium">SQL analytics pipelines</span>.
+              MS in Big Data Analytics. I work with Python, SQL and machine learning to build data pipelines,
+              models and analytical tools —{" "}
+              <span className="text-foreground font-medium">ML monitoring stacks</span>,{" "}
+              <span className="text-foreground font-medium">local-LLM NLP systems</span>,{" "}
+              <span className="text-foreground font-medium">analytics frameworks</span> and{" "}
+              <span className="text-foreground font-medium">SQL pipelines</span>. Most of my recent work turns raw
+              data into something that can be tested, monitored and actually used.
             </p>
 
             {/* Inline proof points */}
@@ -100,18 +102,15 @@ export default function Index() {
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
                 View Projects <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-                onClick={() => (window as any).gtag?.("event","resume_download",{event_category:"engagement"})}
+              <Link to="/contact"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
-                <Download className="h-4 w-4" /> Resume
-              </a>
+                Resume on request
+              </Link>
               <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-                onClick={() => (window as any).gtag?.("event","github_click",{event_category:"engagement"})}
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
                 <Github className="h-4 w-4" /> GitHub
               </a>
               <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
-                onClick={() => (window as any).gtag?.("event","linkedin_click",{event_category:"engagement"})}
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
@@ -164,32 +163,38 @@ export default function Index() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Featured Projects</h2>
-              <p className="text-sm text-muted-foreground">Full case studies with architecture diagrams, verified metrics, and GitHub links.</p>
+              <p className="text-sm text-muted-foreground">Case studies with the problem, what I built, the technical decisions, and the evidence behind each metric.</p>
             </div>
             <Link to="/projects" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-              All 5 projects <ArrowRight className="h-3.5 w-3.5" />
+              All {projects.length} projects <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {featured.map((project) => (
-              <Link key={project.slug} to={`/projects/${project.slug}`}
+              <div key={project.slug}
                 className="group flex flex-col bg-background border border-border rounded-lg p-5 hover:border-primary/40 hover:shadow-sm transition-all">
                 <div className="flex items-start justify-between mb-3">
                   <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catColor[project.category]}`}>
                     {catLabel[project.category]}
                   </span>
-                  {project.codeUrl && (
+                  {project.codeUrl ? (
                     <a href={project.codeUrl} target="_blank" rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
+                      aria-label={`${project.title} on GitHub`}
                       className="text-muted-foreground hover:text-foreground">
                       <Github className="h-3.5 w-3.5" />
                     </a>
+                  ) : (
+                    <span className="text-[10px] uppercase tracking-wide text-muted-foreground border border-dashed border-border rounded px-1.5 py-0.5">
+                      {project.repoState === "in-development" ? "In development" : "Private"}
+                    </span>
                   )}
                 </div>
 
-                <h3 className="font-semibold text-foreground mb-2 leading-snug group-hover:text-primary transition-colors text-sm">
-                  {project.title}
+                <h3 className="font-semibold text-foreground mb-2 leading-snug text-sm">
+                  <Link to={`/projects/${project.slug}`} className="hover:text-primary transition-colors">
+                    {project.title}
+                  </Link>
                 </h3>
                 <p className="text-xs text-muted-foreground mb-4 flex-grow leading-relaxed line-clamp-3">{project.summary}</p>
 
@@ -210,7 +215,7 @@ export default function Index() {
                     </div>
                   ))}
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -316,11 +321,10 @@ FROM recent_orders;
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
                 View Experience
               </Link>
-              <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-                onClick={() => (window as any).gtag?.("event","resume_download",{event_category:"engagement"})}
+              <Link to="/contact"
                 className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
-                <Download className="h-4 w-4" /> Resume
-              </a>
+                Resume on request
+              </Link>
             </div>
           </div>
         </div>

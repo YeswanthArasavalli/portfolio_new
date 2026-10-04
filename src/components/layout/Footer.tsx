@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
@@ -19,11 +18,6 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
               aria-label="GitHub"
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  (window as any).gtag("event", "github_click", { event_category: "engagement" });
-                }
-              }}
             >
               <Github className="h-4 w-4" />
             </a>
@@ -33,11 +27,6 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
               aria-label="LinkedIn"
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  (window as any).gtag("event", "linkedin_click", { event_category: "engagement" });
-                }
-              }}
             >
               <Linkedin className="h-4 w-4" />
             </a>

@@ -247,7 +247,7 @@ function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button onClick={async () => {
-      try { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+      try { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* clipboard API unavailable (e.g. insecure context) */ }
     }}
     className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs border border-slate-700 rounded hover:bg-slate-800 transition-colors text-slate-400">
       {copied ? <Check className="h-3 w-3 text-green-400" /> : <Copy className="h-3 w-3" />}

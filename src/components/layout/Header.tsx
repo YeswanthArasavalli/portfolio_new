@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Moon, Sun, Github, Linkedin, Download } from "lucide-react";
+import { Menu, X, Moon, Sun, Github, Linkedin } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
@@ -16,9 +16,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { theme, setTheme } = useTheme();
-
-  const track = (event: string) =>
-    (window as any).gtag?.("event", event, { event_category: "engagement" });
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
@@ -50,13 +47,11 @@ export function Header() {
         {/* Persistent CTAs — always visible desktop */}
         <div className="hidden md:flex items-center gap-1.5">
           <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-            onClick={() => track("github_click")}
             className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
             title="GitHub">
             <Github className="h-4 w-4" />
           </a>
           <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
-            onClick={() => track("linkedin_click")}
             className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
             title="LinkedIn">
             <Linkedin className="h-4 w-4" />
@@ -72,17 +67,15 @@ export function Header() {
             aria-label="Toggle theme">
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-            onClick={() => track("resume_download")}
+          <Link to="/contact"
             className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
-            <Download className="h-3.5 w-3.5" /> Resume
-          </a>
+            Resume on request
+          </Link>
         </div>
 
         {/* Mobile toggles */}
         <div className="md:hidden flex items-center gap-1.5">
           <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-            onClick={() => track("github_click")}
             className="p-1.5 text-muted-foreground">
             <Github className="h-4 w-4" />
           </a>
@@ -121,11 +114,10 @@ export function Header() {
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border rounded hover:bg-secondary">
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn
               </a>
-              <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-                onClick={() => track("resume_download")}
+              <Link to="/contact" onClick={() => setOpen(false)}
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs bg-primary text-primary-foreground rounded">
-                <Download className="h-3.5 w-3.5" /> Resume
-              </a>
+                Resume on request
+              </Link>
             </div>
           </nav>
         </div>

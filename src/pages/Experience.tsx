@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
-import { Download, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const experience = [
   {
@@ -101,12 +101,13 @@ const education = [
 ];
 
 const certifications = [
-  { name: "Microsoft Fabric Analytics Engineer Associate", issuer: "Microsoft", year: "2026" },
-  { name: "Google Advanced Data Analytics", issuer: "Coursera", year: "2023" },
-  { name: "Data Science Specialisation", issuer: "Johns Hopkins University · Coursera", year: "2023" },
-  { name: "Machine Learning / AI Engineer", issuer: "Skillsoft & Infosys Springboard", year: "2024" },
-  { name: "MongoDB Python Developer Associate", issuer: "MongoDB University", year: "2025" },
-  { name: "Microsoft Power BI", issuer: "Infosys Springboard", year: "2025" },
+  { name: "Microsoft Fabric Analytics Engineer Associate (DP-600)", issuer: "Microsoft", year: "2026", verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/YeswanthNagasaiManeswarArasavalli-1750/D85B3093B4624B71?sharingId=58E339BEA8D7E9E1" },
+  { name: "Google Advanced Data Analytics", issuer: "Coursera", year: "2023", verifyUrl: "https://www.credly.com/badges/6b4b6a6d-e29f-4ec0-8b35-2d4a02993e2e" },
+  { name: "Google Data Analytics", issuer: "Coursera", year: "2023", verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/CL2VKRWA8T2W" },
+  { name: "Data Science Specialisation", issuer: "Johns Hopkins University · Coursera", year: "2023", verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/GEBQL6YSMTPJ" },
+  { name: "Machine Learning / AI Engineer", issuer: "Skillsoft & Infosys Springboard", year: "2024", verifyUrl: null },
+  { name: "MongoDB Python Developer Associate", issuer: "MongoDB University", year: "2025", verifyUrl: null },
+  { name: "Microsoft Power BI", issuer: "Infosys Springboard", year: "2025", verifyUrl: null },
 ];
 
 const typeBadge: Record<string, string> = {
@@ -123,15 +124,15 @@ export default function Experience() {
             <div>
               <h1 className="text-3xl font-bold text-foreground mb-2">Experience</h1>
               <p className="text-muted-foreground max-w-xl text-sm">
-                Internship and freelance work across data engineering, analytics, NLP, and applied ML.
-                Each role links to the projects and SQL work it informed.
+                Internships and freelance work across data engineering, analytics, NLP and applied ML.
+                The larger systems on my Projects page are independent work — I list them separately
+                rather than presenting personal projects as employment.
               </p>
             </div>
-            <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-              onClick={() => (window as any).gtag?.("event","resume_download",{event_category:"engagement"})}
+            <Link to="/contact"
               className="flex-shrink-0 inline-flex items-center gap-2 px-3 py-2 text-sm border border-border rounded hover:bg-secondary transition-colors">
-              <Download className="h-4 w-4" /> Resume
-            </a>
+              Resume on request
+            </Link>
           </div>
         </div>
       </section>
@@ -243,9 +244,16 @@ export default function Experience() {
             {certifications.map((cert) => (
               <div key={cert.name} className="flex items-start gap-3 bg-background border border-border rounded-lg p-4">
                 <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2" />
-                <div>
+                <div className="min-w-0">
                   <div className="text-sm font-medium text-foreground">{cert.name}</div>
                   <div className="text-xs text-muted-foreground">{cert.issuer} · {cert.year}</div>
+                  {cert.verifyUrl && (
+                    <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-1.5">
+                      Verify
+                      <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -264,11 +272,10 @@ export default function Experience() {
               className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
               View Projects
             </Link>
-            <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-              onClick={() => (window as any).gtag?.("event","resume_download",{event_category:"engagement"})}
+            <Link to="/contact"
               className="inline-flex items-center gap-2 px-4 py-2.5 text-sm border border-border rounded hover:bg-secondary transition-colors">
-              <Download className="h-4 w-4" /> Resume
-            </a>
+              Resume on request
+            </Link>
           </div>
         </div>
       </div>

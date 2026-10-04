@@ -18,8 +18,16 @@ export interface Project {
   result: string;
   challenges?: string[];
   learnings?: string[];
+  // Only set codeUrl for a verified, publicly accessible repository.
   codeUrl?: string;
+  // Only set demoUrl for a demo that is publicly reachable (no login wall).
   demoUrl?: string;
+  // Honest repository state so a recruiter understands why a GitHub button is or isn't present.
+  repoState?: "public" | "private" | "in-development";
+  // Short, honest note shown when there is no public repository link.
+  repoNote?: string;
+  // qualifier for a demo that is hosted but not always-on / not fully public.
+  demoNote?: string;
   images: string[];
   imageCaptions?: string[];
   crossLinks?: { label: string; href: string }[];
@@ -32,10 +40,10 @@ export const projects: Project[] = [
   ══════════════════════════════════════════════ */
   {
     slug: "ml-monitoring-platform",
-    title: "Production ML Monitoring & Drift Detection Platform",
+    title: "ML Monitoring & Drift Detection Platform",
     tagline: "MLflow · FastAPI · Evidently · Docker · PostgreSQL · Streamlit",
-    summary: "End-to-end MLOps platform: experiment tracking, versioned model registry, containerised REST inference, automated PSI/KS drift detection, and a PostgreSQL-backed observability dashboard.",
-    description: "Most ML projects stop at the notebook. This platform covers training → versioning → serving → monitoring in a single reproducible Docker stack.",
+    summary: "An MLOps stack that covers training, experiment tracking, versioned model registry, containerised REST inference, automated PSI/KS drift detection, and a PostgreSQL-backed Streamlit dashboard.",
+    description: "Most ML projects stop at the notebook. This one covers training, versioning, serving and monitoring in a single reproducible Docker stack.",
     caseStudy: true,
     priority: 1,
     category: "mlops",
@@ -67,7 +75,7 @@ export const projects: Project[] = [
       "PostgreSQL prediction logs give a complete inference audit trail for debugging",
       "Automated PSI/KS alerting removes manual model health checks",
     ],
-    result: "A containerised MLOps platform that demonstrates production awareness beyond notebook ML — the difference between 'model trained' and 'model maintained'.",
+    result: "A containerised MLOps stack that shows the difference between 'model trained' and 'model maintained' — train, version, serve and monitor in one reproducible setup.",
     challenges: [
       "Keeping PSI statistically valid on small batch sizes — added KS-test as a secondary signal to reduce false positives.",
       "Making MLflow registry updates transparent to the inference API without service restarts.",
@@ -77,9 +85,10 @@ export const projects: Project[] = [
       "Evidently's report format works as both a human-readable HTML artifact and a machine-parseable alert trigger.",
       "Docker resolves most 'works on my machine' deployment issues before they become production problems.",
     ],
-    codeUrl: "https://github.com/YeswanthArasavalli/ml-monitoring-platform",
-    images: ["/placeholder.svg"],
-    imageCaptions: ["MLflow experiment tracking UI with run comparison and artifact storage"],
+    repoState: "private",
+    repoNote: "Private repository — still under active development. Implementation walkthrough and screenshots available on request.",
+    images: [],
+    imageCaptions: [],
     crossLinks: [
       { label: "SQL Showcase", href: "/sql" },
       { label: "Experience — Postulate IRT", href: "/experience" },
@@ -95,8 +104,8 @@ export const projects: Project[] = [
     slug: "ai-hiring-intelligence-platform",
     title: "AI Job Application Intelligence System",
     tagline: "Python · Ollama LLM · Streamlit · SQLite · FastAPI · Playwright",
-    summary: "End-to-end local AI system that tailors resumes to job descriptions using Ollama LLMs, scores ATS alignment across 6 dimensions, predicts shortlist probability, and delivers an 8-page analytics dashboard — 225 Python files, ~51K LOC, zero cloud dependencies.",
-    description: "A complete job application intelligence platform combining local LLM resume tailoring, ATS simulation, semantic matching, decision intelligence, skill-gap analysis, and career strategy — all running locally with no API keys or cloud costs.",
+    summary: "A local AI system that tailors resumes to job descriptions using Ollama LLMs, scores ATS alignment across 6 dimensions, estimates shortlist probability, and shows the results in an 8-page analytics dashboard. Runs entirely on my machine with no cloud APIs. Codebase: 225 Python files, ~51K lines.",
+    description: "A job-application assistant that combines local-LLM resume tailoring, ATS simulation, semantic matching, skill-gap analysis and career strategy — all running locally, with no API keys or cloud costs.",
     caseStudy: true,
     priority: 2,
     category: "nlp",
@@ -106,7 +115,7 @@ export const projects: Project[] = [
       "Resume Tailoring Engine: uses Ollama (local LLM — qwen2.5-coder:3b default) to rewrite resume sections matched to the JD. A Naturalization layer ensures LLM output sounds human-written while preserving ATS keywords.",
       "ATS Scoring Engine: 6-dimension scoring (Keyword Match 30%, Skills Match 25%, Experience Relevance 20%, Role Alignment 10%, Education Fit 5%, Structure 10%) with semantic dampening, nonlinear experience penalty, and transferable skill credits.",
       "Shortlist Probability Engine: heuristic estimator combining ATS score × semantic alignment × skill coverage × experience signals. Outputs probability bands (STRONG MATCH / COMPETITIVE / POSSIBLE / UNLIKELY) with explicit confidence caveats.",
-      "Decision Engine: APPLY / MAYBE / IMPROVE decisions. System never hard-rejects — IMPROVE always comes with specific next steps rather than a rejection.",
+      "Decision Engine: APPLY / MAYBE / IMPROVE decisions. The system never hard-rejects — IMPROVE always comes with specific next steps rather than a rejection.",
       "Intelligence Layer: Skill Gap Analyzer, Strategy Engine (ROI-ranked learning plan), Flow Engine (daily action items), Job Ranker (composite score), and Learning Engine (tracks patterns across all analysed jobs).",
       "8-page Streamlit dashboard, LinkedIn scraper (Playwright with anti-bot mitigation), SQLite WAL-mode storage, CSV/PDF exports — all local, zero cloud dependencies.",
     ],
@@ -125,7 +134,7 @@ export const projects: Project[] = [
       "Strategy Engine produces ROI-ranked skill learning plan based on gap frequency across all analysed jobs",
       "SQLite WAL-mode storage with versioned job lifecycle tracking",
     ],
-    result: "A production-grade local AI system that combines LLM deployment, NLP, scoring systems, decision intelligence, and full-stack development — with honest, caveated outputs that don't overclaim accuracy.",
+    result: "A working local AI system combining LLM deployment, NLP, rule-based scoring and full-stack development. Because there is no labelled hiring-outcome data, the scores are presented as ATS-alignment estimates, not guarantees.",
     challenges: [
       "LLM output variability between runs — mitigated with output caching and deterministic naturalisation post-processing.",
       "LinkedIn anti-bot mitigation required multiple selector fallbacks and request timing strategies in Playwright.",
@@ -136,9 +145,10 @@ export const projects: Project[] = [
       "Local LLM deployment (Ollama) is a practical, privacy-preserving alternative to cloud APIs for resume-length inputs.",
       "Rule-based scoring is more appropriate than ML-based scoring when you lack labelled hiring outcome data.",
     ],
-    codeUrl: "https://github.com/YeswanthArasavalli/job-ai-system",
-    images: ["/placeholder.svg"],
-    imageCaptions: ["8-page Streamlit dashboard showing ATS score breakdown, shortlist probability, and skill gap analysis"],
+    repoState: "private",
+    repoNote: "Private repository — under active development. The code isn't public yet; architecture and a live walkthrough are available on request.",
+    images: [],
+    imageCaptions: [],
     crossLinks: [
       { label: "ML Monitoring Platform", href: "/projects/ml-monitoring-platform" },
       { label: "SQL Showcase", href: "/sql" },
@@ -153,10 +163,10 @@ export const projects: Project[] = [
   ══════════════════════════════════════════════ */
   {
     slug: "sreejita-framework",
-    title: "Sreejita — Domain-Agnostic Decision Intelligence Framework",
+    title: "Sreejita — Domain-Agnostic Analytics & Reporting Framework",
     tagline: "Python · Pandas · Scikit-learn · ReportLab · Streamlit · Flask · SQLite",
-    summary: "A multi-stage analytics and decision intelligence framework that transforms raw datasets into KPI intelligence, root-cause driver analysis, composite insights, scenario simulations, and consulting-grade executive PDF reports — across 13 business domains, backed by 454 test functions.",
-    description: "Sreejita is a domain-agnostic analytics engine that routes structured datasets through a layered intelligence pipeline: data quality → domain detection → KPI computation → driver graph analysis → composite insights → recommendation ranking → scenario simulation → executive narrative — producing consulting-quality 10-section PDF reports.",
+    summary: "An analytics framework that takes a raw structured dataset and runs it through data-quality checks, automatic domain detection, KPI computation, root-cause driver analysis and report generation — producing a 10-section executive PDF across 13 business domains. It builds on the open-source sreejitadatalabs/sreejita-framework, which I forked and extended.",
+    description: "Sreejita routes a structured dataset through a layered pipeline: data quality → domain detection → KPI computation → driver analysis → composite insights → recommendations → scenario simulation → executive narrative. The output is a 10-section PDF report generated automatically instead of prepared by hand.",
     caseStudy: true,
     priority: 3,
     category: "analytics",
@@ -174,7 +184,7 @@ export const projects: Project[] = [
     dataset: {
       source: "Any structured CSV/JSON dataset — domain auto-detected",
       size: "Tested on datasets from 500 to 50K+ rows across 13 business domains",
-      notes: "7 sample datasets included covering all major domain types. Validated end-to-end with PDF generation per domain.",
+      notes: "7 sample datasets included covering all major domain types. Each was run through the full flow, including PDF report generation.",
     },
     role: "Full framework — architecture, domain engines, intelligence pipeline, reporting, platform layer, testing",
     techStack: ["Python", "Pandas", "Scikit-learn", "ReportLab", "Matplotlib", "Streamlit", "Flask", "SQLite"],
@@ -187,11 +197,11 @@ export const projects: Project[] = [
     impact: [
       "13 business domains (Healthcare, Finance, Retail, HR, Supply Chain, SaaS, Insurance, Real Estate, Ecommerce, Manufacturing, Marketing, Customer Value, Ops) from a single shared architecture",
       "Domain detection eliminates manual domain specification — the framework identifies it from column signatures",
-      "10-section consulting-grade PDF report generated automatically: Executive Snapshot, Board Readiness, 90-Day Action Plan, Health Scorecard",
+      "10-section executive-style PDF report generated automatically: Executive Snapshot, Board Readiness, 90-Day Action Plan, Health Scorecard",
       "Flask REST API + OrgMemory + DomainCopilot enable platform-level deployment beyond single-user Streamlit",
       "454 test functions across 30 test files enforce correctness at each pipeline stage",
     ],
-    result: "A production-capable analytics and decision intelligence framework that demonstrates software architecture, domain modelling, statistical analysis, automated reporting, and platform engineering — all in one system.",
+    result: "An analytics framework that shows software architecture, domain modelling, statistical analysis, automated reporting and a small platform layer in one system — extended from an open-source base I forked.",
     challenges: [
       "Domain detection accuracy: Finance datasets misdetected as Healthcare until a 3-layer fix was applied to the column resolver, detector token sets, and column name case handling.",
       "ReportLab compatibility: hexval() format differences, empty cell handling, and Spacer-in-table bugs required systematic fixes across the PDF rendering layer.",
@@ -202,7 +212,8 @@ export const projects: Project[] = [
       "Governance layers (insight_guardrails, insight_quality_engine, executive_quality_filter) are what make automated reports trustworthy enough for executive use.",
       "Platform architecture (API + org memory + copilot) is what separates a framework from a script — even if users only need the Streamlit UI today.",
     ],
-    codeUrl: "https://github.com/YeswanthArasavalli/sreejita-framework",
+    repoState: "private",
+    repoNote: "This project builds on the public open-source sreejitadatalabs/sreejita-framework (a fork). My current implementation extends well beyond that fork and is kept private, so I'm showing real output screenshots rather than linking the fork as if it were the whole source. A code walkthrough is available on request.",
     images: [
       "/projects/sree_frame/Sreejita_Dashboard.png",
       "/projects/sree_frame/Healthcare_Domain.png",
@@ -210,7 +221,13 @@ export const projects: Project[] = [
       "/projects/sree_frame/Executive_Memo.png",
       "/projects/sree_frame/Root_Cause.png",
     ],
-    imageCaptions: ["10-section consulting-grade executive PDF report — automatically generated from raw dataset input"],
+    imageCaptions: [
+      "Main dashboard — domain detected from the uploaded dataset, with KPI summary and navigation into each analysis section.",
+      "Healthcare domain output — domain-specific KPIs and trend views computed by the KPI engine.",
+      "Marketing domain output — KPI table and driver analysis for a marketing dataset.",
+      "Executive memo — the generated report section with executive snapshot and recommendations.",
+      "Root-cause view — driver graph linking KPI movement to underlying sub-segments.",
+    ],
     crossLinks: [
       { label: "SQL Showcase", href: "/sql" },
       { label: "Experience — Edunet Foundation", href: "/experience" },
@@ -255,7 +272,7 @@ export const projects: Project[] = [
       "MLflow experiment tracking gives reproducible checkpoint comparison across runs",
       "Deployed inference app usable by non-ML users without infrastructure knowledge",
     ],
-    result: "A production-aware CV pipeline with measurable accuracy improvements, experiment tracking, and a deployed inference interface — not just a trained model.",
+    result: "A CV pipeline with measurable accuracy gains over a baseline, experiment tracking, and a deployed inference app — not just a trained model.",
     challenges: [
       "Visually similar SKUs caused class confusion — resolved with augmentation tuning rather than architecture changes.",
       "CPU inference latency optimisation required weight quantisation (post-training INT8).",
@@ -265,16 +282,16 @@ export const projects: Project[] = [
       "Deployment latency should be benchmarked during training, not discovered post-deployment.",
     ],
     codeUrl: "https://github.com/YeswanthArasavalli/retail-product-image-recognition",
-    demoUrl: "https://retail-image-recognition.streamlit.app/",
+    repoState: "public",
+    // The Streamlit app currently sits behind a login redirect, so it is not a public demo — removed to avoid a broken/misleading "Live Demo".
+    demoUrl: undefined,
     images: [
-      "/projects/retail_image/r_thumb.png",
       "/projects/retail_image/ui.png",
-      "/projects/retail_image/data.png",
+      "/projects/retail_image/data.jpg",
       "/projects/retail_image/confuion_matrix.png",
       "/projects/retail_image/Figure_1.png",
     ],
     imageCaptions: [
-      "",
       "Streamlit inference interface — upload product image, get top-3 SKU predictions with confidence scores",
       "Distribution of retail SKU categories across the RPC dataset",
       "Confusion matrix highlighting per-class prediction patterns for the top-20 most common SKUs",
@@ -294,17 +311,17 @@ export const projects: Project[] = [
     title: "Preparation Operating System (PrepOS)",
   
     tagline:
-      "React · TypeScript · Supabase · PostgreSQL · Analytics · Decision Intelligence",
+      "React · TypeScript · Supabase · PostgreSQL · Tailwind · Vite",
   
     summary:
-      "Full-stack preparation intelligence platform supporting 7 competitive examinations through readiness scoring, adaptive study routing, revision automation, mock-test analytics, resource intelligence, health tracking, and execution-focused planning. Built as a decision-support system that transforms preparation workflows into measurable readiness and execution metrics.",
+      "A full-stack exam-preparation app that tracks readiness across 7 competitive examinations — readiness scoring, adaptive study routing, spaced-repetition revision, mock-test analytics, resource tracking and health/habit logging. It turns a study plan into measurable progress instead of a static to-do list.",
   
     description:
-      "A multi-exam preparation intelligence platform that combines planning, analytics, behavioral tracking, recommendation systems, workflow automation, and performance intelligence into a single operating system for competitive exam preparation.",
+      "A multi-exam preparation app that combines planning, progress analytics, revision scheduling and mock-test tracking in one interface, backed by a Supabase/PostgreSQL database.",
   
     caseStudy: true,
   
-    priority: 5,
+    priority: 7,
   
     category: "analytics",
   
@@ -339,7 +356,7 @@ export const projects: Project[] = [
     },
   
     role:
-      "Full-Stack Engineer & Product Designer — architecture, database design, analytics modeling, workflow automation, dashboard development, and decision intelligence design",
+      "Full-Stack Engineer & Product Designer — architecture, database design, analytics modeling, workflow automation, dashboard development, and scoring-system design",
   
     techStack: [
       "React",
@@ -374,7 +391,7 @@ export const projects: Project[] = [
     ],
   
     result:
-      "A preparation operating system that combines planning, readiness intelligence, revision management, behavioral analytics, health monitoring, resource intelligence, and adaptive decision support into a single platform for long-term competitive exam preparation.",
+      "A working multi-exam preparation app with progress analytics, revision scheduling and habit tracking. The live demo is public; the source is kept private while the project is still being built.",
   
     challenges: [
       "Balancing preparation priorities across multiple examinations with overlapping and conflicting syllabi.",
@@ -398,8 +415,8 @@ export const projects: Project[] = [
       "Analytics-driven prioritization improves decision quality compared with manual study planning."
     ],
   
-    codeUrl:
-      "https://github.com/YeswanthArasavalli/preparation-operating-system",
+    repoState: "private",
+    repoNote: "Public demo, private source — the repository is kept private while the app is still in active development. You can try the live demo; a code walkthrough is available on request.",
   
     demoUrl:
       "https://prepos.vercel.app",
@@ -440,7 +457,7 @@ export const projects: Project[] = [
       },
       {
         label: "AI Job Application Intelligence System",
-        href: "/projects/ai-job-application-intelligence"
+        href: "/projects/ai-hiring-intelligence-platform"
       }
     ]
   },
@@ -494,9 +511,11 @@ export const projects: Project[] = [
       "Benchmarking multiple model families (statistical, tree-based, deep learning) produces more credible model selection than single-model evaluation.",
       "Cost estimates should be clearly framed as directional — this is honest and still useful for stakeholder buy-in.",
     ],
-    codeUrl: "https://github.com/YeswanthArasavalli/predictive-maintenance-forecasting",
-    images: ["/placeholder.svg"],
-    imageCaptions: ["LSTM predicted failure probability vs actual failure events across the validation period"],
+    codeUrl: undefined,
+    repoState: "private",
+    repoNote: "Private repository — experiment notebook and model results are not published yet. The training/validation metrics shown here are from my own experiments. Methodology and results are available to discuss.",
+    images: [],
+    imageCaptions: [],
     crossLinks: [
       { label: "ML Monitoring Platform", href: "/projects/ml-monitoring-platform" },
     ],
@@ -513,14 +532,14 @@ export const projects: Project[] = [
       "Python · DistilBERT · PyTorch · Hugging Face · Gradio · NLP",
   
     summary:
-      "End-to-end NLP pipeline for large-scale sentiment classification on 568K+ Amazon food reviews. Built a TF-IDF + Logistic Regression baseline (~89% accuracy) and fine-tuned DistilBERT to achieve ~94% accuracy with real-time inference. Deployed via Gradio on Hugging Face Spaces with sub-300ms prediction latency.",
+      "NLP pipeline for sentiment classification on 568K+ Amazon food reviews. Built a TF-IDF + Logistic Regression baseline (~89% accuracy) and fine-tuned DistilBERT to reach ~94% accuracy. Deployed via Gradio on Hugging Face Spaces.",
   
     description:
       "Automated customer sentiment analysis using transformer-based NLP. The system processes large volumes of review text, compares classical machine learning against modern transformer architectures, and delivers real-time sentiment predictions through a deployed web interface.",
   
     caseStudy: true,
   
-    priority: 5,
+    priority: 6,
   
     category: "nlp",
   
@@ -579,7 +598,7 @@ export const projects: Project[] = [
     ],
   
     result:
-      "A production-oriented NLP solution that transforms raw customer reviews into actionable sentiment insights through a scalable transformer-based classification pipeline and deployed inference interface.",
+      "A sentiment-classification pipeline that compares a classical TF-IDF baseline against a fine-tuned DistilBERT, with a hosted demo for real-time predictions.",
   
     challenges: [
       "Class imbalance and review-length variability required careful preprocessing and evaluation beyond simple accuracy metrics.",
@@ -599,30 +618,24 @@ export const projects: Project[] = [
       "Business framing helps translate technical NLP work into measurable organizational value.",
     ],
   
-    examplePrediction: {
-      input: "The food tasted terrible and was completely stale.",
-      output: "Negative (confidence ≈ 0.96)",
-    },
-  
     codeUrl:
       "https://github.com/YeswanthArasavalli/amazon-food-review-sentiment-analysis",
+    repoState: "public",
   
     demoUrl:
       "https://huggingface.co/spaces/YeswanthArasavalli/Amazon_Food_Review_Analysis",
+    demoNote: "Hosted on Hugging Face Spaces — may be sleeping and takes ~1 minute to cold-start.",
   
     images: [
-      "/projects/amazon_food/a_thumb.png",
       "/projects/amazon_food/a_dash.png",
-      "/projects/amazon_food/word.png",
+      "/projects/amazon_food/word.jpg",
       "/projects/amazon_food/roc.png",
       "/projects/amazon_food/confusion.png",
       "/projects/amazon_food/accuracy.png",
     ],
   
     imageCaptions: [
-      " ",
-      
-      "Gradio inference interface for real-time sentiment prediction from customer reviews.",
+      "Gradio inference interface — enter a review text and get a sentiment prediction from the fine-tuned DistilBERT model.",
       
       "Word cloud highlighting frequently occurring terms across customer review text.",
       

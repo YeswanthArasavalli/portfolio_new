@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, Download, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const skills = [
   { group: "Languages",        items: ["Python", "SQL", "R"] },
@@ -14,7 +14,7 @@ const skills = [
 const principles = [
   { title: "Baseline first",       desc: "I build simple baselines before complex models, and justify complexity with measured improvements — not assumptions." },
   { title: "Metric discipline",    desc: "I select metrics that match the business cost structure. Recall over accuracy for failure detection. Precision-recall tradeoffs depend on campaign costs." },
-  { title: "End-to-end thinking",  desc: "Cleaning, pipelines, deployment, monitoring — each step affects whether the output is actually usable. I don't stop at the notebook." },
+  { title: "Beyond the notebook", desc: "Cleaning, pipelines, deployment, monitoring — each step affects whether the output is actually usable. I don't stop at the model." },
   { title: "Stakeholder clarity",  desc: "I've redefined KPI metrics with business teams and built dashboards people use. Technical work that doesn't influence decisions isn't done." },
   { title: "System reliability",   desc: "Retry logic, validation layers, quality gates, drift alerts. Models degrade silently without these. I build them in." },
   { title: "Reproducibility",      desc: "Docker, MLflow experiment tracking, versioned pipelines. If I can't hand off the work and have it run, it's not finished." },
@@ -58,7 +58,7 @@ export default function About() {
                   "87% LSTM validation accuracy — 2-week failure forecast horizon",
                   "25% SQL query latency reduction via window functions + indexing (Edunet)",
                   "40% manual reporting effort reduction via ETL automation (PHN Technology)",
-                  "80+ automated tests in production-grade async API",
+                  "22% forecast-accuracy lift over baseline on marketing data (Postulate IRT)",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary flex-shrink-0 mt-0.5" />
@@ -69,12 +69,10 @@ export default function About() {
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-                  onClick={() => (window as any).gtag?.("event","github_click",{event_category:"engagement"})}
                   className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <Github className="h-4 w-4" /> GitHub
                 </a>
                 <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
-                  onClick={() => (window as any).gtag?.("event","linkedin_click",{event_category:"engagement"})}
                   className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
@@ -99,11 +97,10 @@ export default function About() {
                 <div className="text-muted-foreground">Hyderabad, India</div>
                 <div className="text-muted-foreground text-xs">Open to relocation</div>
               </div>
-              <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-                onClick={() => (window as any).gtag?.("event","resume_download",{event_category:"engagement"})}
+              <Link to="/contact"
                 className="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
-                <Download className="h-4 w-4" /> Download Resume
-              </a>
+                Resume available on request
+              </Link>
             </div>
           </div>
         </section>

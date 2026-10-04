@@ -1,10 +1,8 @@
 import { Layout } from "@/components/layout/Layout";
-import { Mail, Linkedin, Github, MapPin, Download, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Contact() {
-  const track = (e: string) => (window as any).gtag?.("event", e, { event_category: "engagement" });
-
   return (
     <Layout>
       <section className="border-b border-border bg-background">
@@ -24,8 +22,7 @@ export default function Contact() {
             <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Direct Contact</h2>
 
             <a href="mailto:maneswararasavalli@gmail.com"
-              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group"
-              onClick={() => track("email_click")}>
+              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group">
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
                 <Mail className="h-4 w-4 text-accent-foreground" />
               </div>
@@ -36,8 +33,7 @@ export default function Contact() {
             </a>
 
             <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group"
-              onClick={() => track("linkedin_click")}>
+              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group">
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
                 <Linkedin className="h-4 w-4 text-accent-foreground" />
               </div>
@@ -48,8 +44,7 @@ export default function Contact() {
             </a>
 
             <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group"
-              onClick={() => track("github_click")}>
+              className="flex items-center gap-3 p-4 border border-border rounded-lg hover:border-primary/40 hover:bg-secondary/30 transition-all group">
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
                 <Github className="h-4 w-4 text-accent-foreground" />
               </div>
@@ -69,11 +64,9 @@ export default function Contact() {
               </div>
             </div>
 
-            <a href="/Yeswanth_Arasavalli_Resume.pdf" download
-              onClick={() => track("resume_download")}
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors mt-2">
-              <Download className="h-4 w-4" /> Download Resume
-            </a>
+            <div className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-secondary text-foreground rounded border border-border mt-2">
+              Resume available on request — email me and I'll send the current version.
+            </div>
           </div>
 
           {/* Right: availability */}

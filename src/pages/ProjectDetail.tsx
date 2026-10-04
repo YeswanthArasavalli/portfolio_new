@@ -214,7 +214,6 @@ export default function ProjectDetail() {
           <div className="flex flex-wrap gap-3">
             {project.codeUrl && (
               <a href={project.codeUrl} target="_blank" rel="noopener noreferrer"
-                onClick={() => (window as any).gtag?.("event","github_click",{event_category:"engagement",project:project.slug})}
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-border rounded hover:bg-secondary transition-colors">
                 <Github className="h-4 w-4" /> GitHub Repository
               </a>
@@ -222,10 +221,24 @@ export default function ProjectDetail() {
             {project.demoUrl && (
               <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-sm bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors">
-                <ExternalLink className="h-4 w-4" /> Live Demo
+                <ExternalLink className="h-4 w-4" /> {project.repoState === "private" ? "Live Demo" : "Demo"}
               </a>
             )}
+            {project.repoState && project.repoState !== "public" && (
+              <span className="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-dashed border-border rounded text-muted-foreground">
+                {project.repoState === "private" ? "Private repository" : "In development"}
+              </span>
+            )}
           </div>
+
+          {project.repoNote && (
+            <p className="mt-4 text-xs text-muted-foreground leading-relaxed border-l-2 border-border pl-3">
+              {project.repoNote}
+            </p>
+          )}
+          {project.demoNote && (
+            <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{project.demoNote}</p>
+          )}
         </div>
 
         {/* ── Primary metrics ── */}
@@ -262,13 +275,14 @@ export default function ProjectDetail() {
         )}
 
         {/* ── Real screenshots ── */}
-        {project.images.some((img) => !img.includes("placeholder")) && (
+        {project.images.length > 0 && (
           <div className="mb-10 space-y-4">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Screenshots</h2>
-            {project.images.filter((img) => !img.includes("placeholder")).map((img, i) => (
+            {project.images.map((img, i) => (
               <figure key={i} className="border border-border rounded-lg overflow-hidden">
-                <img src={img} alt={project.imageCaptions?.[i] ?? project.title}
-                  className="w-full object-contain max-h-96 bg-secondary" />
+                <img src={img} alt={project.imageCaptions?.[i] ?? `${project.title} — screenshot ${i + 1}`}
+                  loading="lazy" decoding="async"
+                  className="w-full h-auto bg-secondary" />
                 {project.imageCaptions?.[i] && (
                   <figcaption className="px-4 py-2 text-xs text-muted-foreground border-t border-border bg-secondary/30">
                     {project.imageCaptions[i]}

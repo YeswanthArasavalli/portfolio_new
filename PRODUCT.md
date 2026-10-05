@@ -43,7 +43,7 @@ This covers problem, approach, technical decisions, implementation, measurable o
 ## Capabilities and Constraints
 
 - **Routes that actually exist:** `/`, `/projects`, `/projects/:slug`, `/experience`, `/sql`, `/about`, `/contact`, plus a `*` NotFound. There is **no Services page and no Blog/Notes page**, and none is planned — the old README references to Services and Blog/Notes are stale and must NOT become future feature requirements.
-- **Certification display convention (binding):** certifications are text entries; official exam codes may be shown (e.g., DP-600); do **not** add certificate images; do **not** add unnecessary verification links; do not redesign certification presentation just to look more impressive. ⚠️ See the contradiction flagged under Evidence on Hand — the current `Experience.tsx` still renders "Verify" links for several certifications.
+- **Certification display convention (binding):** certifications are displayed as concise text entries with official certification/exam names and codes where applicable. Genuine official verification links may be provided when available. Certificate images are not used. Do not add verification links merely for decoration or when no authoritative verification destination exists. The four legitimate `verifyUrl` entries currently rendered in `Experience.tsx` (DP-600, Google Advanced Data Analytics, Google Data Analytics, Johns Hopkins specialisation) are compliant with this convention and must be preserved; do not add new certification links, and do not redesign the certification section.
 - **Career distinction (binding):** the site must keep internships, freelance, and independent/personal projects separate. `Experience.tsx` labels each role by `type` (Internship / Freelance) and explicitly states that the larger systems on the Projects page are independent work, listed separately rather than presented as employment. Never merge independent projects into employment or fabricate full-time roles to make the timeline look continuous.
 - **Private-repository policy (binding):** private source code is acceptable. Do not force unfinished, proprietary, or actively developed projects public just to boost credibility. Legitimate evidence — real screenshots, architecture diagrams, technical explanations, benchmarks, experiment results, test output, dashboards, demos, sanitized evidence — may be used only when those artifacts genuinely exist. Never fabricate evidence to compensate for a private repo, and never display a dead GitHub URL because a project "should" have one.
 - **Sreejita provenance (binding):** the Sreejita project is explicitly disclosed as a fork/extension of the open-source `sreejitadatalabs/sreejita-framework`. Preserve this honest provenance statement. Do not manipulate Git history, hide the fork, or imply the repository history independently proves ownership beyond the actual contribution.
@@ -71,16 +71,12 @@ This covers problem, approach, technical decisions, implementation, measurable o
 
 - Employment entries: 3 internships (Postulate IRT — Data Science Intern; Edunet Foundation — Data Analyst Intern; PHN Technology — Data Science Intern) with concrete metrics, plus 1 freelance role (Telus International — AI Data Annotation Specialist & Prompt Engineer), each typed and kept separate from independent projects.
 - Education: M.S. Computer Science — Big Data Analytics, Central University of Rajasthan (2021–2023); B.S. Computer Science, Adikavi Nannaya University (2018–2021).
-- Certifications (7, text entries): Microsoft Fabric Analytics Engineer Associate (DP-600), Google Advanced Data Analytics, Google Data Analytics, Johns Hopkins Data Science Specialisation, Machine Learning/AI Engineer (Skillsoft & Infosys Springboard), MongoDB Python Developer Associate, Microsoft Power BI.
+- Certifications (7, text entries in `Experience.tsx`): Microsoft Fabric Analytics Engineer Associate (DP-600), Google Advanced Data Analytics, Google Data Analytics, Johns Hopkins Data Science Specialisation, Machine Learning/AI Engineer (Skillsoft & Infosys Springboard), MongoDB Python Developer Associate, Microsoft Power BI. Four carry genuine official verification links; three have none, which is honest per the convention.
 - A SQL showcase page (`/sql`) with real queries.
 
 **Assets present:** `public/Yeswanth_Arasavalli_Resume.pdf` (current revised resume), `public/og-image.png` (real 1200×630), `favicon.ico` / `favicon-32x32.png` / `apple-touch-icon.png`, `public/404.html`.
 
 **Absent — must not be fabricated:** testimonials, client logos, press coverage, employer endorsements, users, revenue, deployment scale, pricing, and any evidence for the three image-less private projects beyond what genuinely exists.
-
-### Remaining contradiction to resolve (not fixed here — no UI was modified)
-
-The certification convention says **no unnecessary verification links**, but `Experience.tsx` currently renders "Verify" links (`verifyUrl`) for DP-600, Google Advanced Data Analytics, Google Data Analytics, and the Johns Hopkins specialisation. This is product-implementation drift from the stated convention; it is flagged for a separate decision rather than silently documented as convention-compliant.
 
 ## Product Principles
 

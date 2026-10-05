@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T00:00:00Z",
+  "title": "Design System: Yeswanth Arasavalli Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "restrained-cobalt": { "role": "primary", "displayName": "Restrained Cobalt", "canonical": "hsl(221 83% 53%)", "dark": "hsl(221 83% 60%)", "tonalRamp": ["oklch(15% 0.06 258)", "oklch(25% 0.10 258)", "oklch(35% 0.16 258)", "oklch(45% 0.20 258)", "oklch(55% 0.22 258)", "oklch(65% 0.20 258)", "oklch(80% 0.13 258)", "oklch(95% 0.04 258)"] },
+      "cobalt-ink": { "role": "primary-deep", "displayName": "Cobalt Ink (accent text on wash)", "canonical": "hsl(221 83% 35%)", "dark": "hsl(221 83% 70%)" },
+      "cobalt-wash": { "role": "primary-soft", "displayName": "Cobalt Wash", "canonical": "hsl(221 80% 95%)", "dark": "hsl(221 60% 18%)" },
+      "snow": { "role": "surface", "displayName": "Snow (card)", "canonical": "hsl(0 0% 100%)", "dark": "hsl(222 40% 9%)" },
+      "desk": { "role": "neutral", "displayName": "Desk (page paper)", "canonical": "hsl(222 47% 97%)", "dark": "hsl(222 47% 6%)", "tonalRamp": ["oklch(12% 0.02 258)", "oklch(24% 0.02 258)", "oklch(40% 0.02 258)", "oklch(55% 0.02 258)", "oklch(70% 0.015 258)", "oklch(84% 0.01 258)", "oklch(93% 0.008 258)", "oklch(98% 0.004 258)"] },
+      "ink": { "role": "neutral-text", "displayName": "Ink", "canonical": "hsl(222 47% 8%)", "dark": "hsl(222 20% 95%)" },
+      "graphite": { "role": "neutral-muted-text", "displayName": "Graphite", "canonical": "hsl(222 15% 45%)", "dark": "hsl(222 15% 55%)" },
+      "fog": { "role": "neutral-secondary", "displayName": "Fog", "canonical": "hsl(222 20% 94%)", "dark": "hsl(222 30% 14%)" },
+      "mist": { "role": "neutral-muted", "displayName": "Mist", "canonical": "hsl(222 16% 93%)", "dark": "hsl(222 25% 14%)" },
+      "hairline": { "role": "border", "displayName": "Hairline", "canonical": "hsl(222 20% 88%)", "dark": "hsl(222 30% 16%)" },
+      "alert-red": { "role": "destructive", "displayName": "Alert Red", "canonical": "hsl(0 84% 60%)", "dark": "hsl(0 72% 51%)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home hero headline only (text-4xl md:text-5xl)." },
+      "headline": { "displayName": "Headline", "purpose": "Page H1s in the header band (text-3xl font-bold)." },
+      "title": { "displayName": "Title", "purpose": "Section H2s (text-2xl) and card titles (text-lg semibold)." },
+      "body": { "displayName": "Body", "purpose": "All prose at document scale, Graphite color, leading-relaxed." },
+      "label": { "displayName": "Label", "purpose": "Uppercase section eyebrows, tracking-widest, 600 weight." },
+      "mono": { "displayName": "Annotation Mono", "purpose": "Tech tags, index chips, data volumes, SQL blocks." }
+    },
+    "shadows": [
+      { "name": "card-hover", "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "purpose": "The system's only shadow (Tailwind shadow-sm), applied to project cards on hover together with a border-primary/40 tint." },
+      { "name": "focus-ring", "value": "0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring))", "purpose": "Global :focus-visible ring (ring-2 + ring-offset-2)." }
+    ],
+    "motion": [
+      { "name": "page-fade", "value": "opacity 0→1 + translateY(4px→0), 0.25s ease-out on #root", "purpose": "Subtle page-load entrance." },
+      { "name": "fade-in", "value": "fade-in 0.6s ease-out forwards", "purpose": "Tailwind keyframe for section reveals." },
+      { "name": "slide-up", "value": "slide-up 0.6s ease-out forwards (translateY 20px)", "purpose": "Tailwind keyframe for staggered content entry." },
+      { "name": "state-transition", "value": "transition-colors / transition-all ~150ms", "purpose": "All hover/state changes are color-first; no movement on interaction." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px", "purpose": "Primary pivot: nav drawer ↔ inline links, hero scale, meta rows." },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "container-2xl", "value": "1280px", "purpose": "Tailwind container cap; site caps chrome at max-w-6xl (1152px), reading at max-w-4xl (896px)." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single action fill per row: Resume, Full Case Study, Get in touch.",
+      "html": "<button class=\"ds-btn-primary\">Full Case Study <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; font-weight: 500; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: none; border-radius: 4px; cursor: pointer; transition: background 150ms ease, color 150ms ease; } .ds-btn-primary:hover { background: hsl(var(--primary) / 0.9); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring)); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action: Code, Live Demo, View Projects; hover fills a Fog well.",
+      "html": "<button class=\"ds-btn-outline\">View Projects</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; font-weight: 500; background: transparent; color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); border-radius: 4px; cursor: pointer; transition: background 150ms ease, color 150ms ease; } .ds-btn-outline:hover { background: hsl(var(--secondary)); } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring)); }"
+    },
+    {
+      "name": "Tech Tag Chip",
+      "kind": "chip",
+      "refersTo": "chip-tech",
+      "description": "Mono annotation chip for stack items; static, never clickable.",
+      "html": "<span class=\"ds-chip-tech\">PyTorch</span>",
+      "css": ".ds-chip-tech { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); border: 1px solid hsl(var(--accent-foreground) / 0.1); border-radius: 4px; }"
+    },
+    {
+      "name": "Role Badge",
+      "kind": "chip",
+      "refersTo": "badge-role",
+      "description": "The only pill geometry: uppercase role/target labels (Data Analyst, DS, MLE).",
+      "html": "<span class=\"ds-badge-role\">Data Analyst</span>",
+      "css": ".ds-badge-role { display: inline-block; padding: 4px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.025em; text-transform: uppercase; background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); border: 1px solid hsl(var(--primary) / 0.2); border-radius: 9999px; }"
+    },
+    {
+      "name": "Private-Repo State Chip",
+      "kind": "chip",
+      "refersTo": "button-outline",
+      "description": "Dashed hairline marks honest absence (private repo / in development).",
+      "html": "<span class=\"ds-chip-private\">Private repository</span>",
+      "css": ".ds-chip-private { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; color: hsl(var(--muted-foreground)); border: 1px dashed hsl(var(--border)); border-radius: 4px; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Signature list card: mono index chip, title (cobalt on hover), summary, tags; flat at rest, shadow-sm + cobalt border on hover.",
+      "html": "<article class=\"ds-card-project\"><div class=\"ds-card-index\">01</div><div class=\"ds-card-body\"><h2 class=\"ds-card-title\">ML Monitoring &amp; Drift Detection Platform</h2><p class=\"ds-card-summary\">An MLOps stack covering training, registry, serving, and drift alerting.</p><span class=\"ds-chip-tech\">MLflow</span></div></article>",
+      "css": ".ds-card-project { display: flex; gap: 16px; padding: 24px; background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: 8px; transition: border-color 150ms ease, box-shadow 150ms ease; } .ds-card-project:hover { border-color: hsl(var(--primary) / 0.4); box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); } .ds-card-index { flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', ui-monospace, monospace; font-size: 12px; color: hsl(var(--muted-foreground)); background: hsl(var(--secondary)); border-radius: 4px; } .ds-card-body { min-width: 0; } .ds-card-title { margin: 0 0 8px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.375; letter-spacing: -0.02em; color: hsl(var(--foreground)); transition: color 150ms ease; } .ds-card-project:hover .ds-card-title { color: hsl(var(--primary)); } .ds-card-summary { margin: 0 0 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; line-height: 1.625; color: hsl(var(--muted-foreground)); }"
+    },
+    {
+      "name": "Header Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "Sticky blurred header links; active = cobalt on Cobalt Wash, hover = Ink on Fog.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">Experience</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 2px; } .ds-nav-link { padding: 6px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; color: hsl(var(--muted-foreground)); border-radius: 4px; text-decoration: none; transition: background 150ms ease, color 150ms ease; } .ds-nav-link:hover { color: hsl(var(--foreground)); background: hsl(var(--secondary)); } .ds-nav-link--active { color: hsl(var(--primary)); font-weight: 500; background: hsl(var(--accent)); }"
+    },
+    {
+      "name": "Filter Toggle Row",
+      "kind": "chip",
+      "refersTo": "nav-link-active",
+      "description": "Projects-page category filters: text buttons whose active state inverts to solid cobalt.",
+      "html": "<div class=\"ds-filter-row\"><button class=\"ds-filter ds-filter--on\">All</button><button class=\"ds-filter\">Analytics</button></div>",
+      "css": ".ds-filter-row { display: flex; gap: 4px; overflow-x: auto; } .ds-filter { padding: 6px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; white-space: nowrap; color: hsl(var(--muted-foreground)); background: transparent; border: none; border-radius: 4px; cursor: pointer; transition: background 150ms ease, color 150ms ease; } .ds-filter:hover { color: hsl(var(--foreground)); background: hsl(var(--secondary)); } .ds-filter--on { color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); font-weight: 500; }"
+    },
+    {
+      "name": "Metric Value",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Case-study numerals: 3xl bold, tabular figures, tight tracking.",
+      "html": "<div class=\"ds-metric\"><div class=\"ds-metric-value\">84.9%</div><div class=\"ds-metric-label\">Top-1 accuracy</div></div>",
+      "css": ".ds-metric-value { font-family: 'DM Sans', system-ui, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; color: hsl(var(--foreground)); } .ds-metric-label { font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; color: hsl(var(--muted-foreground)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Analyst's Desk",
+    "overview": "This system looks like a working analyst's desk: a cool paper-white surface, ink-dark text, hairline rules separating sections the way a desk blotter separates documents, and exactly one accent — a restrained cobalt blue — reserved for actions, active states, and emphasis. Nothing is decorative for its own sake. Every visual element either carries evidence (a metric, a screenshot, a tech tag) or organizes it (a border, a section eyebrow, a numbered index). Depth is structural, never theatrical: surfaces sit flat at rest and are separated by 1px borders; the only shadow in the entire system is a barely-there lift on card hover. Density is calm and reading-first, with numbered mono index chips, uppercase micro-labels, and tabular-figure metrics giving the site the annotated feel of a well-kept technical record.",
+    "keyCharacteristics": [
+      "Flat surfaces + hairline borders as the primary separation mechanism.",
+      "One accent color (Restrained Cobalt) that signals only action/state/emphasis.",
+      "Two font families only: DM Sans for everything human-readable, DM Mono for technical annotation.",
+      "Numbered entries, uppercase eyebrow labels, and tabular metrics — the vocabulary of a working document.",
+      "Gentle curves everywhere (4px controls, 8px cards); pills only for role badges."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Restrained Cobalt means 'act, active, or emphasize' and nothing else. If an element is neither interactive, state-marked, nor a deliberate emphasis, it does not get cobalt.", "section": "colors" },
+      { "name": "The Not-Teal, Not-Purple Rule", "body": "The accent is cobalt, full stop. No teal, no violet, no blue→purple gradients — the source comment prohibits them and the system holds.", "section": "colors" },
+      { "name": "The Two-Family Rule", "body": "DM Sans and DM Mono only. No third font, no decorative face; hierarchy is built from weight and size, not novelty.", "section": "typography" },
+      { "name": "The Mono Means Machine Rule", "body": "Monospace appears only on technical annotation — tags, indices, code, data volumes. Never for body prose or headings.", "section": "typography" },
+      { "name": "The Hairline Rule", "body": "Borders separate, shadows never do. Any new surface gets a 1px Hairline border first; a shadow needs a state (hover) to exist at all.", "section": "elevation" },
+      { "name": "The Flat-by-Default Rule", "body": "There is no rest-state shadow in this system. Do not introduce one.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do separate surfaces with 1px Hairline borders and tonal fills (Snow/Fog/Cobalt Wash) before considering any shadow.",
+      "Do reserve Restrained Cobalt for actions, active states, links, and emphasis — and cap filled cobalt to one primary CTA per action row.",
+      "Do use DM Mono only for technical annotation: tags, indices, data volumes, code.",
+      "Do keep the page skeleton identical: bordered header band → eyebrow labels → bordered cards at 24px padding → single primary CTA row.",
+      "Do use dashed hairline borders for honest-absence states (private repo, in development) — the style encodes the honesty policy.",
+      "Do run numerals tabular (tabular-nums) and keep the 2px-offset cobalt focus ring on every interactive element.",
+      "Do update both :root and .dark token blocks together; every light token has a dark counterpart."
+    ],
+    "donts": [
+      "Don't introduce gradients, glassmorphism (outside the header blur), glow effects, or rest-state shadows.",
+      "Don't add teal, violet, or blue→purple accent schemes; the accent is cobalt and the source comment forbids the drift.",
+      "Don't add a third font family or use uppercase mono as decorative chrome.",
+      "Don't widen body copy past the reading container (max-w-4xl) or shrink it below the 0.875rem document scale for 'style.'",
+      "Don't turn role-badge pills into a general chip shape; pills are for roles/status only.",
+      "Don't replace numbered index chips, section eyebrows, or the project-card layout with generic card grids — they are the desk's organizing system."
+    ]
+  }
+}

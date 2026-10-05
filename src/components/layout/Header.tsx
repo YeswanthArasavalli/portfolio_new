@@ -76,14 +76,14 @@ export function Header() {
         {/* Mobile toggles */}
         <div className="md:hidden flex items-center gap-1.5">
           <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-            className="p-1.5 text-muted-foreground">
+            className="inline-flex items-center justify-center h-10 w-10 text-muted-foreground hover:text-foreground">
             <Github className="h-4 w-4" />
           </a>
           <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-1.5 text-muted-foreground" aria-label="Toggle theme">
+            className="inline-flex items-center justify-center h-10 w-10 text-muted-foreground hover:text-foreground" aria-label="Toggle theme">
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <button className="p-1.5" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+          <button className="inline-flex items-center justify-center h-10 w-10 text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>

@@ -13,6 +13,15 @@ colors:
   mist: "hsl(222 16% 93%)"
   hairline: "hsl(222 20% 88%)"
   alert-red: "hsl(0 84% 60%)"
+  code-bg: "hsl(222 84% 5%)"
+  code-surface: "hsl(222 47% 11%)"
+  code-line: "hsl(217 33% 17%)"
+  code-edge: "hsl(215 25% 27%)"
+  code-fg: "hsl(214 32% 91%)"
+  code-text: "hsl(213 27% 84%)"
+  code-muted: "hsl(215 20% 65%)"
+  code-dim: "hsl(215 16% 47%)"
+  code-faint: "hsl(215 20% 35%)"
 typography:
   display:
     fontFamily: "'DM Sans', system-ui, sans-serif"
@@ -81,6 +90,16 @@ components:
     textColor: "{colors.cobalt-ink}"
     rounded: "{rounded.control}"
     padding: "4px 10px"
+  chip-category:
+    backgroundColor: "{colors.fog}"
+    textColor: "hsl(222 47% 15%)"
+    rounded: "{rounded.control}"
+    padding: "2px 8px"
+  panel-code:
+    backgroundColor: "{colors.code-bg}"
+    textColor: "{colors.code-fg}"
+    rounded: "{rounded.surface}"
+    padding: "20px"
   badge-role:
     backgroundColor: "hsl(221 83% 53% / 0.1)"
     textColor: "{colors.restrained-cobalt}"
@@ -130,10 +149,11 @@ The palette is a slate-tinted neutral system with a single cobalt accent — pro
 - **Fog / Mist** (`hsl(222 20% 94%)` / `hsl(222 16% 93%)`): Secondary and muted surface fills (index chips, hover fills, subtle wells).
 - **Hairline** (`hsl(222 20% 88%)`): Every 1px border, divider, and input stroke in the system.
 - **Cobalt Wash / Cobalt Ink** (`hsl(221 80% 95%)` / `hsl(221 83% 35%)`): The accent's soft background pair — tech tags and active nav sit on the wash with the deep cobalt-ink text, so accent tinting never requires white-on-fill.
+- **Code Window** (`--code-bg hsl(222 84% 5%)` + `code-surface / code-line / code-edge / code-fg / code-text / code-muted / code-dim / code-faint`): the SQL/architecture panels are a deliberate "ink panel" — near-black in *both* themes, with their own internal neutral ramp so no raw Tailwind palette colors are referenced. They are tokenized, not ad-hoc.
 
 ### Semantic
 - **Alert Red** (`hsl(0 84% 60%)`): Destructive/error states only (toast framework default; nearly unused).
-- **Syntax accents** (SQL page only): keyword = Restrained Cobalt, string = green `hsl(142 71% 45%)`, function = amber `hsl(31 98% 55%)`, comment = Graphite italic. Confined to code blocks — they never leak into chrome.
+- **Syntax accents** (SQL page only, rendered on the code window): keyword = Restrained Cobalt (bold), string = green `hsl(142 71% 45%)`, function = amber `hsl(31 98% 55%)`, comment = `code-muted` italic. These classes are wired live into the SQL showcase via `highlightSQL()`. Confined to code blocks — they never leak into chrome.
 
 ### Named Rules
 **The One Signal Rule.** Restrained Cobalt means "act, active, or emphasize" and nothing else. If an element is neither interactive, state-marked, nor a deliberate emphasis, it does not get cobalt.
@@ -203,6 +223,7 @@ This system is flat. Surfaces do not float; separation is done by 1px hairline b
 ### Chips (tech tags)
 - **Style:** Cobalt Wash background, Cobalt Ink text, 4px radius, hairline border of accent-foreground at 10%, `text-xs font-mono font-medium`, tight padding (`px-2.5 py-1` / `px-2 py-0.5`).
 - **State:** static annotations only — never buttons. The `Data:` volume chip swaps to a Fog well with mono text to stay in the annotation family.
+- **Category chips are neutral:** taxonomy labels (MLOps, NLP, Analytics, CV, Time-Series, Freelance/Internship) sit in a Fog well with Hairline border and Ink-scale text — never colored. Color budget is reserved for action (cobalt) and honest-absence (dashed hairline); the text label carries the category meaning.
 
 ### Cards / Containers
 - **Corner Style:** softly rounded (8px).
@@ -218,7 +239,7 @@ This system is flat. Surfaces do not float; separation is done by 1px hairline b
 - **Style:** sticky 56px header, `bg-background/90` + `backdrop-blur-md`, bottom hairline. Brand = "YA" wordmark + a mono `DA · DS · MLE` bordered badge.
 - **Typography:** `text-sm` links, Graphite default; active link = Cobalt text + `font-medium` on a Cobalt Wash well; hover = Ink text + Fog well.
 - **Right cluster:** icon links (GitHub/LinkedIn/Mail) → divider → theme toggle → small primary Resume. A vertical 1px rule separates link groups.
-- **Mobile:** hamburger opens a bordered drawer under the header — plain stacked links (`py-2.5`), Contact included, ending with a LinkedIn/Resume action row split 50/50.
+- **Mobile:** hamburger opens a bordered drawer under the header — plain stacked links (`py-2.5`), Contact included, ending with a LinkedIn/Resume action row split 50/50. Mobile header icon controls are 40×40px hit targets (`h-10 w-10` centered) wrapping the same 16–20px icons, so tap area meets 40px minimum without visual bulk.
 
 ### Metric Strip
 - Case-study metrics render as label/value pairs with `metric-value` numerals: 3xl bold, tabular-nums, tight tracking — figures behave like a table even in prose layouts.
@@ -235,11 +256,15 @@ This system is flat. Surfaces do not float; separation is done by 1px hairline b
 - **Do** keep the page skeleton identical: bordered header band → eyebrow labels → bordered cards at 24px padding → single primary CTA row.
 - **Do** use dashed hairline borders for honest-absence states (private repo, in development) — the style encodes the honesty policy.
 - **Do** run numerals tabular (`tabular-nums`) and keep the 2px-offset cobalt focus ring on every interactive element.
-- **Do** update both `:root` and `.dark` token blocks together; every light token has a dark counterpart.
+- **Do** update both `:root` and `.dark` token blocks together; every light token has a dark counterpart. (Exception: the code-window tokens are intentionally identical in both themes — the ink panel stays dark.)
+- **Do** respect `prefers-reduced-motion`: a global reduce block mutes animation/transitions to 0.01ms and the availability dot uses `motion-safe:animate-pulse` — states still change, nothing swings.
+- **Do** keep availability/status expression on documented tokens: one cobalt dot treatment site-wide (`bg-primary`, subtle motion-safe pulse) — no undocumented greens.
+- **Do** provide the visually-hidden "Skip to main content" link targeting `#main` on every page (it lives in Layout, above the header).
 
 ### Don't:
 - **Don't** introduce gradients, glassmorphism (outside the header blur), glow effects, or rest-state shadows.
-- **Don't** add teal, violet, or blue→purple accent schemes; the accent is cobalt and the source comment forbids the drift.
+- **Don't** add teal, violet, or blue→purple accent schemes; the accent is cobalt and the source comment forbids the drift — and category/taxonomy chips stay neutral, never rainbow-coded.
+- **Don't** reference raw Tailwind palette colors (`slate-*`, `emerald-*`, `green-*`) for chrome or code surfaces — use the token ramp so the system stays theme-coherent and documentable.
 - **Don't** add a third font family or use uppercase mono as decorative chrome.
 - **Don't** widen body copy past the reading container (`max-w-4xl`) or shrink it below the 0.875rem document scale for "style."
 - **Don't** turn role-badge pills into a general chip shape; pills are for roles/status only.

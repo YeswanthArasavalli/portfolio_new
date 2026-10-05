@@ -35,7 +35,7 @@ const experience = [
     ],
     tools: ["Python", "Pandas", "XGBoost", "ARIMA", "Ridge Regression", "Tableau", "NLP"],
     dataVolume: "150,000+ NLP speech records",
-    impact: "30% improvement in data integrity · 22% forecast accuracy improvement over baseline",
+    impact: "30% improvement in data integrity · XGBoost 22% above baseline on the primary validation metric",
     crossLinks: [
       { label: "Related: NLP / AI Hiring Platform", href: "/projects/ai-hiring-intelligence-platform" },
     ],
@@ -111,8 +111,8 @@ const certifications = [
 ];
 
 const typeBadge: Record<string, string> = {
-  Freelance:  "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300",
-  Internship: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300",
+  Freelance:  "bg-secondary text-secondary-foreground border-border",
+  Internship: "bg-secondary text-secondary-foreground border-border",
 };
 
 export default function Experience() {

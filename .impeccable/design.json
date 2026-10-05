@@ -14,7 +14,16 @@
       "fog": { "role": "neutral-secondary", "displayName": "Fog", "canonical": "hsl(222 20% 94%)", "dark": "hsl(222 30% 14%)" },
       "mist": { "role": "neutral-muted", "displayName": "Mist", "canonical": "hsl(222 16% 93%)", "dark": "hsl(222 25% 14%)" },
       "hairline": { "role": "border", "displayName": "Hairline", "canonical": "hsl(222 20% 88%)", "dark": "hsl(222 30% 16%)" },
-      "alert-red": { "role": "destructive", "displayName": "Alert Red", "canonical": "hsl(0 84% 60%)", "dark": "hsl(0 72% 51%)" }
+      "alert-red": { "role": "destructive", "displayName": "Alert Red", "canonical": "hsl(0 84% 60%)", "dark": "hsl(0 72% 51%)" },
+      "code-bg": { "role": "code-surface-deepest", "displayName": "Code Window Background", "canonical": "hsl(222 84% 5%)", "dark": "hsl(222 84% 5%)", "themeStable": true },
+      "code-surface": { "role": "code-surface", "displayName": "Code Window Surface", "canonical": "hsl(222 47% 11%)", "dark": "hsl(222 47% 11%)", "themeStable": true },
+      "code-line": { "role": "code-hover-fill", "displayName": "Code Line (inner border/hover)", "canonical": "hsl(217 33% 17%)", "dark": "hsl(217 33% 17%)", "themeStable": true },
+      "code-edge": { "role": "code-border", "displayName": "Code Edge", "canonical": "hsl(215 25% 27%)", "dark": "hsl(215 25% 27%)", "themeStable": true },
+      "code-fg": { "role": "code-text-primary", "displayName": "Code Foreground", "canonical": "hsl(214 32% 91%)", "dark": "hsl(214 32% 91%)", "themeStable": true },
+      "code-text": { "role": "code-text", "displayName": "Code Text", "canonical": "hsl(213 27% 84%)", "dark": "hsl(213 27% 84%)", "themeStable": true },
+      "code-muted": { "role": "code-muted-text", "displayName": "Code Muted (also SQL comment color)", "canonical": "hsl(215 20% 65%)", "dark": "hsl(215 20% 65%)", "themeStable": true },
+      "code-dim": { "role": "code-dim-text", "displayName": "Code Dim", "canonical": "hsl(215 16% 47%)", "dark": "hsl(215 16% 47%)", "themeStable": true },
+      "code-faint": { "role": "code-faint-text", "displayName": "Code Faint", "canonical": "hsl(215 20% 35%)", "dark": "hsl(215 20% 35%)", "themeStable": true }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "Home hero headline only (text-4xl md:text-5xl)." },
@@ -32,7 +41,9 @@
       { "name": "page-fade", "value": "opacity 0→1 + translateY(4px→0), 0.25s ease-out on #root", "purpose": "Subtle page-load entrance." },
       { "name": "fade-in", "value": "fade-in 0.6s ease-out forwards", "purpose": "Tailwind keyframe for section reveals." },
       { "name": "slide-up", "value": "slide-up 0.6s ease-out forwards (translateY 20px)", "purpose": "Tailwind keyframe for staggered content entry." },
-      { "name": "state-transition", "value": "transition-colors / transition-all ~150ms", "purpose": "All hover/state changes are color-first; no movement on interaction." }
+      { "name": "state-transition", "value": "transition-colors / transition-all ~150ms", "purpose": "All hover/state changes are color-first; no movement on interaction." },
+      { "name": "availability-pulse", "value": "motion-safe:animate-pulse on a bg-primary dot", "purpose": "The only recurring animation: the open-to-work dot on Home and Contact, identical treatment, silenced under reduced motion." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce): animation/transition durations 0.01ms !important, scroll-behavior auto", "purpose": "Global respect for the OS preference — states still change, nothing moves; layout and focus are untouched." }
     ],
     "breakpoints": [
       { "name": "sm", "value": "640px" },
@@ -108,6 +119,22 @@
       "css": ".ds-filter-row { display: flex; gap: 4px; overflow-x: auto; } .ds-filter { padding: 6px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; white-space: nowrap; color: hsl(var(--muted-foreground)); background: transparent; border: none; border-radius: 4px; cursor: pointer; transition: background 150ms ease, color 150ms ease; } .ds-filter:hover { color: hsl(var(--foreground)); background: hsl(var(--secondary)); } .ds-filter--on { color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); font-weight: 500; }"
     },
     {
+      "name": "Category Chip",
+      "kind": "chip",
+      "refersTo": "chip-category",
+      "description": "Neutral taxonomy label (MLOps, NLP, Analytics...): Fog well, Hairline border, Ink-scale text. Never colored — the text carries the meaning.",
+      "html": "<span class=\"ds-chip-category\">MLOps</span>",
+      "css": ".ds-chip-category { display: inline-flex; align-items: center; padding: 2px 8px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; font-weight: 500; background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); border: 1px solid hsl(var(--border)); border-radius: 4px; }"
+    },
+    {
+      "name": "Code Window Panel",
+      "kind": "panel",
+      "refersTo": "panel-code",
+      "description": "The ink panel for SQL/architecture blocks: near-black in both themes with its own internal neutral ramp (code-* tokens). Syntax accents stay confined inside it.",
+      "html": "<pre class=\"ds-panel-code\"><code><span class=\"ds-sql-keyword\">WITH</span> <span class=\"ds-sql-plain\">segments AS</span> <span class=\"ds-sql-comment\">-- ranked by RF score</span></code></pre>",
+      "css": ".ds-panel-code { padding: 20px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.6; background: hsl(222 84% 5%); color: hsl(214 32% 91%); border: 1px solid hsl(215 25% 27%); border-radius: 8px; overflow-x: auto; } .ds-sql-keyword { color: hsl(221 83% 53%); font-weight: 700; } .ds-sql-comment { color: hsl(215 20% 65%); font-style: italic; }"
+    },
+    {
       "name": "Metric Value",
       "kind": "custom",
       "refersTo": null,
@@ -141,11 +168,15 @@
       "Do keep the page skeleton identical: bordered header band → eyebrow labels → bordered cards at 24px padding → single primary CTA row.",
       "Do use dashed hairline borders for honest-absence states (private repo, in development) — the style encodes the honesty policy.",
       "Do run numerals tabular (tabular-nums) and keep the 2px-offset cobalt focus ring on every interactive element.",
-      "Do update both :root and .dark token blocks together; every light token has a dark counterpart."
+      "Do update both :root and .dark token blocks together; every light token has a dark counterpart. (Exception: the code-window tokens are intentionally identical in both themes — the ink panel stays dark.)",
+      "Do respect prefers-reduced-motion: a global reduce block mutes animation/transitions to 0.01ms and the availability dot uses motion-safe:animate-pulse — states still change, nothing swings.",
+      "Do keep availability/status expression on documented tokens: one cobalt dot treatment site-wide (bg-primary, subtle motion-safe pulse) — no undocumented greens.",
+      "Do provide the visually-hidden 'Skip to main content' link targeting #main on every page (it lives in Layout, above the header)."
     ],
     "donts": [
       "Don't introduce gradients, glassmorphism (outside the header blur), glow effects, or rest-state shadows.",
-      "Don't add teal, violet, or blue→purple accent schemes; the accent is cobalt and the source comment forbids the drift.",
+      "Don't add teal, violet, or blue→purple accent schemes; the accent is cobalt and the source comment forbids the drift — and category/taxonomy chips stay neutral, never rainbow-coded.",
+      "Don't reference raw Tailwind palette colors (slate-*, emerald-*, green-*) for chrome or code surfaces — use the token ramp so the system stays theme-coherent and documentable.",
       "Don't add a third font family or use uppercase mono as decorative chrome.",
       "Don't widen body copy past the reading container (max-w-4xl) or shrink it below the 0.875rem document scale for 'style.'",
       "Don't turn role-badge pills into a general chip shape; pills are for roles/status only.",

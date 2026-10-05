@@ -65,7 +65,7 @@ export default function Contact() {
             </div>
 
             <a href="/Yeswanth_Arasavalli_Resume.pdf" target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-secondary text-foreground rounded border border-border hover:bg-secondary/70 transition-colors mt-2">
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors mt-2">
               <Download className="h-4 w-4" /> Download Resume (PDF)
             </a>
           </div>
@@ -76,7 +76,7 @@ export default function Contact() {
 
             <div className="p-5 border border-border rounded-lg space-y-3">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-2 h-2 rounded-full bg-primary motion-safe:animate-pulse" />
                 <span className="text-sm font-medium text-foreground">Available for full-time roles</span>
               </div>
               <p className="text-sm text-muted-foreground">

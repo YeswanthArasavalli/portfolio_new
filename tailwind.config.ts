@@ -53,6 +53,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        code: {
+          bg: "hsl(var(--code-bg))",
+          surface: "hsl(var(--code-surface))",
+          line: "hsl(var(--code-line))",
+          edge: "hsl(var(--code-edge))",
+          fg: "hsl(var(--code-fg))",
+          text: "hsl(var(--code-text))",
+          muted: "hsl(var(--code-muted))",
+          dim: "hsl(var(--code-dim))",
+          faint: "hsl(var(--code-faint))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

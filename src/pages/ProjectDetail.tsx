@@ -3,13 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getProjectBySlug, getProjectsByPriority } from "@/data/projects";
 import { ArrowLeft, Github, ExternalLink, CheckCircle, ArrowRight } from "lucide-react";
 
-const catColor: Record<string,string> = {
-  mlops:       "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800",
-  nlp:         "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800",
-  analytics:   "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800",
-  cv:          "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
-  forecasting: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800",
-};
+const catChip = "bg-secondary text-secondary-foreground border-border";
 const catLabel: Record<string,string> = {
   mlops:"MLOps", nlp:"NLP", analytics:"Analytics", cv:"Computer Vision", forecasting:"Time-Series"
 };
@@ -19,16 +13,16 @@ type ArchRow = { box: string; detail: string; color: string } | { arrow: string 
 
 function ArchDiagram({ title, rows }: { title: string; rows: ArchRow[] }) {
   return (
-    <div className="bg-slate-950 rounded-lg p-5 font-mono text-xs overflow-x-auto">
-      <div className="text-slate-400 mb-3 text-[11px] uppercase tracking-widest">{title}</div>
+    <div className="bg-code-bg rounded-lg p-5 font-mono text-xs overflow-x-auto">
+      <div className="text-code-muted mb-3 text-xs uppercase tracking-widest">{title}</div>
       <div className="space-y-0">
         {rows.map((row, i) =>
           "arrow" in row ? (
-            <div key={i} className="text-slate-600 pl-6 py-0.5">{row.arrow}</div>
+            <div key={i} className="text-code-faint pl-6 py-0.5">{row.arrow}</div>
           ) : (
             <div key={i} className={`border rounded px-3 py-2 mb-0.5 ${row.color}`}>
               <span className="font-semibold">{row.box}</span>
-              <span className="text-slate-400 ml-2 text-[11px]">{row.detail}</span>
+              <span className="text-code-muted ml-2 text-xs">{row.detail}</span>
             </div>
           )
         )}
@@ -199,7 +193,7 @@ export default function ProjectDetail() {
       <div className="container max-w-4xl mx-auto px-6 py-10">
         {/* ── Header ── */}
         <div className="mb-8">
-          <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded border mb-3 ${catColor[project.category]}`}>
+          <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded border mb-3 ${catChip}`}>
             {catLabel[project.category]}
           </span>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3 leading-tight">{project.title}</h1>

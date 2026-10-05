@@ -6,6 +6,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { getProjectsByPriority, projects } from "@/data/projects";
+import { examples as sqlExamples } from "@/data/sqlExamples";
 
 const skills = [
   { group: "Languages",   items: ["Python", "SQL", "R"] },
@@ -26,13 +27,7 @@ const stats = [
   { value: "25%",   label: "SQL query latency reduction via window functions (Edunet)" },
 ];
 
-const catColor: Record<string, string> = {
-  mlops:       "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800",
-  nlp:         "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800",
-  analytics:   "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800",
-  cv:          "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
-  forecasting: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800",
-};
+const catChip = "bg-secondary text-secondary-foreground border-border";
 const catLabel: Record<string, string> = {
   mlops:"MLOps", nlp:"NLP", analytics:"Analytics", cv:"Computer Vision", forecasting:"Time-Series",
 };
@@ -58,7 +53,7 @@ export default function Index() {
           <div className="max-w-3xl">
 
             <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-secondary/60 text-muted-foreground">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-primary motion-safe:animate-pulse" />
               Open to full-time roles · Hyderabad, India
             </div>
 
@@ -73,7 +68,7 @@ export default function Index() {
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-3 max-w-2xl">
-              MS in Big Data Analytics. I work with Python, SQL and machine learning to build data pipelines,
+              M.S. Computer Science — Big Data Analytics. I work with Python, SQL and machine learning to build data pipelines,
               models and analytical tools —{" "}
               <span className="text-foreground font-medium">ML monitoring stacks</span>,{" "}
               <span className="text-foreground font-medium">local-LLM NLP systems</span>,{" "}
@@ -107,11 +102,11 @@ export default function Index() {
                 <Download className="h-4 w-4" /> Resume
               </a>
               <a href="https://github.com/YeswanthArasavalli" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
+                className="inline-flex items-center gap-1.5 px-1 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <Github className="h-4 w-4" /> GitHub
               </a>
               <a href="https://linkedin.com/in/yeswantharasavalli" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-border rounded hover:bg-secondary transition-colors">
+                className="inline-flex items-center gap-1.5 px-1 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
             </div>
@@ -175,7 +170,7 @@ export default function Index() {
               <div key={project.slug}
                 className="group flex flex-col bg-background border border-border rounded-lg p-5 hover:border-primary/40 hover:shadow-sm transition-all">
                 <div className="flex items-start justify-between mb-3">
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catColor[project.category]}`}>
+                  <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catChip}`}>
                     {catLabel[project.category]}
                   </span>
                   {project.codeUrl ? (
@@ -185,7 +180,7 @@ export default function Index() {
                       <Github className="h-3.5 w-3.5" />
                     </a>
                   ) : (
-                    <span className="text-[10px] uppercase tracking-wide text-muted-foreground border border-dashed border-border rounded px-1.5 py-0.5">
+                    <span className="text-xs uppercase tracking-wide text-muted-foreground border border-dashed border-border rounded px-1.5 py-0.5">
                       {project.repoState === "in-development" ? "In development" : "Private"}
                     </span>
                   )}
@@ -253,7 +248,7 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
               { company: "Telus International", role: "AI Annotation & Prompt Eng.", period: "Feb 2024–Present", highlight: "NLP + CV dataset QA · prompt optimisation" },
-              { company: "Postulate IRT",        role: "Data Science Intern",         period: "Jan–Feb 2024",      highlight: "150K+ records · 22% forecast accuracy lift" },
+              { company: "Postulate IRT",        role: "Data Science Intern",         period: "Jan–Feb 2024",      highlight: "150K+ records · 22% over baseline (validation metric)" },
               { company: "Edunet Foundation",    role: "Data Analyst Intern",          period: "Jul 2023–Jan 2024", highlight: "SQL pipelines · Power BI · 25% latency cut" },
               { company: "PHN Technology",       role: "Data Science Intern",          period: "Apr–Jul 2023",      highlight: "ETL automation · 40% reporting reduction" },
             ].map(({ company, role, period, highlight }) => (
@@ -277,15 +272,15 @@ export default function Index() {
               <p className="text-xs text-muted-foreground">Real queries from Edunet, Postulate IRT, and PHN Technology — window functions, CTEs, optimisation.</p>
             </div>
             <Link to="/sql" className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-              All 5 examples <ArrowRight className="h-3.5 w-3.5" />
+              All {sqlExamples.length} examples <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-          <div className="bg-slate-950 rounded-lg overflow-hidden border border-border">
-            <div className="px-4 py-2 border-b border-slate-800 flex items-center justify-between">
-              <span className="text-xs text-slate-400 font-mono">query_optimisation.sql — 75% latency reduction · Edunet Foundation</span>
-              <span className="text-xs text-slate-500 font-mono">8.3s → 2.1s</span>
+          <div className="bg-code-bg rounded-lg overflow-hidden border border-border">
+            <div className="px-4 py-2 border-b border-code-line flex items-center justify-between">
+              <span className="text-xs text-code-muted font-mono">query_optimisation.sql — 25% runtime reduction · Edunet Foundation</span>
+              <span className="text-xs text-code-dim font-mono">CTEs · window functions · indexing</span>
             </div>
-            <pre className="p-4 text-xs text-slate-300 font-mono leading-relaxed overflow-x-auto">{`-- ✅ AFTER: Window function + composite index + CTE predicate pushdown
+            <pre className="p-4 text-xs text-code-text font-mono leading-relaxed overflow-x-auto">{`-- ✅ AFTER: Window function + composite index + CTE predicate pushdown
 WITH recent_orders AS (
     SELECT order_id, customer_id, order_date, revenue
     FROM   orders

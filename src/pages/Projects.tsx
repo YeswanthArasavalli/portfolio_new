@@ -4,13 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getProjectsByPriority } from "@/data/projects";
 import { Github, ExternalLink, ArrowRight } from "lucide-react";
 
-const catColor: Record<string, string> = {
-  mlops:       "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800",
-  nlp:         "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800",
-  analytics:   "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800",
-  cv:          "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
-  forecasting: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800",
-};
+const catChip = "bg-secondary text-secondary-foreground border-border";
 const catLabel: Record<string, string> = {
   mlops:"MLOps", nlp:"NLP", analytics:"Analytics", cv:"Computer Vision", forecasting:"Time-Series"
 };
@@ -66,7 +60,7 @@ export default function Projects() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catColor[project.category]}`}>
+                        <span className={`text-xs font-medium px-2 py-0.5 rounded border ${catChip}`}>
                           {catLabel[project.category]}
                         </span>
                         {project.codeUrl ? (

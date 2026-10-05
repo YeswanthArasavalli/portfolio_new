@@ -36,6 +36,17 @@
 
     --radius: 0.5rem;
 
+    /* Code-window surfaces — intentionally dark in both themes (Desk "ink" panel) */
+    --code-bg: 222 84% 5%;
+    --code-surface: 222 47% 11%;
+    --code-line: 217 33% 17%;
+    --code-edge: 215 25% 27%;
+    --code-fg: 214 32% 91%;
+    --code-text: 213 27% 84%;
+    --code-muted: 215 20% 65%;
+    --code-dim: 215 16% 47%;
+    --code-faint: 215 20% 35%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -164,8 +175,20 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Syntax highlight for SQL blocks */
+/* Syntax highlight for SQL blocks (rendered on the dark code-window surface) */
 .sql-keyword { color: hsl(var(--primary)); font-weight: 600; }
-.sql-comment  { color: hsl(var(--muted-foreground)); font-style: italic; }
+.sql-comment  { color: hsl(var(--code-muted)); font-style: italic; }
 .sql-string   { color: hsl(142 71% 45%); }
 .sql-function { color: hsl(31 98% 55%); }
+
+/* Respect reduced-motion preference: mute nonessential animation/transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

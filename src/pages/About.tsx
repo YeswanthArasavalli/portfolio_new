@@ -37,8 +37,8 @@ export default function About() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2 space-y-4 text-muted-foreground leading-relaxed text-sm">
               <p>
-                I'm Yeswanth Arasavalli — a Data Analyst and Data Scientist with an MS in Computer Science
-                (Big Data Analytics) from Central University of Rajasthan. I'm based in Hyderabad and open to full-time roles.
+                I'm Yeswanth Arasavalli — a Data Analyst and Data Scientist with an M.S. Computer Science — Big Data Analytics
+                from Central University of Rajasthan. I'm based in Hyderabad and open to full-time roles.
               </p>
               <p>
                 My work spans the full data workflow: SQL pipelines with window functions and CTEs, ETL automation,
@@ -58,7 +58,7 @@ export default function About() {
                   "87% LSTM validation accuracy — 2-week failure forecast horizon",
                   "25% SQL query latency reduction via window functions + indexing (Edunet)",
                   "40% manual reporting effort reduction via ETL automation (PHN Technology)",
-                  "22% forecast-accuracy lift over baseline on marketing data (Postulate IRT)",
+                  "22% improvement over baseline on the primary validation metric for marketing forecasting (Postulate IRT)",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle2 className="h-3.5 w-3.5 text-primary flex-shrink-0 mt-0.5" />

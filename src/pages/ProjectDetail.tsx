@@ -115,19 +115,55 @@ function RetailCVDiagram() {
 
 function PredMainDiagram() {
   const rows: ArchRow[] = [
-    { box: "Sensor Data",            detail: "Multivariate time-series · multiple machines · raw readings",                          color: "border-slate-400 text-slate-300" },
-    { arrow: "↓ feature engineering" },
-    { box: "Preprocessing",          detail: "Sequence windowing · feature normalisation · class imbalance handling",                 color: "border-blue-500 text-blue-300" },
-    { arrow: "↓ train" },
-    { box: "LSTM Model",             detail: "PyTorch · early stopping · gradient clipping · 2-week multi-step forecast horizon",     color: "border-violet-500 text-violet-300" },
-    { arrow: "↓ benchmark on failure recall" },
-    { box: "Baseline Comparison",    detail: "LSTM vs ARIMA vs Gradient Boosted Classifier — LSTM wins on failure recall (primary metric)", color: "border-yellow-500 text-yellow-300" },
-    { arrow: "↓ evaluate" },
-    { box: "Results",                detail: "87% validation accuracy · highest recall on failure events vs baselines",                color: "border-green-500 text-green-300" },
-    { arrow: "↓ translate" },
-    { box: "Business Framing",       detail: "~$1.15M/yr directional estimate via published industrial downtime benchmarks (explicitly caveated)", color: "border-orange-500 text-orange-300" },
+    {
+      box: "NASA C-MAPSS FD004",
+      detail:
+        "Multivariate turbofan telemetry · 249 training engines · 6 operating regimes · 21 sensors + 3 settings",
+      color: "border-slate-400 text-slate-300",
+    },
+    { arrow: "↓ audit & define targets" },
+    {
+      box: "Leakage-Safe Preprocessing",
+      detail:
+        "Engine-grouped train/validation split · train-only scaling · causal features · official test set sealed",
+      color: "border-blue-500 text-blue-300",
+    },
+    { arrow: "↓ build predictive features" },
+    {
+      box: "Temporal Feature Engineering",
+      detail:
+        "Lag/difference · rolling statistics · local slope · cycle-aware features · no future information",
+      color: "border-violet-500 text-violet-300",
+    },
+    { arrow: "↓ benchmark models" },
+    {
+      box: "Classical ML Baselines",
+      detail:
+        "Ridge / Logistic Regression / Histogram Gradient Boosting · RUL regression + failure-risk classification",
+      color: "border-yellow-500 text-yellow-300",
+    },
+    { arrow: "↓ evaluate operationally" },
+    {
+      box: "Validation & Decision Analysis",
+      detail:
+        "RUL MAE/RMSE/R² · failure recall/F1/PR-AUC · threshold analysis · engine-level bootstrap · cost-sensitive evaluation",
+      color: "border-green-500 text-green-300",
+    },
+    { arrow: "↓ select model based on evidence" },
+    {
+      box: "Final Outcome",
+      detail:
+        "31.86-cycle primary RUL MAE · 0.898 H30 F1 · 0.974 PR-AUC · neural sequence model not justified by validation evidence",
+      color: "border-orange-500 text-orange-300",
+    },
   ];
-  return <ArchDiagram title="LSTM Forecasting Pipeline — metric selection aligned to business cost" rows={rows} />;
+
+  return (
+    <ArchDiagram
+      title="Predictive Maintenance Pipeline — leakage-safe modelling and evidence-driven model selection"
+      rows={rows}
+    />
+  );
 }
 
 const diagrams: Record<string, React.ReactNode> = {

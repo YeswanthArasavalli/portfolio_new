@@ -307,57 +307,57 @@ export const projects: Project[] = [
   ══════════════════════════════════════════════ */
   {
     slug: "preparation-operating-system",
-  
+
     title: "Preparation Operating System (PrepOS)",
-  
+
     tagline:
       "React · TypeScript · Supabase · PostgreSQL · Tailwind · Vite",
-  
+
     summary:
       "A full-stack exam-preparation app that tracks readiness across 7 competitive examinations — readiness scoring, adaptive study routing, spaced-repetition revision, mock-test analytics, resource tracking and health/habit logging. It turns a study plan into measurable progress instead of a static to-do list.",
-  
+
     description:
       "A multi-exam preparation app that combines planning, progress analytics, revision scheduling and mock-test tracking in one interface, backed by a Supabase/PostgreSQL database.",
-  
+
     caseStudy: true,
-  
+
     priority: 7,
-  
+
     category: "analytics",
-  
+
     problem:
       "Candidates preparing for multiple competitive examinations often struggle with fragmented study plans, inconsistent revision, weak prioritization, poor progress visibility, and lack of objective readiness measurement. Existing tools focus on task management rather than preparation intelligence and decision support.",
-  
+
     approach: [
       "Designed a multi-exam architecture supporting SSC CGL, SSC CHSL, SSC MTS, RRB NTPC, Coal India MT (IT), UGC NET Computer Science, and UPSC Joint Assistant Director with shared and exam-specific preparation workflows.",
-  
+
       "Built a Readiness Intelligence Engine combining syllabus completion, mock performance, revision status, PYQ completion, study consistency, and health indicators into unified readiness scores.",
-  
+
       "Developed an Adaptive Study Routing Engine that dynamically reallocates study time toward weak subjects using performance analytics, readiness scores, and exam priorities.",
-  
+
       "Implemented an Event Engine capable of automatically adjusting preparation plans when exams are postponed, cleared, failed, or reprioritized.",
-  
+
       "Created a Revision Command Center using spaced-repetition cycles (1, 3, 7, 15, and 30 days) to reduce revision debt and improve long-term retention.",
-  
+
       "Integrated health and habit intelligence including sleep consistency, hydration, exercise tracking, wake-up discipline, strength progression, and recovery monitoring.",
-  
+
       "Built dedicated modules for planning, resource management, mock analytics, exam tracks, weekly reviews, daily execution workflows, and performance intelligence."
     ],
-  
+
     dataset: {
       source:
         "User-generated preparation, revision, health, mock-test, and performance data",
-  
+
       size:
         "Multi-exam preparation records, mock results, revision logs, study sessions, resource tracking, and habit analytics",
-  
+
       notes:
         "Data modeled around readiness scoring, execution consistency, exam progression, revision intelligence, and long-term preparation outcomes."
     },
-  
+
     role:
       "Full-Stack Engineer & Product Designer — architecture, database design, analytics modeling, workflow automation, dashboard development, and scoring-system design",
-  
+
     techStack: [
       "React",
       "TypeScript",
@@ -368,59 +368,59 @@ export const projects: Project[] = [
       "Vite",
       "PWA"
     ],
-  
+
     metrics: [
       { label: "Supported Exams", value: "7" },
       { label: "Application Modules", value: "12+" },
       { label: "Subject Tracks", value: "70+" },
       { label: "Readiness Factors", value: "6+" }
     ],
-  
+
     impact: [
       "Unified preparation workflows across seven competitive examinations within a single execution platform.",
-  
+
       "Converted static study plans into measurable readiness, execution, revision, and performance metrics.",
-  
+
       "Implemented readiness scoring models combining syllabus progress, revision status, mock performance, study consistency, and health signals.",
-  
+
       "Built adaptive study-routing workflows that prioritize high-impact subjects using weakness detection and exam weighting.",
-  
+
       "Integrated preparation, revision, health tracking, resource management, and performance analytics into a single decision-support system.",
-  
+
       "Demonstrated full-stack engineering, analytics design, workflow automation, and product-thinking capabilities."
     ],
-  
+
     result:
       "A working multi-exam preparation app with progress analytics, revision scheduling and habit tracking. The live demo is public; the source is kept private while the project is still being built.",
-  
+
     challenges: [
       "Balancing preparation priorities across multiple examinations with overlapping and conflicting syllabi.",
-  
+
       "Designing readiness scores that fairly represent preparation progress across different exam structures.",
-  
+
       "Preventing revision debt accumulation through automated scheduling and adaptive planning.",
-  
+
       "Integrating academic performance metrics with behavioral and health indicators without overwhelming users."
     ],
-  
+
     learnings: [
       "Decision-support systems require measurable execution metrics rather than static task tracking.",
-  
+
       "Readiness scoring becomes significantly more valuable when combined with revision and consistency signals.",
-  
+
       "Behavioral data can be as important as academic performance when predicting long-term preparation outcomes.",
-  
+
       "Workflow automation reduces planning overhead and improves preparation consistency.",
-  
+
       "Analytics-driven prioritization improves decision quality compared with manual study planning."
     ],
-  
+
     repoState: "private",
     repoNote: "Public demo, private source — the repository is kept private while the app is still in active development. You can try the live demo; a code walkthrough is available on request.",
-  
+
     demoUrl:
       "https://prepos.vercel.app",
-  
+
     images: [
       "/projects/prep_os/dashboard.png",
       "/projects/prep_os/skill_level.png",
@@ -431,25 +431,25 @@ export const projects: Project[] = [
       "/projects/prep_os/cgl_track.png",
       "/projects/prep_os/login_page.png"
     ],
-  
+
     imageCaptions: [
       "PrepOS central dashboard showing readiness status, execution priorities, recovery mode detection, and intelligent task recommendations.",
-  
+
       "Subject Assessment Engine used to evaluate strengths, weaknesses, and learning maturity levels across multiple exam domains.",
-  
+
       "Study & Revision Intelligence module combining topic tracking, ROI prioritization, spaced repetition, and revision debt monitoring.",
-  
+
       "Mock Test Analytics dashboard tracking score progression, readiness thresholds, exam targets, and performance benchmarking.",
-  
+
       "Resource Management System for books, courses, playlists, PDFs, and preparation assets across multiple examinations.",
-  
+
       "Time-blocked execution planner integrating study sessions, revision schedules, health activities, and productivity tracking.",
-  
+
       "Exam-specific preparation track with cut-off analysis, readiness targets, scoring strategy, and milestone monitoring.",
-  
+
       "Authentication and user management system supporting personalized preparation environments."
     ],
-  
+
     crossLinks: [
       {
         label: "Sreejita Framework",
@@ -468,106 +468,195 @@ export const projects: Project[] = [
   {
     slug: "predictive-maintenance-forecasting",
     title: "Predictive Maintenance — Machine Failure Forecasting",
-    tagline: "Python · PyTorch · LSTM · Time-Series Analysis",
-    summary: "LSTM forecasting model predicting machine failures up to two weeks ahead on multivariate sensor data. Outperformed ARIMA and gradient-boosted classifiers on failure recall — the operationally critical metric for maintenance scheduling.",
-    description: "Time-series forecasting with metric selection aligned to business cost — recall over accuracy for rare, high-cost failure events.",
+    tagline: "Python · Scikit-learn · Time-Series Feature Engineering · Cost-Sensitive ML",
+    summary: "Reproducible predictive-maintenance system built on NASA C-MAPSS FD004, benchmarking causal RUL estimation and failure-risk classification under engine-grouped validation. The final study showed strong failure-risk performance while demonstrating that a deep sequence model was not scientifically justified by the available evidence.",
+    description: "An end-to-end predictive-maintenance research system for forecasting remaining useful life (RUL) and identifying near-term machine failure risk from multivariate turbofan sensor data. The project emphasizes leakage-safe temporal feature engineering, engine-grouped validation, classical ML baselines, cost-sensitive threshold analysis, reproducibility, and honest model selection rather than forcing a deep-learning model when the evidence did not support one.",
     caseStudy: true,
     priority: 5,
     category: "forecasting",
-    problem: "Industrial equipment failures detectable days in advance are instead discovered when they stop production. A forecasting model surfacing failure probability early enables proactive maintenance scheduling and avoids unplanned downtime costs.",
+
+    problem:
+      "Industrial equipment degradation can develop gradually before a failure event becomes operationally obvious. The challenge is to estimate remaining useful life and identify machines approaching failure early enough to support maintenance decisions, while avoiding data leakage and excessive false alarms. The project uses NASA C-MAPSS FD004 to build and evaluate a reproducible failure-prediction workflow under realistic engine-level validation.",
+
     approach: [
-      "Applied sequence windowing and feature normalisation to convert raw multivariate sensor readings into LSTM-compatible time-series inputs.",
-      "Benchmarked LSTM against ARIMA and a gradient-boosted classifier on identical train/validation splits — model selection driven by recall on failure events, not overall accuracy.",
-      "LSTM selected because it had the highest recall on failure events — the operationally critical metric. Overall accuracy was secondary.",
-      "Applied early stopping and gradient clipping to prevent overfitting on limited failure-class samples (class imbalance addressed during training).",
-      "Translated the two-week forecast window into a directional cost estimate using published industrial downtime benchmarks (~$1.15M annually). Framed explicitly as directional, not a precise figure.",
+      "Audited the NASA C-MAPSS dataset before modelling, including schema integrity, duplicate sensors, operating-regime structure, target construction, and train/test boundaries.",
+      "Used FD004 as the primary dataset because it contains six operating regimes and two fault modes, making it a more demanding multivariate degradation setting.",
+      "Created an engine-grouped train/validation split with 199 training engines and 50 validation engines, ensuring that observations from the same engine never crossed the split boundary.",
+      "Kept the official C-MAPSS test set sealed throughout model development and validation to prevent evaluation leakage.",
+      "Built causal time-series features from historical sensor trajectories, including lag/difference, rolling-window, and local-slope features using train-only feature-selection decisions.",
+      "Benchmarked naive, linear, Ridge, and Histogram Gradient Boosting approaches for uncapped remaining-useful-life regression.",
+      "Benchmarked majority-class, Logistic Regression, and Histogram Gradient Boosting approaches for failure-risk classification at multiple operational-cycle horizons.",
+      "Used H30 — 30 operating cycles ahead — as the primary failure-risk horizon, with H14 and H50 used for sensitivity analysis rather than presenting an artificial calendar-time forecast.",
+      "Evaluated failure-risk models using recall, precision, F1, PR-AUC, ROC-AUC, confusion matrices, and threshold analysis instead of relying on accuracy under class imbalance.",
+      "Evaluated RUL models using MAE, RMSE, R², prognostic score, residual distributions, and end-of-life error analysis.",
+      "Compared a classical anchor model against a causal temporal-feature model to determine whether trajectory information materially improved operational decision quality.",
+      "Performed cost-sensitive threshold analysis across multiple illustrative false-negative/false-positive cost ratios to test whether model differences translated into robust decision value.",
+      "Used bootstrap analysis at the engine level to quantify uncertainty in the difference between the anchor and temporal failure-risk approaches.",
+      "Performed a final reproducibility and productionization audit covering dependency locking, Windows execution, scientific artifact integrity, Git provenance, tests, documentation, and public-repository safety.",
+      "Built an interactive Streamlit Prediction Lab using frozen validation predictions so recruiters can explore engines, cycles, models, thresholds, RUL predictions, and failure-risk decisions without exposing the official test set or performing uncontrolled live inference."
     ],
+
     dataset: {
-      source: "Multivariate industrial sensor dataset",
-      size: "Time-series readings across multiple machines",
-      notes: "Class imbalance between normal and failure states. Failure events are rare but high-cost.",
+      source: "NASA C-MAPSS Turbofan Engine Degradation Simulation — FD004",
+      size: "249 training engines and 248 official test engines; 26 raw columns consisting of engine ID, cycle, 3 operating settings, and 21 sensors",
+      notes:
+        "FD004 contains six operating regimes and two fault modes. The project uses 249 training engines for development, with a frozen 199/50 engine-grouped train/validation split. The official test set remains sealed and is not used for model selection. RUL is defined in operational cycles, not calendar days."
     },
-    role: "ML Engineer — time-series modelling, evaluation, business framing",
-    techStack: ["Python", "PyTorch", "LSTM", "NumPy", "Pandas", "Matplotlib"],
+
+    role:
+      "ML Engineer — time-series feature engineering, predictive modelling, leakage-safe evaluation, cost-sensitive analysis, reproducibility, and ML application design",
+
+    techStack: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "SciPy",
+      "Scikit-learn",
+      "Matplotlib",
+      "PyArrow",
+      "Joblib",
+      "Pytest",
+      "Streamlit",
+      "Git"
+    ],
+
     metrics: [
-      { label: "Validation accuracy",   value: "87%" },
-      { label: "Forecast horizon",      value: "2 weeks" },
-      { label: "vs ARIMA / GBM",        value: "Higher recall" },
-      { label: "Cost estimate",         value: "~$1.15M/yr" },
+      {
+        label: "Best RUL MAE",
+        value: "31.52 cycles"
+      },
+      {
+        label: "Primary paired RUL MAE",
+        value: "31.86 cycles"
+      },
+      {
+        label: "H30 failure-risk F1",
+        value: "0.898"
+      },
+      {
+        label: "H30 PR-AUC",
+        value: "0.974"
+      },
+      {
+        label: "H30 ROC-AUC",
+        value: "0.995"
+      },
+      {
+        label: "Validation engines",
+        value: "50"
+      },
+      {
+        label: "Scientific tests",
+        value: "147 passed"
+      },
+      {
+        label: "Official test set",
+        value: "Sealed"
+      }
     ],
+
     impact: [
-      "LSTM outperformed ARIMA and gradient-boosted baselines on failure event recall",
-      "Two-week forecast horizon gives meaningful lead time for maintenance scheduling",
-      "Directional cost estimate provides business framing for model adoption decisions",
-      "Metric selection discipline (recall over accuracy) demonstrates understanding of business cost asymmetry",
+      "Established a leakage-safe predictive-maintenance workflow with engine-grouped validation and train-only preprocessing.",
+      "Achieved 31.86-cycle MAE for the primary paired causal temporal RUL model, with the best-MAE W3 temporal configuration reaching 31.52 cycles.",
+      "Achieved 0.898 F1, 0.974 PR-AUC, and 0.995 ROC-AUC for the primary H30 temporal failure-risk evaluation at the default 0.50 threshold.",
+      "Demonstrated that the historical 87% accuracy claim was not evidence of predictive performance because a majority-class baseline achieved approximately the same accuracy while detecting no failures.",
+      "Showed that causal temporal features reduced false-alarm runs substantially in validation, while also increasing some false-negative rows — making the trade-off explicit rather than hiding it behind a single metric.",
+      "Used cost-sensitive and engine-level analysis to determine whether temporal features created robust operational decision value across different false-negative cost assumptions.",
+      "Established evidence-based model selection: the available validation evidence did not justify escalation to an LSTM or other sequence model.",
+      "Converted the research workflow into a public, reproducible GitHub project with a deterministic Streamlit demonstration over frozen validation artifacts."
     ],
-    result: "A time-series forecasting system that demonstrates metric selection aligned to business priorities — not accuracy optimisation for its own sake.",
+
+    result:
+      "A research-grade predictive-maintenance system that estimates remaining useful life and failure risk from multivariate engine telemetry while prioritising leakage prevention, causal temporal features, operationally relevant metrics, uncertainty, and reproducibility. The final model-selection decision was evidence-driven: classical machine-learning methods were retained because the validation study did not demonstrate an unresolved problem that justified a neural sequence model.",
+
     challenges: [
-      "Class imbalance between normal and failure states required careful sampling strategy during training.",
-      "LSTM training instability on short failure sequences addressed with gradient clipping.",
+      "C-MAPSS FD004 contains multiple operating regimes, creating a strong regime-related modelling confound that had to be explicitly analysed.",
+      "Random row-level splitting would leak information between observations from the same engine, so validation was performed at the engine-group level.",
+      "Failure-risk labels are imbalanced, making raw accuracy misleading; recall, precision, F1, PR-AUC, and cost-sensitive threshold analysis were therefore prioritised.",
+      "RUL predictions exhibited regression-to-the-mean behaviour, including overprediction for shorter-lived engines and underprediction for longer-lived engines.",
+      "Temporal features reduced false-alarm behaviour but did not uniformly dominate the anchor model across all cost assumptions.",
+      "The initial portfolio claims of 87% accuracy, a two-week forecast horizon, and approximately $1.15M/year in savings could not be scientifically supported and were removed from the final project.",
+      "Reproducibility required additional engineering beyond modelling, including exact dependency locking, Windows-compatible gate execution, Git provenance, documentation, and protected-artifact verification."
     ],
+
     learnings: [
-      "Metric selection must reflect operational cost structure — recall for rare, expensive failure events.",
-      "Benchmarking multiple model families (statistical, tree-based, deep learning) produces more credible model selection than single-model evaluation.",
-      "Cost estimates should be clearly framed as directional — this is honest and still useful for stakeholder buy-in.",
+      "A high accuracy number can be meaningless for imbalanced failure prediction when the majority-class baseline achieves similar accuracy with zero failure recall.",
+      "Validation must respect the unit of independence: for equipment telemetry, engine-level grouping is more defensible than random row-level splitting.",
+      "Operational horizons should match the dataset's actual time representation. C-MAPSS uses operating cycles, so claiming a calendar-time horizon such as 'two weeks' without a conversion basis is not defensible.",
+      "Causal temporal features can add useful trajectory information without automatically requiring a recurrent or transformer-based architecture.",
+      "Model complexity should be earned by evidence. A neural sequence model should not be introduced simply because the project is a time-series problem.",
+      "Failure prediction should be evaluated as a decision problem, where false negatives and false positives can have different operational costs.",
+      "Engine-level bootstrap analysis provides a more meaningful view of uncertainty than treating every time-series row as an independent observation.",
+      "Reproducibility is part of the ML system: pinned dependencies, deterministic preprocessing, protected artifacts, tests, documentation, and Git provenance are as important as the model itself.",
+      "A credible ML project should explicitly retire unsupported claims instead of preserving impressive-looking metrics that cannot be reproduced."
     ],
+
     codeUrl: undefined,
-    repoState: "private",
-    repoNote: "Private repository — experiment notebook and model results are not published yet. The training/validation metrics shown here are from my own experiments. Methodology and results are available to discuss.",
+
+    repoState: "public",
+
+    repoNote:
+      "Public GitHub repository with the validated research pipeline, reproducibility documentation, tests, frozen validation artifacts, and interactive Streamlit demonstration. The official C-MAPSS test labels and NASA raw dataset files are not redistributed. The Streamlit demo operates only on frozen validation predictions and does not expose official test-set results.",
+
     images: [],
+
     imageCaptions: [],
+
     crossLinks: [
-      { label: "ML Monitoring Platform", href: "/projects/ml-monitoring-platform" },
+      {
+        label: "ML Monitoring Platform",
+        href: "/projects/ml-monitoring-platform"
+      }
     ],
   },
 
   /* ══════════════════════════════════════════════
-   7 - AMAZON FOOD REVIEWS SENTIMENT ANALYSIS
+     7 - AMAZON FOOD REVIEWS SENTIMENT ANALYSIS
   ══════════════════════════════════════════════ */
   {
     slug: "amazon-food-reviews-sentiment-analysis",
     title: "Amazon Food Reviews Sentiment Analysis",
-  
+
     tagline:
       "Python · DistilBERT · PyTorch · Hugging Face · Gradio · NLP",
-  
+
     summary:
       "NLP pipeline for sentiment classification on 568K+ Amazon food reviews. Built a TF-IDF + Logistic Regression baseline (~89% accuracy) and fine-tuned DistilBERT to reach ~94% accuracy. Deployed via Gradio on Hugging Face Spaces.",
-  
+
     description:
       "Automated customer sentiment analysis using transformer-based NLP. The system processes large volumes of review text, compares classical machine learning against modern transformer architectures, and delivers real-time sentiment predictions through a deployed web interface.",
-  
+
     caseStudy: true,
-  
+
     priority: 6,
-  
+
     category: "nlp",
-  
+
     problem:
       "Large e-commerce platforms receive massive volumes of customer reviews daily, making manual sentiment analysis slow, inconsistent, and difficult to scale. Automating sentiment detection enables faster customer insight generation, review monitoring, and data-driven product decisions.",
-  
+
     approach: [
       "Preprocessed and cleaned 568K+ Amazon food reviews, mapping ratings 1–2 to negative sentiment and ratings 4–5 to positive sentiment while removing neutral reviews.",
-      
+
       "Built a TF-IDF + Logistic Regression baseline model achieving approximately 89% accuracy to establish an interpretable benchmark before applying deep learning methods.",
-  
+
       "Fine-tuned DistilBERT using transfer learning and GPU acceleration, improving contextual understanding of customer feedback and increasing accuracy to approximately 94%.",
-  
+
       "Evaluated performance using accuracy, F1-score, ROC curves, and confusion matrices to compare baseline and transformer-based approaches.",
-  
+
       "Deployed a Gradio-based inference application on Hugging Face Spaces, enabling real-time sentiment predictions through a web interface.",
     ],
-  
+
     dataset: {
       source: "Amazon Fine Food Reviews Dataset (Kaggle)",
       size: "568K+ customer reviews",
       notes:
         "Binary sentiment dataset derived from review ratings. Neutral reviews removed to reduce label ambiguity and improve classification consistency.",
     },
-  
+
     role:
       "Machine Learning Engineer (NLP) — owned the complete lifecycle including preprocessing, feature engineering, model training, evaluation, deployment, and documentation.",
-  
+
     techStack: [
       "Python",
       "PyTorch",
@@ -579,53 +668,53 @@ export const projects: Project[] = [
       "Gradio",
       "Pandas",
     ],
-  
+
     metrics: [
       { label: "DistilBERT Accuracy", value: "~94%" },
       { label: "Baseline Accuracy", value: "~89%" },
       { label: "Accuracy Improvement", value: "+5pp" },
       { label: "Inference Latency", value: "<300ms" },
     ],
-  
+
     impact: [
       "Improved sentiment classification accuracy by approximately 5 percentage points over the classical TF-IDF baseline.",
-      
+
       "Automated analysis of large-scale customer feedback, reducing manual review processing effort and enabling faster insight generation.",
-  
+
       "Delivered a real-time sentiment prediction interface accessible to non-technical users through a web browser.",
-  
+
       "Demonstrated the practical advantages of transformer-based NLP models over traditional machine learning approaches for contextual sentiment understanding.",
     ],
-  
+
     result:
       "A sentiment-classification pipeline that compares a classical TF-IDF baseline against a fine-tuned DistilBERT, with a hosted demo for real-time predictions.",
-  
+
     challenges: [
       "Class imbalance and review-length variability required careful preprocessing and evaluation beyond simple accuracy metrics.",
-  
+
       "Balancing model accuracy with deployment efficiency required selecting DistilBERT over larger transformer architectures.",
-  
+
       "Large dataset size increased training time and required GPU optimization for practical experimentation.",
     ],
-  
+
     learnings: [
       "Transformer models significantly outperform classical NLP methods when contextual understanding is important.",
-  
+
       "Strong baselines are essential for measuring real-world model improvements.",
-  
+
       "Model deployment, latency, and usability are as important as predictive performance.",
-  
+
       "Business framing helps translate technical NLP work into measurable organizational value.",
     ],
-  
+
     codeUrl:
       "https://github.com/YeswanthArasavalli/amazon-food-review-sentiment-analysis",
     repoState: "public",
-  
+
     demoUrl:
       "https://huggingface.co/spaces/YeswanthArasavalli/Amazon_Food_Review_Analysis",
     demoNote: "Hosted on Hugging Face Spaces — may be sleeping and takes ~1 minute to cold-start.",
-  
+
     images: [
       "/projects/amazon_food/a_dash.png",
       "/projects/amazon_food/word.jpg",
@@ -633,19 +722,19 @@ export const projects: Project[] = [
       "/projects/amazon_food/confusion.png",
       "/projects/amazon_food/accuracy.png",
     ],
-  
+
     imageCaptions: [
       "Gradio inference interface — enter a review text and get a sentiment prediction from the fine-tuned DistilBERT model.",
-      
+
       "Word cloud highlighting frequently occurring terms across customer review text.",
-      
+
       "ROC curve comparing model discrimination performance across sentiment classes.",
-      
+
       "Confusion matrix illustrating classification performance on the evaluation dataset.",
-      
+
       "Performance comparison between TF-IDF + Logistic Regression baseline and fine-tuned DistilBERT.",
     ],
-  
+
     crossLinks: [
       {
         label: "Retail Product Image Recognition System",

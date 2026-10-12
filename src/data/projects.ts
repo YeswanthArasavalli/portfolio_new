@@ -742,6 +742,98 @@ export const projects: Project[] = [
       },
     ],
   },
+
+  /* ══════════════════════════════════════════════
+     8 — ORDER INTELLIGENCE PLATFORM (OIP)
+     Public repo + hosted synthetic dashboard.
+     Streaming architecture is implemented and
+     verified locally, NOT deployed as a live stack.
+  ══════════════════════════════════════════════ */
+  {
+    slug: "order-intelligence-platform",
+    title: "Order Intelligence Platform",
+    tagline:
+      "Python · Kafka (KRaft) · Spark Structured Streaming · Avro · MinIO · PostgreSQL · Redis · Streamlit",
+    summary:
+      "An e-commerce order and revenue analytics platform that turns order-lifecycle events into currency-aware revenue and product metrics. The public dashboard runs on clearly-labelled synthetic data; the broader Kafka → Spark → Bronze/Silver/Gold pipeline is implemented and verified locally in the repository, not deployed as a live streaming stack.",
+    description:
+      "Order events are not directly useful for business reporting until lifecycle state, payments, refunds, cancellations, currency and aggregation rules are handled consistently. This platform organises those concerns into a medallion data pipeline and an analytics dashboard. The hosted demo shows the dashboard over a fixed synthetic sample; the streaming architecture behind it was built and tested phase-by-phase in a local Docker Compose environment.",
+    caseStudy: true,
+    priority: 8,
+    category: "analytics",
+    problem:
+      "Raw e-commerce order events do not give a reliable view of business performance. Revenue has to be recognised at the right lifecycle step, refunds and cancellations have to be netted correctly, INR and USD must never be summed together, and bad or duplicate events must be quarantined rather than silently aggregated. The goal was an analytics pipeline that answers net revenue, order volume, average order value, product and regional performance, refund/cancellation impact and data-quality health — with the correctness rules enforced in code rather than assumed.",
+    approach: [
+      "Modelled the order lifecycle (created → paid → shipped → delivered, with cancellation/refund branches) and defined net revenue as paid amount minus refunds minus paid cancellations, recognising revenue at ORDER_PAID rather than ORDER_CREATED.",
+      "Transported events through Apache Kafka in KRaft mode with Avro serialisation enforced by a Confluent Schema Registry, so producers and consumers share an explicit schema contract.",
+      "Processed the stream with Spark Structured Streaming into a MinIO-backed medallion lake: Bronze for raw append-only events, Silver for validated/deduplicated records, Gold for committed business aggregates.",
+      "Built a data-quality gate defined as an explicit contract of 21 checks, with source-coordinate replay handling and rejected records routed to a dead-letter path. The DQ/DLQ path is documented as at-least-once — no end-to-end exactly-once guarantee is claimed.",
+      "Served Gold aggregates into an additive PostgreSQL schema as the analytical source of truth, fronted by a rebuildable Redis cache derived only from PostgreSQL (Redis is a delivery layer, never the source of truth).",
+      "Rendered a Streamlit + Plotly dashboard with currency-separated views, KPI cards, revenue charts, filters, product/revenue tables and provenance labels — keeping monetary values as exact Decimals internally and rounding only for display.",
+      "Added one-shot, currency-aware rule-based alert evaluation persisted in PostgreSQL, a controlled-HTTP notification path, and a Prometheus/Grafana observability tier with bounded-cardinality metrics.",
+      "Provided a synthetic demo mode so the dashboard is reachable without Kafka, Spark, MinIO, PostgreSQL, Redis or Docker — this is what the hosted Streamlit deployment runs.",
+    ],
+    role:
+      "Data / Analytics Engineer — pipeline design, streaming jobs, data-quality and serving contracts, dashboard, tests and observability",
+    techStack: [
+      "Python",
+      "Apache Kafka",
+      "Spark Structured Streaming",
+      "Apache Avro",
+      "Schema Registry",
+      "MinIO",
+      "PostgreSQL",
+      "Redis",
+      "Streamlit",
+      "Prometheus",
+      "Grafana",
+      "Docker Compose",
+      "Pytest",
+    ],
+    metrics: [
+      { label: "Self-contained tests passed", value: "217" },
+      { label: "Skipped (env-specific)", value: "4" },
+      { label: "Data-quality checks", value: "21" },
+      { label: "Grafana dashboards", value: "3" },
+    ],
+    impact: [
+      "Currency-scoped aggregation keeps INR and USD separate end to end, so no metric ever sums across currencies.",
+      "Net-revenue, refund and cancellation rules are enforced in the Gold contract with exact Decimal arithmetic, not approximated in the dashboard.",
+      "A 21-check data-quality contract with a dead-letter path makes correctness explicit and rejected records inspectable instead of silently dropped.",
+      "PostgreSQL is the authoritative serving store and Redis is a rebuildable cache, so a cache loss degrades availability without corrupting results.",
+      "A documented observability scope of 45 bounded-cardinality metric families across three Grafana dashboards covers pipeline and serving health (design/locally verified — not monitoring of the public demo).",
+    ],
+    result:
+      "A data-engineering portfolio piece that connects business analytics, streaming architecture and data correctness in one system. The public dashboard demonstrates the analytics presentation on synthetic data; the streaming pipeline, medallion layers, serving contracts, alerting and observability are implemented and verified in the repository's local Docker environment.",
+    challenges: [
+      "Keeping monetary precision exact through the whole path — values are stored and computed as eight-place Decimals and only rounded for display, so the table, hover text and insights never disagree.",
+      "Making the demo honest: the synthetic mode reuses the real serving-contract helpers and consumer validator rather than a hand-built snapshot, so it exercises the actual read/render path without pretending to be live ingestion.",
+      "Separating what is genuinely wired from what is legacy: statistical (Z-score/EWMA) anomaly detection exists as an unwired historical module and is explicitly not presented as an active feature.",
+    ],
+    learnings: [
+      "A dashboard is only as trustworthy as its metric definitions — recognising revenue at the correct lifecycle step and netting refunds/cancellations is the substance of the work, not a detail.",
+      "Labelling delivery semantics accurately (at-least-once, not exactly-once) and marking legacy modules as unwired is more credible than overstating the architecture.",
+      "A rebuildable cache sourced from an authoritative store keeps the fast read path without turning the cache into a second source of truth.",
+      "Separating the hosted demo (synthetic, no infrastructure) from the locally verified pipeline lets a reviewer see the analytics without provisioning Kafka or Spark.",
+    ],
+    codeUrl: "https://github.com/YeswanthArasavalli/order-intelligence-platform",
+    repoState: "public",
+    demoUrl: "https://order-intelligence-platform.streamlit.app/",
+    demoNote:
+      "Hosted Streamlit demo runs the synthetic dashboard (fixed sample, banner: 'Synthetic demo data — not a live pipeline') — not a live Kafka/Spark deployment. Community Cloud apps can be sleeping; the URL could not be live-verified during this update, and a two-decimal currency-formatting fix present in the repository has not yet been confirmed on the hosted build.",
+    images: [
+      "/projects/order_intelligence/dashboard_synthetic_demo.png",
+      "/projects/order_intelligence/dashboard_scripted_replay.gif",
+    ],
+    imageCaptions: [
+      "Synthetic demo dashboard — currency-separated net revenue, order count and average order value with revenue chart, filters and provenance labels. Fixed synthetic sample, not a live pipeline.",
+      "Scripted synthetic replay — the same page stepping through predefined synthetic snapshots to show the analytics change. Still 100% synthetic, no live ingestion.",
+    ],
+    crossLinks: [
+      { label: "Sreejita Framework", href: "/projects/sreejita-framework" },
+      { label: "SQL Showcase", href: "/sql" },
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

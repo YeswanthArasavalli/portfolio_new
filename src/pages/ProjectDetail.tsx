@@ -166,12 +166,40 @@ function PredMainDiagram() {
   );
 }
 
+function OIPDiagram() {
+  /* Documented architecture, verified in the repository's local Docker
+     environment. The hosted Streamlit demo runs only the synthetic dashboard
+     (Redis/PostgreSQL/Kafka/Spark are NOT exercised by the public demo). */
+  const rows: ArchRow[] = [
+    { box: "Order Lifecycle Events",  detail: "Synthetic generator · created → paid → shipped → delivered · cancel/refund branches",        color: "border-slate-400 text-slate-300" },
+    { arrow: "↓ Avro + Schema Registry" },
+    { box: "Kafka (KRaft)",           detail: "order-events · payment-events · DLQ — schema-governed transport",                            color: "border-blue-500 text-blue-300" },
+    { arrow: "↓ micro-batch · watermark" },
+    { box: "Spark Structured Streaming", detail: "Avro deserialisation · Bronze → DQ gate (21 checks) → Silver → Gold aggregates",          color: "border-violet-500 text-violet-300" },
+    { arrow: "↓ medallion lake on MinIO" },
+    { box: "Bronze / Silver / Gold",  detail: "raw append-only · validated + deduplicated (DLQ at-least-once) · committed business aggregates", color: "border-indigo-500 text-indigo-300" },
+    { arrow: "↓ serve aggregates" },
+    { box: "PostgreSQL + Redis",      detail: "gold_serving = analytical source of truth · Redis = rebuildable cache derived from PostgreSQL", color: "border-yellow-500 text-yellow-300" },
+    { arrow: "↓ read + render" },
+    { box: "Streamlit Dashboard",     detail: "currency-separated KPIs · revenue charts · filters · tables · exact Decimal, display-rounded", color: "border-green-500 text-green-300" },
+    { arrow: "↓ supporting (documented)" },
+    { box: "Alerting + Observability", detail: "one-shot currency-aware rules · controlled-HTTP notifications · Prometheus/Grafana (45 metric families, 3 dashboards)", color: "border-orange-500 text-orange-300" },
+  ];
+  return (
+    <ArchDiagram
+      title="Documented Architecture — verified locally in Docker Compose · the hosted demo runs the synthetic dashboard only"
+      rows={rows}
+    />
+  );
+}
+
 const diagrams: Record<string, React.ReactNode> = {
   "ml-monitoring-platform":            <MLOpsDiagram />,
   "ai-hiring-intelligence-platform":   <HiringDiagram />,
   "sreejita-framework":                <SreejitaDiagram />,
   "retail-product-image-recognition":  <RetailCVDiagram />,
   "predictive-maintenance-forecasting":<PredMainDiagram />,
+  "order-intelligence-platform":        <OIPDiagram />,
 };
 
 /* ── Stats highlights per project ─────────────── */
